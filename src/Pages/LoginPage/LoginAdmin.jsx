@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/Auth';
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import Logo from '../../assets/Logo';
 
 const LoginAdmin = () => {
     const auth = useAuth();
@@ -52,9 +53,9 @@ const LoginAdmin = () => {
 
     return (
         <>
-            <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between w-full h-screen">
-                <div className="flex items-center justify-center w-full lg:w-6/12 h-full">
-                    <div className="flex flex-col items-center justify-start h-5/6 gap-8 w-10/12 mt-40">
+            <div className="flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-around w-full lg:h-screen">
+                <div className="flex items-center justify-center w-full lg:w-6/12 lg:h-full">
+                    <div className="flex flex-col items-center justify-center h-5/6 gap-8 w-10/12">
                         <form className="w-full flex flex-col items-start justify-center gap-4 mt-10" onSubmit={handleSubmit}>
                             <div className="w-full flex flex-col gap-6 items-end">
                                 <div className='flex w-full text-left'>
@@ -114,9 +115,9 @@ const LoginAdmin = () => {
                         </form>
                     </div>
                 </div>
-                <div className="lg:flex items-center justify-center">
+                <div className="w-full lg:w-6/12">
                     {/* Add Logo here if needed */}
-                    
+                    <Logo/>                
                 </div>
             </div>
         </>
