@@ -10,7 +10,7 @@ export default {
       },
       colors: {
         mainColor: "#3F4CD0",
-        secoundColor: "#fffff",
+        secoundColor: "#ffff",
         thirdColor: "#727272",
         // AddText:"#5E5E5E",
       },

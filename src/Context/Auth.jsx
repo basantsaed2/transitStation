@@ -11,14 +11,14 @@ export const ContextProvider = ({ children }) => {
     return userData ? JSON.parse(userData) : null;
   });
 
-//   useEffect(() => {
-//     if (user) {
-//       localStorage.setItem('user', JSON.stringify(user));
-//     } else {
-//       localStorage.removeItem('user');
-//       localStorage.removeItem("sidebarState")
-//     }
-//   }, [user]);
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('user');
+      localStorage.removeItem("sidebarState")
+    }
+  }, [user]);
 
   const login = (userData) => {
     setUser(userData);
@@ -26,13 +26,13 @@ export const ContextProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("sidebarState")
-    localStorage.removeItem("students")
-    localStorage.removeItem("Categories")
-    localStorage.removeItem("subjects")
-    localStorage.removeItem("Countries")
-
+    // localStorage.removeItem("sidebarState")
+    // localStorage.removeItem("students")
+    // localStorage.removeItem("Categories")
+    // localStorage.removeItem("subjects")
+    // localStorage.removeItem("Countries")
   };
+
   const toastSuccess = (text) => {
     toast.success(text);
 

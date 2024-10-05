@@ -1,7 +1,15 @@
 import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
+import ProtectedRoute from "./ProtectedData/ProtectedRoute";
 import App from "./App";
-import {DashboardLayout} from './Layouts/AllLayouts'
+import {DashboardLayout , AdminLayout} from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
+
+/* Admin Dashboard */
+const AppLayoutAdminDashboard = () => (
+  <>
+    <AdminLayout />
+  </>
+);
 
 export const router = createBrowserRouter([
 
@@ -10,8 +18,20 @@ export const router = createBrowserRouter([
         element: <LoginAdmin />,
     },
     {
+      element: <ProtectedRoute allowedRoles={['admin']} />,
       path: '/dashboard',
-      element: <DashboardLayout />,
+      children: [
+        {
+          path: '',
+          element: <AppLayoutAdminDashboard />,
+          children: [
+            {
+              path: '',
+              element: <DashboardLayout/>,
+            },    
+          ],
+        },
+      ],
     },
 
 ])

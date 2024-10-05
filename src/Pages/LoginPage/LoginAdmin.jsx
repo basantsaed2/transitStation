@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/Auth';
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
@@ -7,14 +7,30 @@ import Logo from '../../assets/Logo';
 
 const LoginAdmin = () => {
     const auth = useAuth();
+    const [data, setData] = useState(null);
     const [show, setShow] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [type, setType] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (data) {
+               console.log('Calling auth.login with data:', data); // Debugging line
+               auth.login(data); // Call auth.login with the updated data
+               console.log(type)
+
+               setIsLoading(false);
+               navigate("/dashboard", { replace: true });
+        }
+    }, [data]);
+
     const handleSubmit = async (event) => {
+        console.log(email)
+        console.log(password)
+        console.log(type)
         event.preventDefault();
 
         if (!email || !password) {
@@ -37,17 +53,21 @@ const LoginAdmin = () => {
                     roles: [response.data.role] // Assuming role is the user's role
                 };
                 auth.login(userData); // Call auth.login with the user data
+                console.log('Login response:', response); // Debugging line
                 auth.toastSuccess('Login successfully!');
+                setData(userData);
+                setType(response.data.role)
                 navigate("/dashboard", { replace: true });
             } else {
                 auth.toastError('Failed to login');
                 setError('Failed to login');
+                console.log("error", error);
             }
         } catch (error) {
             setError('There was an error posting the data!');
             console.error(error);
         } finally {
-            // setIsLoading(false);
+            setIsLoading(false);
         }
     };
 

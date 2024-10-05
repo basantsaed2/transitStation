@@ -70,3 +70,10 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+.MenuSide a.active {
+  padding-left: 20px;
+  border-radius: 12px;
+  background: #fff;
+  color: #3F4CD0 !important;
+  transition: all 0.3s ease-in-out;
+}
