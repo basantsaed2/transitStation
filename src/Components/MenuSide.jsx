@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 import {
-       HomeIcon,
+       HomeIcon,LocationIcon,ParkingIcon,SubscriptionsIcon,DriversIcon,FinancialIcon,RevenueIcon
+       ,ExpensesIcon,PlanIcon,RequestIcon,UserIcon
 } from "./Icons/All_Icons";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../Context/Auth";
@@ -9,16 +10,16 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const MenuSide = () => {
        const [isActiveHome, setIsActiveHome] = useState(true);
-    //    const [isActiveCurricula, setIsActiveCurricula] = useState(false);
-    //    const [isActiveDuties, setIsActiveDuties] = useState(false);
-    //    const [isActiveLiveClasses, setIsActiveLiveClasses] = useState(false);
-    //    const [isActiveMonthsReviews, setIsActiveMonthsReviews] = useState(false);
-    //    const [isActiveFinalReviews, setIsActiveFinalReviews] = useState(false);
-    //    const [isActiveSolveExams, setIsActiveSolveExams] = useState(false);
-    //    const [isActiveProfileStudent, setIsActiveProfileStudent] = useState(false);
-    //    const [isActiveSubscription, setIsActiveSubscription] = useState(false);
-    //    const [isActiveLogout, setIsActiveLogout] = useState(false);
-    //    const [isActiveAffliate, setIsActiveAffliate] = useState(false);
+       const [isActiveLocation, setIsActiveLocation] = useState(false);
+       const [isActiveParking, setIsActiveParking] = useState(false);
+       const [isActiveSubscriptions, setIsActiveSubscriptions] = useState(false);
+       const [isActiveDrivers, setIsActiveDrivers] = useState(false);
+       const [isActiveFinancial, setIsActiveFinancial] = useState(false);
+       const [isActiveRevenue, setIsActiveRevenue] = useState(false);
+       const [isActiveExpenses, setIsActiveExpenses] = useState(false);
+       const [isActivePlan, setIsActivePlan] = useState(false);
+       const [isActiveRequest, setIsActiveRequest] = useState(false);
+       const [isActiveUser, setIsActiveUser] = useState(false);
 
        const auth = useAuth();
        const navigate = useNavigate();
@@ -29,199 +30,199 @@ const MenuSide = () => {
 
        const handleClickHome = () => {
               setIsActiveHome(true);
-            //   setIsActiveCurricula(false);
-            //   setIsActiveDuties(false);
-            //   setIsActiveLiveClasses(false);
-            //   setIsActiveMonthsReviews(false);
-            //   setIsActiveFinalReviews(false);
-            //   setIsActiveSolveExams(false);
-            //   setIsActiveProfileStudent(false);
-            //   setIsActiveSubscription(false)
-            //   setIsActiveLogout(false)
-            //   setIsActiveAffliate(false)
+              setIsActiveLocation(false);
+              setIsActiveParking(false);
+              setIsActiveSubscriptions(false);
+              setIsActiveDrivers(false);
+              setIsActiveFinancial(false);
+              setIsActiveExpenses(false);
+              setIsActiveRevenue(false);
+              setIsActivePlan(false)
+              setIsActiveRequest(false)
+              setIsActiveUser(false)
        };
-    //    const handleClickCurricula = () => {
-    //           setIsActiveHome(false);
-    //           setIsActiveCurricula(true);
-    //           setIsActiveDuties(false);
-    //           setIsActiveLiveClasses(false);
-    //           setIsActiveMonthsReviews(false);
-    //           setIsActiveFinalReviews(false);
-    //           setIsActiveSolveExams(false);
-    //           setIsActiveProfileStudent(false);
-    //           setIsActiveSubscription(false)
-    //           setIsActiveLogout(false)
-    //           setIsActiveAffliate(false)
-    //    };
-    //    const handleClickDuties = () => {
-    //           setIsActiveDuties(true);
-    //           setIsActiveHome(false);
-    //           setIsActiveCurricula(false);
-    //           setIsActiveLiveClasses(false);
-    //           setIsActiveMonthsReviews(false);
-    //           setIsActiveFinalReviews(false);
-    //           setIsActiveSolveExams(false);
-    //           setIsActiveProfileStudent(false);
-    //           setIsActiveSubscription(false)
-    //           setIsActiveLogout(false)
-    //           setIsActiveAffliate(false)
-    //    };
-    //    const handleClickLiveClasses = () => {
-    //           setIsActiveLiveClasses(true);
-    //           setIsActiveHome(false);
-    //           setIsActiveCurricula(false);
-    //           setIsActiveDuties(false);
-    //           setIsActiveMonthsReviews(false);
-    //           setIsActiveFinalReviews(false);
-    //           setIsActiveSolveExams(false);
-    //           setIsActiveProfileStudent(false);
-    //           setIsActiveSubscription(false)
-    //           setIsActiveLogout(false)
-    //           setIsActiveAffliate(false)
-    //    };
-    //    const handleClickMonthsReviews = () => {
-    //           setIsActiveMonthsReviews(true);
-    //           setIsActiveHome(false);
-    //           setIsActiveCurricula(false);
-    //           setIsActiveDuties(false);
-    //           setIsActiveLiveClasses(false);
-    //           setIsActiveFinalReviews(false);
-    //           setIsActiveSolveExams(false);
-    //           setIsActiveProfileStudent(false);
-    //           setIsActiveSubscription(false)
-    //           setIsActiveLogout(false)
-    //           setIsActiveAffliate(false)
-    //    };
-    //    const handleClickFinalReviews = () => {
-    //           setIsActiveFinalReviews(true);
-    //           setIsActiveHome(false);
-    //           setIsActiveCurricula(false);
-    //           setIsActiveDuties(false);
-    //           setIsActiveLiveClasses(false);
-    //           setIsActiveMonthsReviews(false);
-    //           setIsActiveSolveExams(false);
-    //           setIsActiveProfileStudent(false);
-    //           setIsActiveSubscription(false)
-    //           setIsActiveLogout(false)
-    //           setIsActiveAffliate(false)
-    //    };
-    //    const handleClickSolveExams = () => {
-    //           setIsActiveSolveExams(true);
-    //           setIsActiveHome(false);
-    //           setIsActiveCurricula(false);
-    //           setIsActiveDuties(false);
-    //           setIsActiveLiveClasses(false);
-    //           setIsActiveMonthsReviews(false);
-    //           setIsActiveFinalReviews(false);
-    //           setIsActiveProfileStudent(false);
-    //           setIsActiveSubscription(false)
-    //           setIsActiveLogout(false)
-    //           setIsActiveAffliate(false)
-    //    };
-    //    const handleClickProfileStudent = () => {
-    //           setIsActiveProfileStudent(true);
-    //           setIsActiveSolveExams(false);
-    //           setIsActiveHome(false);
-    //           setIsActiveCurricula(false);
-    //           setIsActiveDuties(false);
-    //           setIsActiveLiveClasses(false);
-    //           setIsActiveMonthsReviews(false);
-    //           setIsActiveFinalReviews(false);
-    //           setIsActiveSubscription(false)
-    //           setIsActiveLogout(false)
-    //           setIsActiveAffliate(false)
-    //    };
-    //    const handleClickAffliate = () => {
-    //           setIsActiveProfileStudent(false);
-    //           setIsActiveSolveExams(false);
-    //           setIsActiveHome(false);
-    //           setIsActiveCurricula(false);
-    //           setIsActiveDuties(false);
-    //           setIsActiveLiveClasses(false);
-    //           setIsActiveMonthsReviews(false);
-    //           setIsActiveFinalReviews(false);
-    //           setIsActiveSubscription(false)
-    //           setIsActiveLogout(false)
-    //           setIsActiveAffliate(true)
-    //    };
-
-       // const handleClickLogout = () => {
-              // setIsActiveProfileStudent(false);
-              // setIsActiveSolveExams(false);
-              // setIsActiveHome(false);
-              // setIsActiveCurricula(false);
-              // setIsActiveDuties(false);
-              // setIsActiveLiveClasses(false);
-              // setIsActiveMonthsReviews(false);
-              // setIsActiveFinalReviews(false);
-              // setIsActiveLogout(true)
-       // };
-
-    //    const handleClickSubscriptions =() =>{
-    //           setIsActiveProfileStudent(false);
-    //           setIsActiveSolveExams(false);
-    //           setIsActiveHome(false);
-    //           setIsActiveCurricula(false);
-    //           setIsActiveDuties(false);
-    //           setIsActiveLiveClasses(false);
-    //           setIsActiveMonthsReviews(false);
-    //           setIsActiveFinalReviews(false);
-    //           setIsActiveSubscription(true)
-    //           setIsActiveLogout(false)
-    //    }
+       const handleClickLocation = () => {
+              setIsActiveHome(false);
+              setIsActiveLocation(true);
+              setIsActiveParking(false);
+              setIsActiveSubscriptions(false);
+              setIsActiveDrivers(false);
+              setIsActiveFinancial(false);
+              setIsActiveExpenses(false);
+              setIsActiveRevenue(false);
+              setIsActivePlan(false)
+              setIsActiveRequest(false)
+              setIsActiveUser(false)
+       };
+       const handleClickParking = () => {
+              setIsActiveHome(false);
+              setIsActiveLocation(false);
+              setIsActiveParking(true);
+              setIsActiveSubscriptions(false);
+              setIsActiveDrivers(false);
+              setIsActiveFinancial(false);
+              setIsActiveRevenue(false);
+              setIsActiveExpenses(false);
+              setIsActivePlan(false)
+              setIsActiveRequest(false)
+              setIsActiveUser(false)
+       };
+       const handleClickSubscriptions = () => {
+              setIsActiveHome(false);
+              setIsActiveLocation(false);
+              setIsActiveParking(false);
+              setIsActiveSubscriptions(true);
+              setIsActiveDrivers(false);
+              setIsActiveFinancial(false);
+              setIsActiveRevenue(false);
+              setIsActiveExpenses(false);
+              setIsActivePlan(false)
+              setIsActiveRequest(false)
+              setIsActiveUser(false)
+       };
+       const handleClickDrivers = () => {
+              setIsActiveHome(false);
+              setIsActiveLocation(false);
+              setIsActiveParking(false);
+              setIsActiveSubscriptions(false);
+              setIsActiveDrivers(true);
+              setIsActiveFinancial(false);
+              setIsActiveRevenue(false);
+              setIsActiveExpenses(false);
+              setIsActivePlan(false)
+              setIsActiveRequest(false)
+              setIsActiveUser(false)
+       };
+       const handleClickFinancial = () => {
+              setIsActiveHome(false);
+              setIsActiveLocation(false);
+              setIsActiveParking(false);
+              setIsActiveSubscriptions(false);
+              setIsActiveDrivers(false);
+              setIsActiveFinancial(true);
+              setIsActiveRevenue(false);
+              setIsActiveExpenses(false);
+              setIsActivePlan(false)
+              setIsActiveRequest(false)
+              setIsActiveUser(false)
+       };
+       const handleClickRevenue = () => {
+              setIsActiveHome(false);
+              setIsActiveLocation(false);
+              setIsActiveParking(false);
+              setIsActiveSubscriptions(false);
+              setIsActiveDrivers(false);
+              setIsActiveFinancial(false);
+              setIsActiveRevenue(true);
+              setIsActiveExpenses(false);
+              setIsActivePlan(false)
+              setIsActiveRequest(false)
+              setIsActiveUser(false)
+       };
+       const handleClickExpenses = () => {
+              setIsActiveHome(false);
+              setIsActiveLocation(false);
+              setIsActiveParking(false);
+              setIsActiveSubscriptions(false);
+              setIsActiveDrivers(false);
+              setIsActiveFinancial(false);
+              setIsActiveRevenue(false);
+              setIsActiveExpenses(true);
+              setIsActivePlan(false)
+              setIsActiveRequest(false)
+              setIsActiveUser(false)
+       };
+       const handleClickPlan = () => {
+              setIsActiveHome(false);
+              setIsActiveLocation(false);
+              setIsActiveParking(false);
+              setIsActiveSubscriptions(false);
+              setIsActiveDrivers(false);
+              setIsActiveFinancial(false);
+              setIsActiveRevenue(false);
+              setIsActiveExpenses(false);
+              setIsActivePlan(true)
+              setIsActiveRequest(false)
+              setIsActiveUser(false)
+       };
+       const handleClickRequest = () => {
+              setIsActiveHome(false);
+              setIsActiveLocation(false);
+              setIsActiveParking(false);
+              setIsActiveSubscriptions(false);
+              setIsActiveDrivers(false);
+              setIsActiveFinancial(false);
+              setIsActiveRevenue(false);
+              setIsActiveExpenses(false);
+              setIsActivePlan(false)
+              setIsActiveRequest(true)
+              setIsActiveUser(false)
+       };
+       const handleClickUser = () => {
+              setIsActiveHome(false);
+              setIsActiveLocation(false);
+              setIsActiveParking(false);
+              setIsActiveSubscriptions(false);
+              setIsActiveDrivers(false);
+              setIsActiveFinancial(true);
+              setIsActiveRevenue(false);
+              setIsActiveExpenses(false);
+              setIsActivePlan(false)
+              setIsActiveRequest(false)
+              setIsActiveUser(true)
+       };
 
        return (
               <>
                      <div className="w-full h-full mt-8 flex justify-center">
-                            <div className="MenuSide w-5/6 flex flex-col items-center gap-y-2">
+                            <div className="MenuSide w-5/6 flex flex-col items-center gap-y-4">
                                    <NavLink to="/dashboard" onClick={handleClickHome} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium ">
                                           <HomeIcon isActive={isActiveHome} />
                                           <span>Home</span>
                                    </NavLink>
-                                   {/* <NavLink to="curricula" onClick={handleClickCurricula} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <CurriculaIcon isActive={isActiveCurricula} />
-                                          <span>مناهج</span>
+                                   <NavLink to="pickUp_location" onClick={handleClickLocation} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <LocationIcon isActive={isActiveLocation} />
+                                          <span>#Pick_Up Location</span>
                                    </NavLink>
-                                   <NavLink to="duties" onClick={handleClickDuties} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <DutiesIcon isActive={isActiveDuties} />
-                                          <span>واجبات</span>
+                                   <NavLink to="parking" onClick={handleClickParking} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <ParkingIcon isActive={isActiveParking} />
+                                          <span>#Parking</span>
                                    </NavLink>
-                                   <NavLink to="live_classes" onClick={handleClickLiveClasses} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <LiveClassesIcon isActive={isActiveLiveClasses} />
-                                          <span>حصص لايف</span>
+
+                                   <NavLink to="subscriptions" onClick={handleClickSubscriptions} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <SubscriptionsIcon isActive={isActiveSubscriptions} />
+                                          <span>#Subscriptions</span>
                                    </NavLink>
-                                   <NavLink to="months_reviews" onClick={handleClickMonthsReviews} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <MonthsReviewsIcon isActive={isActiveMonthsReviews} />
-                                          <span>مراجعات شهور </span>
+                                   <NavLink to="drivers" onClick={handleClickDrivers} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <DriversIcon isActive={isActiveDrivers} />
+                                          <span>#Drivers</span>
                                    </NavLink>
-                                   <NavLink to="final_reviews" onClick={handleClickFinalReviews} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <FinalReviewsIcon isActive={isActiveFinalReviews} />
-                                          <span>مراجعه نهائيه</span>
+                                   <NavLink to="financial" onClick={handleClickFinancial} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <FinancialIcon isActive={isActiveFinancial} />
+                                          <span>Financial</span>
                                    </NavLink>
-                                   <NavLink to="solve_exams" onClick={handleClickSolveExams} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <SolveExamsIcon isActive={isActiveSolveExams} />
-                                          <span>حل امتحانات</span>
+
+                                   <NavLink to="revenue" onClick={handleClickRevenue} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <RevenueIcon isActive={isActiveRevenue} />
+                                          <span>Revenue</span>
                                    </NavLink>
-                                   <NavLink to="subscriptions"  onClick={handleClickSubscriptions} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <SubscriptionsIcon isActive={isActiveSubscription}/>
-                                          <span>اشتراكاتي</span>
+                                   <NavLink to="expenses" onClick={handleClickExpenses} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <FinancialIcon isActive={isActiveExpenses} />
+                                          <span>Expenses</span>
                                    </NavLink>
-                                   <NavLink to="affilate_student"  onClick={handleClickAffliate} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <AffilateStudentIcon isActive={isActiveAffliate}/>
-                                          <span>سوق واربح</span>
+
+                                   <NavLink to="plan" onClick={handleClickPlan} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <PlanIcon isActive={isActivePlan} />
+                                          <span>Plan</span>
                                    </NavLink>
-                                   <NavLink to="complaint_suggestion" onClick={handleClickProfileStudent} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <LuClipboardList size={23} style={{ strokeWidth: 2 }} isActive={isActiveProfileStudent} />
-                                          <span>الاقتراحات و الشكاوي</span>
+                                   <NavLink to="request" onClick={handleClickRequest} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <RequestIcon isActive={isActiveRequest} />
+                                          <span>Request</span>
                                    </NavLink>
-                                   <NavLink to="profile" onClick={handleClickProfileStudent} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <ProfileStudentIcon isActive={isActiveProfileStudent} />
-                                          <span>حسابى</span>
+                                   <NavLink to="user" onClick={handleClickUser} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <UserIcon isActive={isActiveUser} />
+                                          <span>User</span>
                                    </NavLink>
-                                   <NavLink onClick={handleLogout } className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <CiLogout size={23} style={{ strokeWidth: 2 }} />
-                                          <span>تسجيل الخروج</span>
-                                   </NavLink> */}
                             </div>
                      </div>
               </>
