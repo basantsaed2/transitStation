@@ -10,3 +10,8 @@ export { default as EditPickUP_LocationPage } from "./PickUP_Location/EditPickUP
 export { default as ParkingPage } from "./Parking/ParkingPage";
 export { default as AddParkingPage } from "./Parking/AddParkingPage";
 export { default as EditParkingPage } from "./Parking/EditParkingPage";
+
+/* Parking List Page */
+export { default as ParkingListPage } from "./Parking/ParkingList/ParkingListPage";
+export { default as AddParkingListPage } from "./Parking/ParkingList/AddParkingListPage";
+export { default as EditParkingListPage } from "./Parking/ParkingList/EditParkingListPage";

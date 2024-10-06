@@ -6,7 +6,7 @@ import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,Su
   AddPickUP_LocationLayout,
   EditPickUP_LocationLayout,
   AddParkingLayout,
-  EditParkingLayout
+  EditParkingLayout,ParkingListLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
 
@@ -24,6 +24,12 @@ const AppLayoutPickUP_Location =() =>(
 )
 
 const AppLayoutParking =() =>(
+  <>
+  <Outlet/>
+  </>
+)
+
+const AppLayoutParkingList =() =>(
   <>
   <Outlet/>
   </>
@@ -71,7 +77,17 @@ export const router = createBrowserRouter([
               children: [
                 {
                   path: '',
-                  element: <ParkingLayout/>,
+                  element: <AppLayoutParkingList/>,
+                  children:[
+                    {
+                      path: '',
+                      element: <ParkingLayout/>,
+                    },
+                    {
+                      path:'parkinglist/:parkingId',
+                      element:<ParkingListLayout/>
+                    }
+                  ]
                 }, 
                 {
                   path: 'addparking',

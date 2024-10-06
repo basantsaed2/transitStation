@@ -19,3 +19,9 @@ export { default as EditPickUP_LocationLayout } from "./EditPickUP_LocationLayou
 export { default as ParkingLayout } from "./ParkingLayout";
 export { default as AddParkingLayout } from "./AddParkingLayout";
 export { default as EditParkingLayout } from "./EditParkingLayout";
+
+/* Parking List Layout */
+export { default as ParkingListLayout } from "./ParkinkListLayout";
+export { default as AddParkingListLayout } from "./AddParkingListLayout";
+export { default as EditParkingListLayout} from "./EditParkingLayout";
+
