@@ -1,8 +1,10 @@
 import React from 'react'
+import {ParkingPage} from '../Pages/AllPages'
+
 const ParkingLayout = () => {
        return (
               <>
-              <h1>ParkingLayout</h1>
+              <ParkingPage/>
               </>
        )
 }

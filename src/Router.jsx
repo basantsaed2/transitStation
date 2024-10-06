@@ -4,7 +4,9 @@ import App from "./App";
 import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,SubscriptionsLayout ,RevenueLayout
   ,ExpensesLayout , FinancialLayout ,PlanLayout ,RequestLayout ,UserLayout ,DriversLayout,
   AddPickUP_LocationLayout,
-  EditPickUP_LocationLayout
+  EditPickUP_LocationLayout,
+  AddParkingLayout,
+  EditParkingLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
 
@@ -16,6 +18,12 @@ const AppLayoutAdminDashboard = () => (
 );
 
 const AppLayoutPickUP_Location =() =>(
+  <>
+  <Outlet/>
+  </>
+)
+
+const AppLayoutParking =() =>(
   <>
   <Outlet/>
   </>
@@ -59,8 +67,22 @@ export const router = createBrowserRouter([
             },
             {
               path: 'parking',
-              element: <ParkingLayout/>,
-            },  
+              element: <AppLayoutParking/>,
+              children: [
+                {
+                  path: '',
+                  element: <ParkingLayout/>,
+                }, 
+                {
+                  path: 'addparking',
+                  element: <AddParkingLayout/>,
+                }, 
+                {
+                  path: 'editparking',
+                  element: <EditParkingLayout/>,
+                }, 
+              ]
+            }, 
             {
               path: 'subscriptions',
               element: <SubscriptionsLayout/>,
