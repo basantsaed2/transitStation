@@ -22,7 +22,7 @@ const Navbar = () => {
                                    </div>
                                    {/* Name Admin */}
                                    <div className="w-7/12">
-                                          <span className='text-2xl text-mainColor font-bold'>Hello, {auth.user.data.name}</span>
+                                          <span className='text-2xl text-mainColor font-bold'>Hello, <span className='font-semibold text-[#000]'>{auth.user.data.name}</span></span>
                                    </div>
                             </div>
                     </div>

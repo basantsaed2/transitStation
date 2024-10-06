@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-// import Loading from '../../../../Components/Loading';
+import React, { useEffect, useState } from 'react';
+import Loading from '../../Components/Loading';
 import { useAuth } from '../../Context/Auth';
 // import CartStudent from '../../../../Components/CartStudent';
 import axios from 'axios';
@@ -36,7 +36,7 @@ const DashboardPage = () => {
                             setDriverCount(response.data[0].DriverCount)
                      }
               } catch (error) {
-                     console.error('Error fetching student data:', error);
+                     console.error('Error fetching data:', error);
               } finally {
                      setIsLoading(false);
               }
@@ -45,6 +45,14 @@ const DashboardPage = () => {
        useEffect(() => {
               fetchData(); // Fetch students initially and whenever studentsChanged changes
        }, []);
+
+       if (isLoading) {
+              return (
+                <div className="w-1/4 h-full flex items-start mt-[10%] justify-center m-auto">
+                  <Loading />
+                </div>
+              );
+            }          
 
        return (
               <>

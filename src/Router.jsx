@@ -1,8 +1,10 @@
 import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedData/ProtectedRoute";
 import App from "./App";
-import {DashboardLayout , AdminLayout ,ParkingLayout , PickUpLocationLayout ,SubscriptionsLayout ,RevenueLayout
-  ,ExpensesLayout , FinancialLayout ,PlanLayout ,RequestLayout ,UserLayout ,DriversLayout
+import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,SubscriptionsLayout ,RevenueLayout
+  ,ExpensesLayout , FinancialLayout ,PlanLayout ,RequestLayout ,UserLayout ,DriversLayout,
+  AddPickUP_LocationLayout,
+  EditPickUP_LocationLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
 
@@ -12,6 +14,12 @@ const AppLayoutAdminDashboard = () => (
     <AdminLayout />
   </>
 );
+
+const AppLayoutPickUP_Location =() =>(
+  <>
+  <Outlet/>
+  </>
+)
 
 export const router = createBrowserRouter([
 
@@ -33,7 +41,21 @@ export const router = createBrowserRouter([
             },  
             {
               path: 'pickUp_location',
-              element: <PickUpLocationLayout/>,
+              element: <AppLayoutPickUP_Location/>,
+              children: [
+                {
+                  path: '',
+                  element: <PickUP_LocationLayout/>,
+                }, 
+                {
+                  path: 'addpickUp_location',
+                  element: <AddPickUP_LocationLayout/>,
+                }, 
+                {
+                  path: 'editpickUp_location',
+                  element: <EditPickUP_LocationLayout/>,
+                }, 
+              ]
             },
             {
               path: 'parking',
