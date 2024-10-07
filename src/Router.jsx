@@ -6,7 +6,13 @@ import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,Su
   AddPickUP_LocationLayout,
   EditPickUP_LocationLayout,
   AddParkingLayout,
-  EditParkingLayout,ParkingListLayout
+  EditParkingLayout,ParkingListLayout,
+  EditRevenueLayout,
+  AddRevenueLayout,
+  EditExpensesLayout,
+  AddExpensesLayout,
+  AddSubscriptionsLayout,
+  EditSubscriptionsLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
 
@@ -30,6 +36,23 @@ const AppLayoutParking =() =>(
 )
 
 const AppLayoutParkingList =() =>(
+  <>
+  <Outlet/>
+  </>
+)
+
+const AppLayoutSubscriptions =() =>(
+  <>
+  <Outlet/>
+  </>
+)
+const AppLayoutRevenue =() =>(
+  <>
+  <Outlet/>
+  </>
+)
+
+const AppLayoutExpenses =() =>(
   <>
   <Outlet/>
   </>
@@ -105,7 +128,21 @@ export const router = createBrowserRouter([
             },
             {
               path: 'subscriptions',
-              element: <SubscriptionsLayout/>,
+              element: <AppLayoutSubscriptions/>,
+              children: [
+                {
+                  path: '',
+                  element: <SubscriptionsLayout/>,
+                }, 
+                {
+                  path: 'addsubscriptions',
+                  element: <AddSubscriptionsLayout/>,
+                }, 
+                {
+                  path: 'editsubscriptions',
+                  element: <EditSubscriptionsLayout/>,
+                }, 
+              ]
             },
             {
               path: 'drivers',
@@ -113,11 +150,39 @@ export const router = createBrowserRouter([
             },
             {
               path: 'revenue',
-              element: <RevenueLayout/>,
+              element: <AppLayoutRevenue/>,
+              children: [
+                {
+                  path: '',
+                  element: <RevenueLayout/>,
+                }, 
+                {
+                  path: 'addrevenue',
+                  element: <AddRevenueLayout/>,
+                }, 
+                {
+                  path: 'editrevenue',
+                  element: <EditRevenueLayout/>,
+                }, 
+              ]
             },
             {
               path: 'expenses',
-              element: <ExpensesLayout/>,
+              element: <AppLayoutExpenses/>,
+              children: [
+                {
+                  path: '',
+                  element: <ExpensesLayout/>,
+                }, 
+                {
+                  path: 'addexpenses',
+                  element: <AddExpensesLayout/>,
+                }, 
+                {
+                  path: 'editexpenses',
+                  element: <EditExpensesLayout/>,
+                }, 
+              ]
             },
             {
               path: 'financial',

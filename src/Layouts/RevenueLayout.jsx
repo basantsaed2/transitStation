@@ -1,8 +1,10 @@
 import React from 'react'
+import { RevenuePage } from '../Pages/AllPages'
+
 const RevenueLayout = () => {
        return (
               <>
-              <h1>RevenueLayout</h1>
+              <RevenuePage/>
               </>
        )
 }

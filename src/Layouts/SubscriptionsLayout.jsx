@@ -1,8 +1,10 @@
 import React from 'react'
+import { SubscriptionsPage } from '../Pages/AllPages'
+
 const SubscriptionsLayout = () => {
        return (
               <>
-              <h1>SubscriptionsLayout</h1>
+              <SubscriptionsPage/>
               </>
        )
 }

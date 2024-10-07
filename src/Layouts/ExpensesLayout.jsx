@@ -1,8 +1,10 @@
 import React from 'react'
+import { ExpensesPage } from '../Pages/AllPages'
+
 const ExpensesLayout = () => {
        return (
               <>
-              <h1>ExpensesLayout</h1>
+              <ExpensesPage/>
               </>
        )
 }
