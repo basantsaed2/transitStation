@@ -31,9 +31,11 @@ const DropDownMenu = forwardRef(({
                                                  key={option?.id || index}
                                                  className="flex items-center py-1 gap-1 justify-center text-xl font-medium text-mainColor hover:cursor-pointer hover:bg-mainColor hover:text-secoundColor transition-all duration-300"
                                                  onClick={handleOpenOption}
-                                          >
+                                          >                                                 
+                                                 {option.name}
                                                  {option.type_name}
-                                                 <input type="hidden" value={option?.id || option.type_name} className='inputVal' />
+                                                 {option.offer_name}
+                                                 <input type="hidden" value={option?.id || option.type_name || option.name || option.offer_name} className='inputVal' />
                                           </div>
                                    ))}
                             </div>

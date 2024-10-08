@@ -56,7 +56,7 @@ const SubscriptionsPage = () => {
                      setSubscriptionsChanged(!subscriptionChanged)
                      auth.toastSuccess('Subscription deleted successfully!');
                      setSubscriptions((prevSubscriptions) =>
-                            prevSubscriptions.filter((subscriptionId) => subscriptionId.id !== subscriptionId)
+                            prevSubscriptions.filter((subscription) => subscription.id !== subscriptionId)
                      );
               } else {
                      auth.toastError('Failed to delete Subscription.');
@@ -65,7 +65,7 @@ const SubscriptionsPage = () => {
 
        const deleteSubscription = async (subscriptionId, authToken) => {
               try {
-                     const response = await axios.delete(`https://transitstation.online/api/admin/revenue/destroy/${subscriptionId}`, {
+                     const response = await axios.delete(`https://transitstation.online/api/admin/subscription/delete/${subscriptionId}`, {
                             headers: {
                                    Authorization: `Bearer ${authToken}`,
                             },
