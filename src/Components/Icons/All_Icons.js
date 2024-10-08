@@ -10,3 +10,6 @@ export { default as PlanIcon } from "./PlanIcon";
 export { default as LocationIcon } from "./LocationIcon";
 export { default as FinancialIcon } from "./FinancialIcon";
 
+export { default as EditIcon } from "./EditIcon";
+export { default as DeleteIcon } from "./DeleteIcon";
+export { default as Wroning } from "./Worning";

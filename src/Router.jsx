@@ -157,11 +157,11 @@ export const router = createBrowserRouter([
                   element: <RevenueLayout/>,
                 }, 
                 {
-                  path: 'addrevenue',
+                  path: 'add',
                   element: <AddRevenueLayout/>,
                 }, 
                 {
-                  path: 'editrevenue',
+                  path: 'edit/revenueId',
                   element: <EditRevenueLayout/>,
                 }, 
               ]
@@ -175,11 +175,11 @@ export const router = createBrowserRouter([
                   element: <ExpensesLayout/>,
                 }, 
                 {
-                  path: 'addexpenses',
+                  path: 'add',
                   element: <AddExpensesLayout/>,
                 }, 
                 {
-                  path: 'editexpenses',
+                  path: 'edit/expenseId',
                   element: <EditExpensesLayout/>,
                 }, 
               ]
