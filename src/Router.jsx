@@ -135,11 +135,11 @@ export const router = createBrowserRouter([
                   element: <SubscriptionsLayout/>,
                 }, 
                 {
-                  path: 'addsubscriptions',
+                  path: 'add',
                   element: <AddSubscriptionsLayout/>,
                 }, 
                 {
-                  path: 'editsubscriptions',
+                  path: 'edit/subscriptionId',
                   element: <EditSubscriptionsLayout/>,
                 }, 
               ]
