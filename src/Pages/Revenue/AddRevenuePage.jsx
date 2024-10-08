@@ -32,7 +32,7 @@ const AddRevenuePage = () => {
               });
               if (response.status === 200) {                           
                      console.log(response.data)
-                     setRevenueTypeData(response.data)
+                     setRevenueTypeData(response.data.key)
               }
        } catch (error) {
               console.error('Error fetching data:', error);
