@@ -16,7 +16,9 @@ import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,Su
   AddUserLayout,
   EditUserLayout,
   AddPlanLayout,
-  EditPlanLayout
+  EditPlanLayout,
+  EditRequestLayout,
+  AddRequestLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
 
@@ -63,6 +65,12 @@ const AppLayoutExpenses =() =>(
 )
 
 const AppLayoutPlan =() =>(
+  <>
+  <Outlet/>
+  </>
+)
+
+const AppLayoutRequest =() =>(
   <>
   <Outlet/>
   </>
@@ -224,7 +232,19 @@ export const router = createBrowserRouter([
             },
             {
               path: 'request',
-              element: <RequestLayout/>,
+              element: <AppLayoutRequest/>,
+              children :[
+                {
+                  path: '',
+                  element: <RequestLayout/>,
+                },{
+                  path: 'add',
+                  element: <AddRequestLayout/>,
+                },{
+                  path: 'edit',
+                  element: <EditRequestLayout/>,
+                },
+              ]
             },
             {
               path: 'user',

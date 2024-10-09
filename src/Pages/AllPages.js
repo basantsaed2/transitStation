@@ -31,12 +31,17 @@ export { default as ExpensesPage } from "./Expenses/ExpensesPage";
 export { default as AddExpensesPage } from "./Expenses/AddExpensesPage";
 export { default as EditExpensesPage } from "./Expenses/EditExpensesPage";
 
-/* User Page */
-export { default as UserPage } from "./User/UserPage";
-export { default as AddUserPage } from "./User/AddUserPage";
-export { default as EditUserPage } from "./User/EditUserPage";
-
 /* Plan Page */
 export { default as PlanPage } from "./Plan/PlanPage";
 export { default as AddPlanPage } from "./Plan/AddPlanPage";
 export { default as EditPlanPage } from "./Plan/EditPlanPage";
+
+/* Request Page */
+export { default as RequestPage } from "./Request/RequestPage";
+export { default as AddRequestPage } from "./Request/AddRequestPage";
+export { default as EditRequestPage } from "./Request/EditRequestPage";
+
+/* User Page */
+export { default as UserPage } from "./User/UserPage";
+export { default as AddUserPage } from "./User/AddUserPage";
+export { default as EditUserPage } from "./User/EditUserPage";

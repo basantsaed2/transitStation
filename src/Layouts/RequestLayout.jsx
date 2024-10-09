@@ -1,8 +1,10 @@
 import React from 'react'
+import { RequestPage } from '../Pages/AllPages'
+
 const RequestLayout = () => {
        return (
               <>
-              <h1>RequestLayout</h1>
+              <RequestPage/>
               </>
        )
 }
