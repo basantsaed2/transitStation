@@ -1,8 +1,10 @@
 import React from 'react'
+import { UserPage } from '../Pages/AllPages'
+
 const UserLayout = () => {
        return (
               <>
-              <h1>UserLayout</h1>
+              <UserPage/>
               </>
        )
 }

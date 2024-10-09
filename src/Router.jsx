@@ -12,7 +12,11 @@ import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,Su
   EditExpensesLayout,
   AddExpensesLayout,
   AddSubscriptionsLayout,
-  EditSubscriptionsLayout
+  EditSubscriptionsLayout,
+  AddUserLayout,
+  EditUserLayout,
+  AddPlanLayout,
+  EditPlanLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
 
@@ -53,6 +57,18 @@ const AppLayoutRevenue =() =>(
 )
 
 const AppLayoutExpenses =() =>(
+  <>
+  <Outlet/>
+  </>
+)
+
+const AppLayoutPlan =() =>(
+  <>
+  <Outlet/>
+  </>
+)
+
+const AppLayoutUser =() =>(
   <>
   <Outlet/>
   </>
@@ -190,7 +206,21 @@ export const router = createBrowserRouter([
             },
             {
               path: 'plan',
-              element: <PlanLayout/>,
+              element: <AppLayoutPlan/>,
+              children : [
+                {
+                  path:'',
+                  element :<PlanLayout/>
+                },
+                {
+                  path:'add',
+                  element :<AddPlanLayout/>
+                },
+                {
+                  path:'edit/planId',
+                  element :<EditPlanLayout/>
+                },
+              ]
             },
             {
               path: 'request',
@@ -198,7 +228,19 @@ export const router = createBrowserRouter([
             },
             {
               path: 'user',
-              element: <UserLayout/>,
+              element: <AppLayoutUser/>,
+              children:[
+                {
+                  path:'',
+                  element: <UserLayout/>
+                },{
+                  path:'add',
+                  element: <AddUserLayout/>
+                },{
+                  path:'edit/userId',
+                  element: <EditUserLayout/>
+                }
+              ]
             },
 
           ],

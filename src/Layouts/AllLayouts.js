@@ -4,8 +4,6 @@ export { default as DashboardLayout } from "./DashboardLayout";
 export { default as FinancialLayout } from "./FinancialLayout";
 export { default as DriversLayout } from "./DriversLayout";
 export { default as RequestLayout } from "./RequestLayout";
-export { default as PlanLayout } from "./PlanLayout";
-export { default as UserLayout } from "./UserLayout";
 
 /* PickUP_location Layout */
 export { default as PickUP_LocationLayout } from "./PickUP_LocationLayout";
@@ -36,3 +34,13 @@ export { default as EditRevenueLayout } from "./EditRevenueLayout";
 export { default as ExpensesLayout } from "./ExpensesLayout";
 export { default as AddExpensesLayout } from "./AddExpensesLayout";
 export { default as EditExpensesLayout } from "./EditExpensesLayout";
+
+/* User Layout */
+export { default as UserLayout } from "./UserLayout";
+export { default as AddUserLayout } from "./AddUserLayout";
+export { default as EditUserLayout } from "./EditUserLayout";
+
+/* User Layout */
+export { default as PlanLayout } from "./PlanLayout";
+export { default as AddPlanLayout } from "./AddPlanLayout";
+export { default as EditPlanLayout } from "./EditPlanLayout";

@@ -1,8 +1,10 @@
 import React from 'react'
+import { PlanPage } from '../Pages/AllPages'
+
 const PlanLayout = () => {
        return (
               <>
-              <h1>PlanLayout</h1>
+              <PlanPage/>
               </>
        )
 }
