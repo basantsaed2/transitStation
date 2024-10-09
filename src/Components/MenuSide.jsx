@@ -193,7 +193,7 @@ const MenuSide = () => {
                                           <SubscriptionsIcon isActive={isActiveSubscriptions} />
                                           <span>#Subscriptions</span>
                                    </NavLink>
-                                   <NavLink to="drivers" onClick={handleClickDrivers} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                   <NavLink to="driver" onClick={handleClickDrivers} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
                                           <DriversIcon isActive={isActiveDrivers} />
                                           <span>#Drivers</span>
                                    </NavLink>

@@ -100,7 +100,7 @@ const ExpensesPage = () => {
     }
   
        return (
-<>
+            <>
                 <div className="w-full">
                     <div className="w-full flex flex-wrap items-center justify-start gap-10">
                      <div className='w-1/6'>

@@ -2,7 +2,7 @@ import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedData/ProtectedRoute";
 import App from "./App";
 import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,SubscriptionsLayout ,RevenueLayout
-  ,ExpensesLayout , FinancialLayout ,PlanLayout ,RequestLayout ,UserLayout ,DriversLayout,
+  ,ExpensesLayout , FinancialLayout ,PlanLayout ,RequestLayout ,UserLayout ,DriverLayout,
   AddPickUP_LocationLayout,
   EditPickUP_LocationLayout,
   AddParkingLayout,
@@ -19,10 +19,10 @@ import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,Su
   EditPlanLayout,
   EditRequestLayout,
   AddRequestLayout,
-  EditDriverLayout
+  EditDriverLayout,
+  AddDriverLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
-import AddDriversLayout from "./Layouts/AddDriverLayout";
 
 /* Admin Dashboard */
 const AppLayoutAdminDashboard = () => (
@@ -181,11 +181,11 @@ export const router = createBrowserRouter([
               children :[
                 {
                   path: '',
-                  element: <DriversLayout/>,
+                  element: <DriverLayout/>,
                 },
                 {
                   path: 'add',
-                  element: <AddDriversLayout/>,
+                  element: <AddDriverLayout/>,
                 },
                 {
                   path: 'edit/driverId',
