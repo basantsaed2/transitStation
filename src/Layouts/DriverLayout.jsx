@@ -1,8 +1,10 @@
 import React from 'react'
+import { DriverPage } from '../Pages/AllPages'
+
 const DriversLayout = () => {
        return (
               <>
-              <h1>DriversLayout</h1>
+              <DriverPage/>
               </>
        )
 }

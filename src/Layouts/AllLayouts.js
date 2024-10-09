@@ -2,7 +2,6 @@
 export { default as AdminLayout } from "./AdminLayout";
 export { default as DashboardLayout } from "./DashboardLayout";
 export { default as FinancialLayout } from "./FinancialLayout";
-export { default as DriversLayout } from "./DriversLayout";
 
 /* PickUP_location Layout */
 export { default as PickUP_LocationLayout } from "./PickUP_LocationLayout";
@@ -23,6 +22,11 @@ export { default as EditParkingListLayout} from "./EditParkingLayout";
 export { default as SubscriptionsLayout } from "./SubscriptionsLayout";
 export { default as AddSubscriptionsLayout } from "./AddSubscriptionsLayout";
 export { default as EditSubscriptionsLayout } from "./EditSubscriptionsLayout";
+
+/* Driver Layout */
+export { default as DriverLayout } from "./DriverLayout";
+export { default as AddDriverLayout } from "./AddDriverLayout";
+export { default as EditDriverLayout } from "./EditDriverLayout";
 
 /* Revenue Layout */
 export { default as RevenueLayout } from "./RevenueLayout";

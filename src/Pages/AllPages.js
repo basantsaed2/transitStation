@@ -21,6 +21,11 @@ export { default as SubscriptionsPage } from "./Subscriptions/SubscriptionsPage"
 export { default as AddSubscriptionsPage } from "./Subscriptions/AddSubscriptionsPage";
 export { default as EditSubscriptionsPage } from "./Subscriptions/EditSubscriptionsPage";
 
+/* Driver Page */
+export { default as DriverPage } from "./Drivers/DriverPage";
+export { default as AddDriverPage } from "./Drivers/AddDriverPage";
+export { default as EditDriverPage} from "./Drivers/EditDriverPage";
+
 /* Revenue Page */
 export { default as RevenuePage } from "./Revenue/RevenuePage";
 export { default as AddRevenuePage } from "./Revenue/AddRevenuePage";
