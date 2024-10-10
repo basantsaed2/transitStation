@@ -73,7 +73,9 @@ const InputCustom = ({ type,bgColor,placeholderColor, required = true, minDate =
                                    onChange={onChange}
                                    onClick={onClick}
                                    readOnly={readonly}
-                                   required={required} />
+                                   required={required} 
+                                   autoComplete="off"
+                            />
                             {upload ? <LuUpload className={`absolute  top-1/3 text-mainColor text-2xl cursor-pointer ${iconDirection ? 'left-4' : 'right-2'} `} /> : ''}
                             {source == 'external' ? <FaExternalLinkAlt className='absolute right-4 top-1/3 text-mainColor text-2xl cursor-pointer' /> :
                                    source == 'embedded' ? <FaLink className='absolute top-1/3 text-mainColor text-2xl cursor-pointer' /> :
