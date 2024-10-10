@@ -170,7 +170,7 @@ export const router = createBrowserRouter([
                   element: <AddSubscriptionsLayout/>,
                 }, 
                 {
-                  path: 'edit/subscriptionId',
+                  path: 'edit/:subscriptionId',
                   element: <EditSubscriptionsLayout/>,
                 }, 
               ]
@@ -188,7 +188,7 @@ export const router = createBrowserRouter([
                   element: <AddDriverLayout/>,
                 },
                 {
-                  path: 'edit/driverId',
+                  path: 'edit/:driverId',
                   element: <EditDriverLayout/>,
                 },
               ]
@@ -206,7 +206,7 @@ export const router = createBrowserRouter([
                   element: <AddRevenueLayout/>,
                 }, 
                 {
-                  path: 'edit/revenueId',
+                  path: 'edit/:revenueId',
                   element: <EditRevenueLayout/>,
                 }, 
               ]
@@ -224,7 +224,7 @@ export const router = createBrowserRouter([
                   element: <AddExpensesLayout/>,
                 }, 
                 {
-                  path: 'edit/expenseId',
+                  path: 'edit/:expenseId',
                   element: <EditExpensesLayout/>,
                 }, 
               ]
@@ -246,7 +246,7 @@ export const router = createBrowserRouter([
                   element :<AddPlanLayout/>
                 },
                 {
-                  path:'edit/planId',
+                  path:'edit/:planId',
                   element :<EditPlanLayout/>
                 },
               ]
@@ -262,7 +262,7 @@ export const router = createBrowserRouter([
                   path: 'add',
                   element: <AddRequestLayout/>,
                 },{
-                  path: 'edit',
+                  path: 'edit/:requestId',
                   element: <EditRequestLayout/>,
                 },
               ]
@@ -278,7 +278,7 @@ export const router = createBrowserRouter([
                   path:'add',
                   element: <AddUserLayout/>
                 },{
-                  path:'edit/userId',
+                  path:'edit/:userId',
                   element: <EditUserLayout/>
                 }
               ]

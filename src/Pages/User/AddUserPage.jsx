@@ -19,12 +19,14 @@ const AddUserPage = () => {
     const [startDate,setStartDate]=useState('')
     const [endDate,setEndDate]=useState('')
     const [amount,setAmount]=useState('')
+    const [userImage, setUserImage] = useState('');
 
     const [selectPlan, setSelectPlan] = useState('Select Plan');
     const [selectPlanId, setSelectPlanId] = useState([]);
     const [openSelectPlan, setOpenSelectPlan] = useState(false);
     
     const dropdownPlanRef = useRef();
+    const userImageRef = useRef();
 
     const fetchData = async () => {
         setIsLoading(true);
@@ -47,6 +49,23 @@ const AddUserPage = () => {
      useEffect(()=>{
         fetchData()
      },[])
+
+     const handleImageClick = () => {
+        if (userImageRef.current) {
+            userImageRef.current.click(); // Trigger a click on the hidden file input
+        }
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setUserImage(reader.result); // Set the Base64 string of the image
+            };
+            reader.readAsDataURL(file); // Read the file as a data URL (Base64)
+        }
+    };    
 
      const handleOpenSelectPlan = () => {
         setOpenSelectPlan(!openSelectPlan);
@@ -134,6 +153,7 @@ const AddUserPage = () => {
  
         const formData = new FormData();
         formData.append('name', userName);
+        formData.append('image', userImage);
         formData.append('email', userEmail);
         formData.append('phone', phone);
         formData.append('password', userPassword);
@@ -168,7 +188,7 @@ const AddUserPage = () => {
             if (errorMessages) {
                 errorMessageString = Object.values(errorMessages).flat().join(' ');
             }
-            auth.toastError('Error', errorMessageString);
+            // auth.toastError('Error', errorMessageString);
         } finally {
             setIsLoading(false);
         }
@@ -184,6 +204,25 @@ const AddUserPage = () => {
                     borderColor="mainColor"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
+                />
+            </div>
+            <div className="lg:w-[30%] sm:w-full">
+                <InputCustom
+                    type="text"
+                    placeholder="Image"
+                    bgColor="bg-[#EEEEEE]"
+                    upload="true"
+                    placeholderColor="mainColor"
+                    value={userImage}
+                    readonly={true}
+                    onClick={handleImageClick}
+                />
+                <input
+                    type="file"
+                    className="hidden"
+                    accept="image/*" // Optional: to restrict file selection to images only
+                    onChange={handleImageChange}
+                    ref={userImageRef}
                 />
             </div>
             <div className="lg:w-[30%] sm:w-full">
