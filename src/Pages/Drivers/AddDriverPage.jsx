@@ -12,15 +12,25 @@ const AddDriverPage = () => {
     const auth = useAuth();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
-    const [expenseDate, setExpenseDate] = useState('');
-    const [expenseTypeData, setExpenseTypeData] = useState([]);
-    const [expenseAmount, setExpenseAmount] = useState('');
+    const [name , setName]=useState('')
+    const [email , setEmail]=useState('')
+    const [password,setPassword]=useState('')
+    const [phone,setPhone]=useState('')
+    const [salary,setSalery]=useState('')
+    const [carCount,setCarCount]=useState('')
+    const [userImage, setUserImage] = useState('');
 
-    const [selectType, setSelectType] = useState('Select Type');
-    const [selectTypeId, setSelectTypeId] = useState([]);
-    const [openSelectType, setOpenSelectType] = useState(false);
+    const [selectParking, setSelectParking] = useState('Select Parking');
+    const [selectParkingId, setSelectParkingId] = useState([]);
+    const [openSelectParking, setOpenSelectParking] = useState(false);
 
-    const dropdownTypeRef = useRef();
+    const [selectLocation, setSelectLocation] = useState('Select Location');
+    const [selectLocationId, setSelectLocationId] = useState([]);
+    const [openSelectLocation, setOpenSelectLocation] = useState(false);
+
+    const dropdownParkingRef =useRef();
+    const dropdownLocationRef = useRef();
+    const userImageRef = useRef();
 
     const fetchData = async () => {
         setIsLoading(true);
@@ -43,20 +53,53 @@ const AddDriverPage = () => {
      useEffect(()=>{
         fetchData()
      },[])
+
+     const handleImageClick = () => {
+        if (userImageRef.current) {
+            userImageRef.current.click(); // Trigger a click on the hidden file input
+        }
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setUserImage(reader.result); // Set the Base64 string of the image
+            };
+            reader.readAsDataURL(file); // Read the file as a data URL (Base64)
+        }
+    };    
  
-     const handleOpenSelectType = () => {
-        setOpenSelectType(!openSelectType);
+     const handleOpenSelectParking = () => {
+        setOpenSelectParking(!openSelectParking);
+        setOpenSelectLocation(false)
+      };
+    const handleOpenSelectLocation = () => {
+        setOpenSelectType(false);
+        setOpenSelectLocation(!openSelectLocation)
       };
  
-     const handleSelectType = (e) => {
+     const handleSelectParking = (e) => {
         const inputElement = e.currentTarget.querySelector('.inputVal');
         const selectedOptionName = e.currentTarget.textContent.trim();
         const selectedOptionValue = inputElement ? inputElement.value : null;
-        setSelectType(selectedOptionName);
-        setSelectTypeId(parseInt(selectedOptionValue));
-        setOpenSelectType(false);
-        console.log('Selected Type:', selectedOptionName);
-        console.log('Type ID:', selectedOptionValue);
+        setSelectParking(selectedOptionName);
+        setSelectParkingId(parseInt(selectedOptionValue));
+        setOpenSelectParking(false);
+        console.log('Selected Parking:', selectedOptionName);
+        console.log('Parking ID:', selectedOptionValue);
+      };
+
+      const handleSelectLocation = (e) => {
+        const inputElement = e.currentTarget.querySelector('.inputVal');
+        const selectedOptionName = e.currentTarget.textContent.trim();
+        const selectedOptionValue = inputElement ? inputElement.value : null;
+        setSelectLocation(selectedOptionName);
+        setSelectLocationId(parseInt(selectedOptionValue));
+        setOpenSelectLocation(false);
+        console.log('Selected Location:', selectedOptionName);
+        console.log('Location ID:', selectedOptionValue);
       };
  
       useEffect(() => {
@@ -67,9 +110,11 @@ const AddDriverPage = () => {
       }, []);
     
       const handleClickOutside = (event) => {
-        if (dropdownTypeRef.current && !dropdownTypeRef.current.contains(event.target)  
+        if (dropdownParkingRef.current && !dropdownParkingRef.current.contains(event.target) &&
+            dropdownLocationRef.current && !dropdownLocationRef.current.contains(event.target)   
         ) {
-           setOpenSelectType(false);   
+            setOpenSelectParking(false); 
+            setOpenSelectLocation(false);  
         }
       };
  
@@ -85,66 +130,66 @@ const AddDriverPage = () => {
                );
            }    
              
-           if (!expenseTypeData) {
-               return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No expenses data available</div>;
-           }
+    //        if (!expenseTypeData) {
+    //            return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No expenses data available</div>;
+    //        }
  
-    const handleSubmitAdd = async (event) => {
-        event.preventDefault();
+    // const handleSubmitAdd = async (event) => {
+    //     event.preventDefault();
  
-        if (!expenseDate) {
-            auth.toastError('Please Enter Expense Date.');
-            return;
-        }
-        if (!expenseAmount) {
-            auth.toastError('Please Enter Expense Amount.');
-            return;
-        }
-        if (!selectTypeId) {
-            auth.toastError('Please Select Expense Type.');
-            return;
-        }
+    //     if (!expenseDate) {
+    //         auth.toastError('Please Enter Expense Date.');
+    //         return;
+    //     }
+    //     if (!expenseAmount) {
+    //         auth.toastError('Please Enter Expense Amount.');
+    //         return;
+    //     }
+    //     if (!selectTypeId) {
+    //         auth.toastError('Please Select Expense Type.');
+    //         return;
+    //     }
  
-        const formData = new FormData();
-        formData.append('date', expenseDate);
-        formData.append('expence_amount', expenseAmount);
-        formData.append('type_expence_id', selectTypeId);
+    //     const formData = new FormData();
+    //     formData.append('date', expenseDate);
+    //     formData.append('expence_amount', expenseAmount);
+    //     formData.append('type_expence_id', selectTypeId);
  
-        for (let pair of formData.entries()) {
-               console.log(pair[0] + ', ' + pair[1]);
-        }        
+    //     for (let pair of formData.entries()) {
+    //            console.log(pair[0] + ', ' + pair[1]);
+    //     }        
  
-        setIsLoading(true);
-        try {
-            const response = await axios.post('https://transitstation.online/api/admin/expence/add',formData, {
-                headers: {
-                    Authorization: `Bearer ${auth.user.token}`,
-                    'Content-Type': 'application/json', // Use JSON since we're sending a JSON object now
-                },
-            });
+    //     setIsLoading(true);
+    //     try {
+    //         const response = await axios.post('https://transitstation.online/api/admin/expence/add',formData, {
+    //             headers: {
+    //                 Authorization: `Bearer ${auth.user.token}`,
+    //                 'Content-Type': 'application/json', // Use JSON since we're sending a JSON object now
+    //             },
+    //         });
  
-            if (response.status === 200) {
-                auth.toastSuccess('Expence added successfully!');
-                handleGoBack();
-            } else {
-                auth.toastError('Failed to add Expence.');
-            }
-        } catch (error) {
-            const errorMessages = error?.response?.data.errors;
-            let errorMessageString = 'Error occurred';
+    //         if (response.status === 200) {
+    //             auth.toastSuccess('Expence added successfully!');
+    //             handleGoBack();
+    //         } else {
+    //             auth.toastError('Failed to add Expence.');
+    //         }
+    //     } catch (error) {
+    //         const errorMessages = error?.response?.data.errors;
+    //         let errorMessageString = 'Error occurred';
  
-            if (errorMessages) {
-                errorMessageString = Object.values(errorMessages).flat().join(' ');
-            }
-            auth.toastError('Error', errorMessageString);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+    //         if (errorMessages) {
+    //             errorMessageString = Object.values(errorMessages).flat().join(' ');
+    //         }
+    //         auth.toastError('Error', errorMessageString);
+    //     } finally {
+    //         setIsLoading(false);
+    //     }
+    // };
  
        return (
         <>
-         <form onSubmit={handleSubmitAdd} className="w-full flex flex-col items-center justify-center gap-y-10">
+         {/* <form className="w-full flex flex-col items-center justify-center gap-y-10">
                   <div className="w-full flex flex-wrap items-center justify-start gap-10">
                       <div className="lg:w-[35%] sm:w-full">
                           <InputCustom
@@ -184,39 +229,59 @@ const AddDriverPage = () => {
                       </div>
                       <div className="lg:w-[35%] sm:w-full">
                           <InputCustom
-                              type="date"
-                              placeholder="start Date"
-                              borderColor="mainColor"
-                              value={startDate}
-                              onChange={(e) => setStartDate(e.target.value)}
-                          />
-                      </div>
-                      <div className="lg:w-[35%] sm:w-full">
-                          <InputCustom
-                              type="date"
-                              placeholder="End Date"
-                              borderColor="mainColor"
-                              value={endDate}
-                              onChange={(e) => setEndDate(e.target.value)}
-                          />
-                      </div>
-                      <div className="lg:w-[35%] sm:w-full">
-                          <InputCustom
                               type="text"
                               placeholder="Amount"
                               borderColor="mainColor"
-                              value={amount}
-                              onChange={(e) => setAmount(e.target.value)}
+                              value={salary}
+                              onChange={(e) => setSalery(e.target.value)}
                           />
                       </div>
                       <div className="lg:w-[35%] sm:w-full">
+                          <InputCustom
+                              type="number"
+                              placeholder="Car_Per_Month"
+                              borderColor="mainColor"
+                              value={carCount}
+                              onChange={(e) => setCarCount(e.target.value)}
+                          />
+                      </div>
+                      <div className="lg:w-[30%] sm:w-full">
+                        <InputCustom
+                            type="text"
+                            placeholder="Image"
+                            bgColor="bg-[#EEEEEE]"
+                            upload="true"
+                            placeholderColor="mainColor"
+                            value={userImage}
+                            readonly={true}
+                            onClick={handleImageClick}
+                        />
+                        <input
+                            type="file"
+                            className="hidden"
+                            accept="image/*" // Optional: to restrict file selection to images only
+                            onChange={handleImageChange}
+                            ref={userImageRef}
+                        />
+                    </div>
+                      <div className="lg:w-[35%] sm:w-full">
                             <DropDownMenu
-                            ref={dropdownPlanRef}
-                            handleOpen={handleOpenSelectPlan}
-                            handleOpenOption={handleSelectPlan}
-                            stateoption={selectPlan}
-                            openMenu={openSelectPlan}
-                            options={planData}
+                            ref={dropdownParkingRef}
+                            handleOpen={handleOpenSelectParking}
+                            handleOpenOption={handleSelectParking}
+                            stateoption={selectParking}
+                            openMenu={openSelectParking}
+                            options={parkingData}
+                            />
+                     </div>
+                     <div className="lg:w-[35%] sm:w-full">
+                            <DropDownMenu
+                            ref={dropdownLocationRef}
+                            handleOpen={handleOpenSelectLocation}
+                            handleOpenOption={handleSelectLocation}
+                            stateoption={selectLocation}
+                            openMenu={openSelectLocation}
+                            options={locationData}
                             />
                      </div>
                   </div>
@@ -237,7 +302,7 @@ const AddDriverPage = () => {
                       </div>
                       <button onClick={handleGoBack} className="text-2xl text-mainColor">Cancel</button>
                   </div>
-              </form>
+              </form> */}
         </>
        )
 }

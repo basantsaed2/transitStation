@@ -187,7 +187,7 @@ const AddSubscriptionsPage = () => {
               <form onSubmit={handleSubmitAdd} className="w-full flex flex-col items-center justify-center gap-y-10">
                   <div className="w-full flex flex-wrap items-center justify-start gap-10">
 
-                  <div className="lg:w-[35%] sm:w-full">
+                  <div className="lg:w-[30%] sm:w-full">
                             <DropDownMenu
                             ref={dropdownUserRef}
                             handleOpen={handleOpenSelectUser}
@@ -197,7 +197,7 @@ const AddSubscriptionsPage = () => {
                             options={userData}
                             />
                      </div>
-                     <div className="lg:w-[35%] sm:w-full">
+                     <div className="lg:w-[30%] sm:w-full">
                             <DropDownMenu
                             ref={dropdownOfferRef}
                             handleOpen={handleOpenSelectOffer}
@@ -207,7 +207,7 @@ const AddSubscriptionsPage = () => {
                             options={offerData}
                             />
                      </div>
-                      <div className="lg:w-[35%] sm:w-full">
+                      <div className="lg:w-[30%] sm:w-full">
                           <InputCustom
                               type="date"
                               placeholder="Start_Date"
@@ -216,7 +216,7 @@ const AddSubscriptionsPage = () => {
                               onChange={(e) => setStartDate(e.target.value)}
                           />
                       </div>
-                      <div className="lg:w-[35%] sm:w-full">
+                      <div className="lg:w-[30%] sm:w-full">
                           <InputCustom
                               type="date"
                               placeholder="End_Date"
@@ -225,7 +225,7 @@ const AddSubscriptionsPage = () => {
                               onChange={(e) => setEndDate(e.target.value)}
                           />
                       </div>
-                      <div className="lg:w-[35%] sm:w-full">
+                      <div className="lg:w-[30%] sm:w-full">
                           <InputCustom
                               type="text"
                               placeholder="Amount"

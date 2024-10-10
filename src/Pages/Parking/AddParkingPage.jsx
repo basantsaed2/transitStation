@@ -71,7 +71,7 @@ const AddParkingPage = () => {
         <>
         <form onSubmit={handleSubmitAdd} className="w-full flex flex-col items-center justify-center gap-y-10">
             <div className="w-full flex flex-wrap items-center justify-start gap-10">
-                <div className="lg:w-[35%] sm:w-full">
+                <div className="lg:w-[30%] sm:w-full">
                     <InputCustom
                         type="text"
                         placeholder="Name"
@@ -81,7 +81,7 @@ const AddParkingPage = () => {
                     />
                 </div>
 
-                <div className="lg:w-[35%] sm:w-full">
+                <div className="lg:w-[30%] sm:w-full">
                     <InputCustom
                         type="text"
                         placeholder="Car Capacity"
@@ -91,7 +91,7 @@ const AddParkingPage = () => {
                     />
                 </div>
 
-                <div className="lg:w-[35%] sm:w-full">
+                <div className="lg:w-[30%] sm:w-full">
                     <InputCustom
                         type="text"
                         placeholder="Location"

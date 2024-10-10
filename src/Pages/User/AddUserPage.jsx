@@ -11,7 +11,6 @@ const AddUserPage = () => {
     const auth = useAuth();
     const [isLoading, setIsLoading] = useState(false);
     const [planData ,setPlanData] =useState([])
-    // const [users, setUsers] = useState('');
     const [userName , setUserName]=useState('')
     const [userEmail , setUserEmail]=useState('')
     const [userPassword,setUserPassword]=useState('')
