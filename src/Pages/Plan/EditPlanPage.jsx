@@ -71,10 +71,10 @@ const EditPlanPage = () => {
            });
    
            if (response.status === 200) {
-               auth.toastSuccess('Plan added successfully!');
+               auth.toastSuccess('Plan Updated successfully!');
                handleGoBack();
            } else {
-               auth.toastError('Failed to add Plan.');
+               auth.toastError('Failed to Updated Plan.');
            }
        } catch (error) {
            const errorMessages = error?.response?.data.errors;

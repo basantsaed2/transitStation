@@ -40,8 +40,9 @@ const EditSubscriptionsLayout = () => {
 
               useEffect(() => {
               if (allSubscriptionsData.length > 0 && subscriptionId) {
+                     console.log(allSubscriptionsData,subscriptionId)
                      const filteredSubscription = allSubscriptionsData.find(
-                     (Subscription) => Subscription.id === parseInt(subscriptionId)
+                     (Subscription) => Subscription.subscription_id=== parseInt(subscriptionId)
                      );
                      setSubscriptionEdit(filteredSubscription);
               }

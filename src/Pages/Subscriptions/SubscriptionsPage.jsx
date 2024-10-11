@@ -56,7 +56,7 @@ const SubscriptionsPage = () => {
                      setSubscriptionsChanged(!subscriptionChanged)
                      auth.toastSuccess('Subscription deleted successfully!');
                      setSubscriptions((prevSubscriptions) =>
-                            prevSubscriptions.filter((subscription) => subscription.id !== subscriptionId)
+                            prevSubscriptions.filter((subscription) => subscription.subscription_id!== subscriptionId)
                      );
               } else {
                      auth.toastError('Failed to delete Subscription.');
@@ -122,7 +122,7 @@ const SubscriptionsPage = () => {
                             <tbody className="w-full">
                                     {subscriptions.map((subscription, index) => (
                                           subscription.status !== 0 && (
-                                                 <tr className="w-full border-b-2" key={subscription.id}>
+                                                 <tr className="w-full border-b-2" key={subscription.subscription_id}>
                                                  <td
                                                          className="min-w-[80px] sm:min-w-[50px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
                                                  >
@@ -152,13 +152,13 @@ const SubscriptionsPage = () => {
                                                          className="min-w-[100px] sm:min-w-[80px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
                                                  >
                                                          <div className="flex items-center justify-center gap-x-3">
-                                                         <Link to={`edit/${subscription.id}`} state={subscription.id} type="button">
+                                                         <Link to={`edit/${subscription.subscription_id}`} state={subscription.subscription_id} type="button">
                                                                  <EditIcon />
                                                          </Link>
-                                                         <button type="button" onClick={() => handleOpenDialog(subscription.id)}>
+                                                         <button type="button" onClick={() => handleOpenDialog(subscription.subscription_id)}>
                                                                  <DeleteIcon />
                                                          </button>
-                                                         {openDialog === subscription.id && (
+                                                         {openDialog === subscription.subscription_id && (
                                                                  <Dialog open={true} onClose={handleCloseDialog} className="relative z-10">
                                                                          <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
                                                                          <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -177,7 +177,7 @@ const SubscriptionsPage = () => {
                                                                                          <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                                                                                  <button
                                                                                                          type="button"
-                                                                                                         onClick={() => handleDelete(subscription.id)}
+                                                                                                         onClick={() => handleDelete(subscription.subscription_id)}
                                                                                                          disabled={isDeleting}
                                                                                                          className="inline-flex w-full justify-center rounded-md bg-mainColor px-6 py-3 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
                                                                                                  >
