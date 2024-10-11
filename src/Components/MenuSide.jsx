@@ -21,6 +21,9 @@ const MenuSide = () => {
        const [isActiveRequest, setIsActiveRequest] = useState(false);
        const [isActiveUser, setIsActiveUser] = useState(false);
 
+       const [showExpensesSubMenu, setShowExpensesSubMenu] = useState(false);
+       const [showRevenueSubMenu, setShowRevenueSubMenu] = useState(false);
+
        const auth = useAuth();
        const navigate = useNavigate();
     //    const handleLogout = () => {
@@ -37,6 +40,8 @@ const MenuSide = () => {
               setIsActiveFinancial(false);
               setIsActiveExpenses(false);
               setIsActiveRevenue(false);
+              setShowRevenueSubMenu(false)
+              setShowExpensesSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -50,6 +55,8 @@ const MenuSide = () => {
               setIsActiveFinancial(false);
               setIsActiveExpenses(false);
               setIsActiveRevenue(false);
+              setShowRevenueSubMenu(false)
+              setShowExpensesSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -63,6 +70,8 @@ const MenuSide = () => {
               setIsActiveFinancial(false);
               setIsActiveRevenue(false);
               setIsActiveExpenses(false);
+              setShowRevenueSubMenu(false)
+              setShowExpensesSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -76,6 +85,8 @@ const MenuSide = () => {
               setIsActiveFinancial(false);
               setIsActiveRevenue(false);
               setIsActiveExpenses(false);
+              setShowRevenueSubMenu(false)
+              setShowExpensesSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -89,6 +100,8 @@ const MenuSide = () => {
               setIsActiveFinancial(false);
               setIsActiveRevenue(false);
               setIsActiveExpenses(false);
+              setShowRevenueSubMenu(false)
+              setShowExpensesSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -102,6 +115,8 @@ const MenuSide = () => {
               setIsActiveFinancial(true);
               setIsActiveRevenue(false);
               setIsActiveExpenses(false);
+              setShowRevenueSubMenu(false)
+              setShowExpensesSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -115,6 +130,8 @@ const MenuSide = () => {
               setIsActiveFinancial(false);
               setIsActiveRevenue(true);
               setIsActiveExpenses(false);
+              setShowRevenueSubMenu(prevState => !prevState)
+              setShowExpensesSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -128,6 +145,8 @@ const MenuSide = () => {
               setIsActiveFinancial(false);
               setIsActiveRevenue(false);
               setIsActiveExpenses(true);
+              setShowRevenueSubMenu(false)
+              setShowExpensesSubMenu(prevState => !prevState)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -141,6 +160,8 @@ const MenuSide = () => {
               setIsActiveFinancial(false);
               setIsActiveRevenue(false);
               setIsActiveExpenses(false);
+              setShowRevenueSubMenu(false)
+              setShowExpensesSubMenu(false)
               setIsActivePlan(true)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -154,6 +175,8 @@ const MenuSide = () => {
               setIsActiveFinancial(false);
               setIsActiveRevenue(false);
               setIsActiveExpenses(false);
+              setShowRevenueSubMenu(false)
+              setShowExpensesSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(true)
               setIsActiveUser(false)
@@ -167,6 +190,8 @@ const MenuSide = () => {
               setIsActiveFinancial(true);
               setIsActiveRevenue(false);
               setIsActiveExpenses(false);
+              setShowRevenueSubMenu(false)
+              setShowExpensesSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(true)
@@ -206,11 +231,40 @@ const MenuSide = () => {
                                           <RevenueIcon isActive={isActiveRevenue} />
                                           <span>Revenue</span>
                                    </NavLink>
+                                   {showRevenueSubMenu && (
+                                          <ul className="ml-5 flex flex-col list-disc list-inside">
+                                          <NavLink 
+                                                 to="revenue/type" 
+                                                 className={({ isActive }) =>
+                                                 `w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-lg font-medium 
+                                                 ${isActive ? 'pl-3 pr-3 bg-white rounded-lg text-[#3F4CD0]' : 'text-secoundColor'}`
+                                                 }
+                                          >
+                                                 <li>
+                                                 Revenue Types
+                                                 </li>
+                                          </NavLink>
+                                          </ul>
+                                   )}
                                    <NavLink to="expenses" onClick={handleClickExpenses} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
                                           <FinancialIcon isActive={isActiveExpenses} />
                                           <span>Expenses</span>
                                    </NavLink>
-
+                                   {showExpensesSubMenu && (
+                                          <ul className="ml-5 flex flex-col list-disc list-inside">
+                                          <NavLink 
+                                                 to="expenses/type" 
+                                                 className={({ isActive }) =>
+                                                 `w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-lg font-medium 
+                                                 ${isActive ? 'pl-3 pr-3 bg-white rounded-lg text-[#3F4CD0]' : 'text-secoundColor'}`
+                                                 }
+                                          >
+                                                 <li>
+                                                 Expenses Types
+                                                 </li>
+                                          </NavLink>
+                                          </ul>
+                                   )}
                                    <NavLink to="plan" onClick={handleClickPlan} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
                                           <PlanIcon isActive={isActivePlan} />
                                           <span>Plan</span>

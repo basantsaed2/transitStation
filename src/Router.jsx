@@ -23,6 +23,12 @@ import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,Su
   AddDriverLayout,DriverProfileLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
+import RevenueTypeLayout from "./Layouts/RevenueTypeLayout";
+import AddRevenueTypeLayout from "./Layouts/AddRevenueTypeLayout";
+import EditRevenueTypeLayout from "./Layouts/EditRevenueTypeLayout";
+import ExpensesTypeLayout from "./Layouts/ExpensesTypeLayout";
+import AddExpensesTypeLayout from "./Layouts/AddExpensesTypeLayout";
+import EditExpensesTypeLayout from "./Layouts/EditExpensesTypeLayout";
 
 /* Admin Dashboard */
 const AppLayoutAdminDashboard = () => (
@@ -64,8 +70,18 @@ const AppLayoutRevenue =() =>(
   <Outlet/>
   </>
 )
+const AppLayoutRevenueType =() =>(
+  <>
+  <Outlet/>
+  </>
+)
 
 const AppLayoutExpenses =() =>(
+  <>
+  <Outlet/>
+  </>
+)
+const AppLayoutExpensesType =() =>(
   <>
   <Outlet/>
   </>
@@ -209,6 +225,24 @@ export const router = createBrowserRouter([
                   path: 'edit/:revenueId',
                   element: <EditRevenueLayout/>,
                 }, 
+                {
+                  path: 'type',
+                  element: <AppLayoutRevenueType/>,
+                  children:[
+                    {
+                      path:'',
+                      element: <RevenueTypeLayout/>,
+                    },
+                    {
+                      path:'add',
+                      element: <AddRevenueTypeLayout/>,
+                    },
+                    {
+                      path:'edit/typeId',
+                      element: <EditRevenueTypeLayout/>,
+                    },
+                  ]
+                }, 
               ]
             },
             {
@@ -226,6 +260,24 @@ export const router = createBrowserRouter([
                 {
                   path: 'edit/:expenseId',
                   element: <EditExpensesLayout/>,
+                },
+                {
+                  path: 'type',
+                  element: <AppLayoutExpensesType/>,
+                  children:[
+                    {
+                      path:'',
+                      element: <ExpensesTypeLayout/>,
+                    },
+                    {
+                      path:'add',
+                      element: <AddExpensesTypeLayout/>,
+                    },
+                    {
+                      path:'edit/typeId',
+                      element: <EditExpensesTypeLayout/>,
+                    },
+                  ]
                 }, 
               ]
             },

@@ -32,10 +32,20 @@ export { default as RevenuePage } from "./Revenue/RevenuePage";
 export { default as AddRevenuePage } from "./Revenue/AddRevenuePage";
 export { default as EditRevenuePage } from "./Revenue/EditRevenuePage";
 
+/* Revenue Type Page */
+export { default as RevenueTypePage } from "./Revenue/RevenueType/RevenueTypePage";
+export { default as AddRevenueTypePage } from "./Revenue/RevenueType/AddRevenueTypePage";
+export { default as EditRevenueTypePage } from "./Revenue/RevenueType/EditRevenueTypePage";
+
 /* Expenses Page */
 export { default as ExpensesPage } from "./Expenses/ExpensesPage";
 export { default as AddExpensesPage } from "./Expenses/AddExpensesPage";
 export { default as EditExpensesPage } from "./Expenses/EditExpensesPage";
+
+/* Expenses Page */
+export { default as ExpensesTypePage } from "./Expenses/ExpensesType/ExpensesTypePage";
+export { default as AddExpensesTypePage } from "./Expenses/ExpensesType/AddExpensesTypePage";
+export { default as EditExpensesTypePage } from "./Expenses/ExpensesType/EditExpensesTypePage";
 
 /* Plan Page */
 export { default as PlanPage } from "./Plan/PlanPage";
