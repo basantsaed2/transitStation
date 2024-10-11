@@ -55,7 +55,7 @@ const PickUP_LocationPage = () => {
                 </Link>
             <div className='w-full flex justify-center flex-wrap gap-10'>
                 {pickUp_Locations.map((location) => (
-                    <div key={location.id} className='w-full lg:w-[45%] p-4 flex bg-[#f7f7f7] rounded-lg shadow-lg mb-4'>
+                    <div key={location.id} className='w-full lg:w-[45%] p-4 flex bg-[#FFF979] rounded-lg shadow-lg mb-4'>
                     <div className='w-1/3 p-2'>
                         <img src={location.location_image} alt="" className='w-full h-auto rounded-md'/>
                     </div>
