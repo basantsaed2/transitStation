@@ -20,7 +20,7 @@ import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,Su
   EditRequestLayout,
   AddRequestLayout,
   EditDriverLayout,
-  AddDriverLayout
+  AddDriverLayout,DriverProfileLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
 
@@ -186,6 +186,10 @@ export const router = createBrowserRouter([
                 {
                   path: 'edit/:driverId',
                   element: <EditDriverLayout/>,
+                },
+                {
+                  path: 'profile/:driverId',
+                  element: <DriverProfileLayout/>,
                 },
               ]
             },

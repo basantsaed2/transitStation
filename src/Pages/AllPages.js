@@ -25,6 +25,7 @@ export { default as EditSubscriptionsPage } from "./Subscriptions/EditSubscripti
 export { default as DriverPage } from "./Drivers/DriverPage";
 export { default as AddDriverPage } from "./Drivers/AddDriverPage";
 export { default as EditDriverPage} from "./Drivers/EditDriverPage";
+export { default as DriverProfilePage} from "./Drivers/DriverProfilePage";
 
 /* Revenue Page */
 export { default as RevenuePage } from "./Revenue/RevenuePage";

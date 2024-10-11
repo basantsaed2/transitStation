@@ -27,6 +27,7 @@ export { default as EditSubscriptionsLayout } from "./EditSubscriptionsLayout";
 export { default as DriverLayout } from "./DriverLayout";
 export { default as AddDriverLayout } from "./AddDriverLayout";
 export { default as EditDriverLayout } from "./EditDriverLayout";
+export { default as DriverProfileLayout } from "./DriverProfileLayout";
 
 /* Revenue Layout */
 export { default as RevenueLayout } from "./RevenueLayout";

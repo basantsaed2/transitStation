@@ -20,6 +20,9 @@ const AddDriverPage = () => {
     const [carCount,setCarCount]=useState('')
     const [userImage, setUserImage] = useState('');
 
+    const [parkingData ,setParkingData] =useState([])
+    const [locationData ,setLocationData] =useState([])
+
     const [selectParking, setSelectParking] = useState('Select Parking');
     const [selectParkingId, setSelectParkingId] = useState([]);
     const [openSelectParking, setOpenSelectParking] = useState(false);
@@ -35,14 +38,15 @@ const AddDriverPage = () => {
     const fetchData = async () => {
         setIsLoading(true);
         try {
-               const response = await axios.get('https://transitstation.online/api/admin/offer/dropdown', {
+               const response = await axios.get('https://transitstation.online/api/admin/drivers/dropdown', {
                       headers: {
                              Authorization: `Bearer ${auth.user.token}`,
                       },
                });
                if (response.status === 200) {                           
                       console.log(response.data)
-                    //   setExpenseTypeData(response.data.key)
+                      setParkingData(response.data.parkings)
+                      setLocationData(response.data.locations)
                }
         } catch (error) {
                console.error('Error fetching data:', error);
@@ -76,7 +80,7 @@ const AddDriverPage = () => {
         setOpenSelectLocation(false)
       };
     const handleOpenSelectLocation = () => {
-        setOpenSelectType(false);
+        setOpenSelectParking(false);
         setOpenSelectLocation(!openSelectLocation)
       };
  
@@ -129,69 +133,93 @@ const AddDriverPage = () => {
                  </div>
                );
            }    
-             
-    //        if (!expenseTypeData) {
-    //            return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No expenses data available</div>;
-    //        }
  
-    // const handleSubmitAdd = async (event) => {
-    //     event.preventDefault();
+    const handleSubmitAdd = async (event) => {
+        event.preventDefault();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!name) {
+            auth.toastError('Please Enter Name.');
+            return;
+        }
+        if (!emailRegex.test(email)) {
+            auth.toastError('Please enter a valid email address.');
+            return;
+        }        
+              // Check if password is less than 6 characters
+        if (password.length < 6) {
+            auth.toastError('The password field must be at least 6 characters.');
+            return;
+        }
+        if (!phone) {
+            auth.toastError('Please Enter Phone.');
+            return;
+        }
+        // if (!password) {
+        //     auth.toastError('Please Enter Password.');
+        //     return;
+        // }
+        if (!salary) {
+            auth.toastError('Please Enter Salary.');
+            return;
+        }
+        if (!selectLocationId) {
+            auth.toastError('Please Select Location.');
+            return;
+        }
+        if (!selectParkingId) {
+            auth.toastError('Please Select Parking.');
+            return;
+        }
  
-    //     if (!expenseDate) {
-    //         auth.toastError('Please Enter Expense Date.');
-    //         return;
-    //     }
-    //     if (!expenseAmount) {
-    //         auth.toastError('Please Enter Expense Amount.');
-    //         return;
-    //     }
-    //     if (!selectTypeId) {
-    //         auth.toastError('Please Select Expense Type.');
-    //         return;
-    //     }
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('phone', phone);
+        formData.append('password', password);
+        formData.append('salary', salary);
+        formData.append('cars_per_mounth', carCount);
+        formData.append('image', userImage);
+        formData.append('location_id', selectLocationId);
+        formData.append('parking_id', selectParkingId);
  
-    //     const formData = new FormData();
-    //     formData.append('date', expenseDate);
-    //     formData.append('expence_amount', expenseAmount);
-    //     formData.append('type_expence_id', selectTypeId);
+        for (let pair of formData.entries()) {
+               console.log(pair[0] + ', ' + pair[1]);
+        }        
  
-    //     for (let pair of formData.entries()) {
-    //            console.log(pair[0] + ', ' + pair[1]);
-    //     }        
+        setIsLoading(true);
+        try {
+            const response = await axios.post('https://transitstation.online/api/admin/drivers/add',formData, {
+                headers: {
+                    Authorization: `Bearer ${auth.user.token}`,
+                    'Content-Type': 'application/json', // Use JSON since we're sending a JSON object now
+                },
+            });
  
-    //     setIsLoading(true);
-    //     try {
-    //         const response = await axios.post('https://transitstation.online/api/admin/expence/add',formData, {
-    //             headers: {
-    //                 Authorization: `Bearer ${auth.user.token}`,
-    //                 'Content-Type': 'application/json', // Use JSON since we're sending a JSON object now
-    //             },
-    //         });
+            if (response.status === 200) {
+                auth.toastSuccess('Driver added successfully!');
+                handleGoBack();
+            } else {
+                auth.toastError('Failed to add Driver.');
+            }
+        } catch (error) {
+            const errorMessages = error?.response?.data.errors;
+            let errorMessageString = 'Error occurred';
  
-    //         if (response.status === 200) {
-    //             auth.toastSuccess('Expence added successfully!');
-    //             handleGoBack();
-    //         } else {
-    //             auth.toastError('Failed to add Expence.');
-    //         }
-    //     } catch (error) {
-    //         const errorMessages = error?.response?.data.errors;
-    //         let errorMessageString = 'Error occurred';
- 
-    //         if (errorMessages) {
-    //             errorMessageString = Object.values(errorMessages).flat().join(' ');
-    //         }
-    //         auth.toastError('Error', errorMessageString);
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // };
+            if (errorMessages) {
+                errorMessageString = Object.values(errorMessages).flat().join(' ');
+            }
+            auth.toastError('Error', errorMessageString);
+        } finally {
+            setIsLoading(false);
+        }
+    };
  
        return (
         <>
-         {/* <form className="w-full flex flex-col items-center justify-center gap-y-10">
+         <form onSubmit={handleSubmitAdd} className="w-full flex flex-col items-center justify-center gap-y-10">
                   <div className="w-full flex flex-wrap items-center justify-start gap-10">
-                      <div className="lg:w-[35%] sm:w-full">
+                      <div className="lg:w-[30%] sm:w-full">
                           <InputCustom
                               type="text"
                               placeholder="Name"
@@ -200,25 +228,25 @@ const AddDriverPage = () => {
                               onChange={(e) => setName(e.target.value)}
                           />
                       </div>
-                      <div className="lg:w-[35%] sm:w-full">
+                      <div className="lg:w-[30%] sm:w-full">
                           <InputCustom
-                              type="text"
+                              type="email"
                               placeholder="Email"
                               borderColor="mainColor"
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
                           />
                       </div>
-                      <div className="lg:w-[35%] sm:w-full">
+                      <div className="lg:w-[30%] sm:w-full">
                           <InputCustom
-                              type="text"
+                              type="password"
                               placeholder="Password"
                               borderColor="mainColor"
                               value={password}
                               onChange={(e) => setPassword(e.target.value)}
                           />
                       </div>
-                      <div className="lg:w-[35%] sm:w-full">
+                      <div className="lg:w-[30%] sm:w-full">
                           <InputCustom
                               type="text"
                               placeholder="Phone"
@@ -227,16 +255,16 @@ const AddDriverPage = () => {
                               onChange={(e) => setPhone(e.target.value)}
                           />
                       </div>
-                      <div className="lg:w-[35%] sm:w-full">
+                      <div className="lg:w-[30%] sm:w-full">
                           <InputCustom
                               type="text"
-                              placeholder="Amount"
+                              placeholder="Salary"
                               borderColor="mainColor"
                               value={salary}
                               onChange={(e) => setSalery(e.target.value)}
                           />
                       </div>
-                      <div className="lg:w-[35%] sm:w-full">
+                      <div className="lg:w-[30%] sm:w-full">
                           <InputCustom
                               type="number"
                               placeholder="Car_Per_Month"
@@ -264,7 +292,7 @@ const AddDriverPage = () => {
                             ref={userImageRef}
                         />
                     </div>
-                      <div className="lg:w-[35%] sm:w-full">
+                      <div className="lg:w-[30%] sm:w-full">
                             <DropDownMenu
                             ref={dropdownParkingRef}
                             handleOpen={handleOpenSelectParking}
@@ -274,7 +302,7 @@ const AddDriverPage = () => {
                             options={parkingData}
                             />
                      </div>
-                     <div className="lg:w-[35%] sm:w-full">
+                     <div className="lg:w-[30%] sm:w-full">
                             <DropDownMenu
                             ref={dropdownLocationRef}
                             handleOpen={handleOpenSelectLocation}
@@ -302,7 +330,7 @@ const AddDriverPage = () => {
                       </div>
                       <button onClick={handleGoBack} className="text-2xl text-mainColor">Cancel</button>
                   </div>
-              </form> */}
+         </form>
         </>
        )
 }
