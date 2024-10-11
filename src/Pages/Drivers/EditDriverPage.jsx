@@ -195,8 +195,8 @@ const EditDriverPage = () => {
            formData.append('salary', salary);
            formData.append('cars_per_mounth', carCount);
            formData.append('image', userImage);
-           formData.append('location_id', selectLocationId);
-           formData.append('parking_id', selectParkingId);
+           formData.append('location_id', selectLocationId || '');
+           formData.append('parking_id', selectParkingId || '');
     
            for (let pair of formData.entries()) {
                   console.log(pair[0] + ', ' + pair[1]);
