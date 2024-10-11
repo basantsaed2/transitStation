@@ -49,7 +49,7 @@ const PickUP_LocationPage = () => {
             <>
             <div className='w-full flex flex-col gap-5'>
                 <Link to="addpickUp_location">
-                    <div className='w-1/6'>
+                    <div className='w-2/6 lg:w-1/6'>
                         <ButtonAdd isWidth="true" BgColor ="mainColor" Color="white" iconColor="white"/>
                     </div>
                 </Link>

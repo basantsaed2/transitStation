@@ -52,7 +52,7 @@ const ParkingListPage = ({parkingId}) => {
             <>
                 <div className="w-full">
                     <div className="w-full flex flex-wrap items-center justify-start gap-4">
-                        <div className='w-1/6'>
+                        <div className='lg:w-1/6'>
                             <ButtonAdd isWidth="true" BgColor ="mainColor" Color="white" iconColor="white"/>
                         </div>
                     </div>

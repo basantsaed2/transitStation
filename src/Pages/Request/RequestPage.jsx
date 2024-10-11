@@ -130,7 +130,7 @@ const RequestPage = () => {
                     {activeTab === "current" && requests && (
                        <div className="w-full">
                        <div className="w-full flex flex-wrap items-center justify-start gap-10">
-                        <div className='w-1/6'>
+                        <div className='lg:w-1/6'>
                         <Link to={'add'}>
                                <ButtonAdd isWidth="true" BgColor ="white" Color="mainColor" iconColor="mainColor"/>
                         </Link>

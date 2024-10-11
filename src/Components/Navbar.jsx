@@ -14,15 +14,15 @@ const Navbar = () => {
 
        return (
            <>
-                     <div className="flex items-center justify-between py-2 px-4 bg-white mb-5">
-                            <div className='w-4/12 flex items-center justify-start'>
+                     <div className="flex lg:mr-0 sm:ml-20 items-center justify-between py-2 px-4 bg-white mb-5">
+                            <div className='w-4/12 flex items-center justify-start gap-5'>
                                    {/* image profile */}
                                    <div className="w-3/12">
                                           <img src={auth.user.data.image} className='w-14 h-14 rounded-full object-cover object-center' alt="Profile" />
                                    </div>
                                    {/* Name Admin */}
                                    <div className="w-7/12">
-                                          <span className='text-2xl text-mainColor font-bold'>Hello, <span className='font-semibold text-[#000]'>{auth.user.data.name}</span></span>
+                                          <span className='text-2xl text-mainColor font-bold flex'>Hello, <span className='font-semibold text-[#000]'>{auth.user.data.name}</span></span>
                                    </div>
                             </div>
                     </div>
