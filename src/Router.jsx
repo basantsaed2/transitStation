@@ -238,7 +238,7 @@ export const router = createBrowserRouter([
                       element: <AddRevenueTypeLayout/>,
                     },
                     {
-                      path:'edit/typeId',
+                      path:'edit/:typeId',
                       element: <EditRevenueTypeLayout/>,
                     },
                   ]
@@ -274,7 +274,7 @@ export const router = createBrowserRouter([
                       element: <AddExpensesTypeLayout/>,
                     },
                     {
-                      path:'edit/typeId',
+                      path:'edit/:typeId',
                       element: <EditExpensesTypeLayout/>,
                     },
                   ]
