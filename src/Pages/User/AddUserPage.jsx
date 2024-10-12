@@ -133,22 +133,22 @@ const AddUserPage = () => {
         auth.toastError('The password field must be at least 6 characters.');
         return;
     }
-        if (!startDate) {
-            auth.toastError('Please Enter User Start Date.');
-            return;
-        }
-        if (!endDate) {
-            auth.toastError('Please Enter User End Date.');
-            return;
-        }
-        if (!amount) {
-            auth.toastError('Please Enter Amount.');
-            return;
-        }
-        if (!selectPlanId) {
-            auth.toastError('Please Select Plan.');
-            return;
-        }
+        // if (!startDate) {
+        //     auth.toastError('Please Enter User Start Date.');
+        //     return;
+        // }
+        // if (!endDate) {
+        //     auth.toastError('Please Enter User End Date.');
+        //     return;
+        // }
+        // if (!amount) {
+        //     auth.toastError('Please Enter Amount.');
+        //     return;
+        // }
+        // if (!selectPlanId) {
+        //     auth.toastError('Please Select Plan.');
+        //     return;
+        // }
  
         const formData = new FormData();
         formData.append('name', userName);
@@ -257,6 +257,7 @@ const AddUserPage = () => {
                     placeholder="start Date"
                     borderColor="mainColor"
                     value={startDate}
+                    required={false}
                     onChange={(e) => setStartDate(e.target.value)}
                 />
             </div>
@@ -266,6 +267,7 @@ const AddUserPage = () => {
                     placeholder="End Date"
                     borderColor="mainColor"
                     value={endDate}
+                    required={false}
                     onChange={(e) => setEndDate(e.target.value)}
                 />
             </div>
@@ -275,6 +277,7 @@ const AddUserPage = () => {
                     placeholder="Amount"
                     borderColor="mainColor"
                     value={amount}
+                    required={false}
                     onChange={(e) => setAmount(e.target.value)}
                 />
             </div>
