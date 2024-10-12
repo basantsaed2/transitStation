@@ -200,7 +200,7 @@ const MenuSide = () => {
 
        return (
               <>
-                     <div className="w-full h-full mt-8 flex justify-center">
+                     <div className="w-full h-full mt-3 flex justify-center">
                             <div className="MenuSide w-5/6 flex flex-col items-center gap-y-4">
                                    <NavLink to="/dashboard" onClick={handleClickHome} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium ">
                                           <HomeIcon isActive={isActiveHome} />
@@ -236,12 +236,12 @@ const MenuSide = () => {
                                           <ul className="ml-5 flex flex-col list-disc list-inside">
                                           <NavLink 
                                                  to="revenue/type" 
-                                                 className={({ isActive }) =>
-                                                 `w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-lg font-medium 
-                                                 ${isActive ? 'pl-3 pr-3 bg-white rounded-lg text-[#3F4CD0]' : 'text-secoundColor'}`
-                                                 }
+                                                 className="w-full flex pl-3 pr-3 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium"
                                           >
-                                                 <li>
+                                                 <li className={({ isActive }) =>
+                                                 `w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-lg font-medium 
+                                                 ${isActive ? 'pl-3 pr-3 bg-white rounded-lg text-mainColor' : 'text-secoundColor'}`
+                                                 }>
                                                  Revenue Types
                                                  </li>
                                           </NavLink>
@@ -255,12 +255,12 @@ const MenuSide = () => {
                                           <ul className="ml-5 flex flex-col list-disc list-inside">
                                           <NavLink 
                                                  to="expenses/type" 
-                                                 className={({ isActive }) =>
-                                                 `w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-lg font-medium 
-                                                 ${isActive ? 'pl-3 pr-3 bg-white rounded-lg text-[#3F4CD0]' : 'text-secoundColor'}`
-                                                 }
+                                                className="w-full flex pl-3 pr-3 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium"
                                           >
-                                                 <li>
+                                                 <li className={({ isActive }) =>
+                                                 `w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-lg font-medium 
+                                                 ${isActive ? 'pl-3 pr-3 bg-white rounded-lg text-mainColor' : 'text-secoundColor'}`
+                                                 }>
                                                  Expenses Types
                                                  </li>
                                           </NavLink>

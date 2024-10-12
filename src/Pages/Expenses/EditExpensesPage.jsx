@@ -27,13 +27,13 @@ const EditExpensesPage = () => {
               setExpenseDate(expensesContent.date || '');
               setExpenseAmount(expensesContent.expence_amount || '');
 
-              // if (userContent.offer_id) {
-              //        setSelectPlan(userContent.offer.name);
-              //        setSelectPlanId(userContent.offer.id);
-              // } else {
-              //        setSelectPlan('Select Plan');
-              //        setSelectPlanId(null);
-              // }
+              if (expensesContent.type_id) {
+                    setSelectType(expensesContent.type);
+                    setSelectTypeId(expensesContent.type_id);
+              } else {
+                    setSelectType('Select Type');
+                    setSelectTypeId(null);
+              }
        }
 }, [expensesContent]);
 

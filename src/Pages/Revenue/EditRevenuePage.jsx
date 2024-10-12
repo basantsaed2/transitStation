@@ -29,13 +29,13 @@ const EditRevenuePage = () => {
               setRevenueDate(revenueContent.date || '');
               setRevenueAmount(revenueContent.revenue_amount|| ''); 
 
-              // if (userContent.offer_id) {
-              //        setSelectPlan(userContent.offer.name);
-              //        setSelectPlanId(userContent.offer.id);
-              // } else {
-              //        setSelectPlan('Select Plan');
-              //        setSelectPlanId(null);
-              // }
+              if (revenueContent.type_id) {
+                setSelectType(revenueContent.type);
+                setSelectTypeId(revenueContent.type_id);
+             } else {
+                setSelectType('Select Type');
+                setSelectTypeId(null);
+          }
        }
 }, [revenueContent]);
 

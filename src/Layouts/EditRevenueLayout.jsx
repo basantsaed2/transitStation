@@ -39,9 +39,10 @@ const EditRevenueLayout = () => {
                  }, []);
        
                  useEffect(() => {
+                     console.log(revenueId)
                      if (allRevenueData.length > 0 && revenueId) {
                        const filteredRevenue = allRevenueData.find(
-                         (revenue) => revenue.id === parseInt(revenueId)
+                         (revenue) => revenue.revenue_id === parseInt(revenueId)
                        );
                        setRevenueEdit(filteredRevenue);
                      }

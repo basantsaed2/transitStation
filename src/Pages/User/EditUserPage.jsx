@@ -13,6 +13,7 @@ const EditUserPage = () => {
        const userContent = useContext(UserDataContext);
 
        const auth = useAuth();
+       const navigate = useNavigate();
        const [isLoading, setIsLoading] = useState(false);
        const [planData ,setPlanData] =useState([])
        // const [users, setUsers] = useState('');
@@ -36,18 +37,18 @@ const EditUserPage = () => {
               if (userContent) {
                      setUserName(userContent.user_name || '');
                      setUserEmail(userContent.user_email || '');
-                     setPhone(userContent.phone || '')
+                     setPhone(userContent.user_phone || '')
                      setStartDate(userContent.start_date || '')
                      setEndDate(userContent.end_date || '')
                      setAmount(userContent.amount || '') 
 
-                     // if (userContent.offer_id) {
-                     //        setSelectPlan(userContent.offer.name);
-                     //        setSelectPlanId(userContent.offer.id);
-                     // } else {
-                     //        setSelectPlan('Select Plan');
-                     //        setSelectPlanId(null);
-                     // }
+                     if (userContent.offer_id) {
+                            setSelectPlan(userContent.offer_name);
+                            setSelectPlanId(userContent.offer_id);
+                     } else {
+                            setSelectPlan('Select Plan');
+                            setSelectPlanId(null);
+                     }
               }
        }, [userContent]);
 
@@ -144,19 +145,22 @@ const EditUserPage = () => {
                   auth.toastError('Please Enter User Phone.');
                   return;
               }
-              if (!userPassword) {
-                  auth.toastError('Please Enter User Password.');
-                  return;
-              }
+            //   if (!userPassword) {
+            //       auth.toastError('Please Enter User Password.');
+            //       return;
+            //   }
+
           if (!emailRegex.test(userEmail)) {
               auth.toastError('Please enter a valid email address.');
               return;
           }        
                 // Check if password is less than 6 characters
-          if (userPassword.length < 6) {
-              auth.toastError('The password field must be at least 6 characters.');
-              return;
-          }
+                if(userPassword){
+                    if (userPassword.length < 6) {
+                        auth.toastError('The password field must be at least 6 characters.');
+                        return;
+                    }
+                }
               if (!startDate) {
                   auth.toastError('Please Enter User Start Date.');
                   return;
@@ -212,6 +216,7 @@ const EditUserPage = () => {
                       errorMessageString = Object.values(errorMessages).flat().join(' ');
                   }
               //     auth.toastError('Error', errorMessageString);
+              handleGoBack();
               } finally {
                   setIsLoading(false);
               }
@@ -263,6 +268,7 @@ const EditUserPage = () => {
                           placeholder="Password"
                           borderColor="mainColor"
                           value={userPassword}
+                          required={false}
                           onChange={(e) => setUserPassword(e.target.value)}
                       />
                   </div>

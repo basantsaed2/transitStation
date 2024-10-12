@@ -21,7 +21,8 @@ const EditRequestPage = () => {
     const [locationData, setLocationData] = useState([]);
 
     const [pickUpDate, setPickUpDate] = useState('');
-    const [pickUpTime, setPickUpTime] = useState([]);
+    const [pickUpTime, setPickUpTime] = useState('');
+    const [returnDate, setReturnDate] = useState('');
 
     const [selectCar, setSelectCar] = useState('Select Car');
     const [selectCarId, setSelectCarId] = useState([]);
@@ -48,6 +49,7 @@ const EditRequestPage = () => {
        if (requestContent) {
               setPickUpDate(requestContent.pick_up_date|| '')
               setPickUpTime(requestContent.request_time|| '')
+              setReturnDate(requestContent.return_time|| '')
 
               if (requestContent?.user) {
                      setSelectUser(requestContent.user?.name);
@@ -229,6 +231,10 @@ const EditRequestPage = () => {
                 auth.toastError('Please Select Pick_Up Time.');
                 return;
             }
+            if (!returnDate) {
+                auth.toastError('Please Enter Return Pick_Up Date.');
+                return;
+            }
      
             const formData = new FormData();
             formData.append('car_id', selectCarId);
@@ -237,6 +243,7 @@ const EditRequestPage = () => {
             formData.append('user_id', selectUserId);
             formData.append('pick_up_date', pickUpDate);
             formData.append('request_time', pickUpTime);
+            formData.append('return_time', returnDate);
      
             for (let pair of formData.entries()) {
                    console.log(pair[0] + ', ' + pair[1]);
@@ -314,6 +321,7 @@ const EditRequestPage = () => {
                         />
                  </div>
                   <div className="lg:w-[30%] sm:w-full">
+                  <h1>Pick_Up_Date</h1>
                       <InputCustom
                           type="date"
                           placeholder="Pick_UP Date"
@@ -323,6 +331,7 @@ const EditRequestPage = () => {
                       />
                   </div>
                   <div className="lg:w-[30%] sm:w-full">
+                  <h1>Pick_Up_Time</h1>
                       <InputCustom
                           type="time"
                           placeholder="Pick_UP Time"
@@ -331,6 +340,16 @@ const EditRequestPage = () => {
                           onChange={(e) => setPickUpTime(e.target.value)}
                       />
                   </div>
+                  <div className="lg:w-[30%] sm:w-full">
+                <h1>Return Date</h1>
+                    <InputCustom
+                        type="Date"
+                        placeholder="Pick_UP Return Date"
+                        borderColor="mainColor"
+                        value={returnDate}
+                        onChange={(e) => setReturnDate(e.target.value)}
+                    />
+                </div>
               </div>
   
               <div className="w-full flex sm:flex-col lg:flex-row items-center justify-start sm:gap-y-5 lg:gap-x-28 sm:my-8 lg:my-0">

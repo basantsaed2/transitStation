@@ -127,7 +127,7 @@ const RevenuePage = () => {
                             <tbody className="w-full">
                                     {revenues.map((revenue, index) => (
 
-                                        <tr className="w-full border-b-2" key={revenue.id}>
+                                        <tr className="w-full border-b-2" key={revenue.revenue_id}>
                                                 <td
                                                         className="min-w-[80px] sm:min-w-[50px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
                                                 >
@@ -152,13 +152,13 @@ const RevenuePage = () => {
                                                         className="min-w-[100px] sm:min-w-[80px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
                                                 >
                                                         <div className="flex items-center justify-center gap-x-3">
-                                                        <Link to={`edit/${revenue.id}`} state={revenue.id} type="button">
+                                                        <Link to={`edit/${revenue.revenue_id}`} state={revenue.revenue_id} type="button">
                                                                 <EditIcon />
                                                         </Link>
-                                                        <button type="button" onClick={() => handleOpenDialog(revenue.id)}>
+                                                        <button type="button" onClick={() => handleOpenDialog(revenue.revenue_id)}>
                                                                 <DeleteIcon />
                                                         </button>
-                                                        {openDialog === revenue.id && (
+                                                        {openDialog === revenue.revenue_id && (
                                                                 <Dialog open={true} onClose={handleCloseDialog} className="relative z-10">
                                                                         <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
                                                                         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -177,7 +177,7 @@ const RevenuePage = () => {
                                                                                         <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                                                                                 <button
                                                                                                         type="button"
-                                                                                                        onClick={() => handleDelete(revenue.id)}
+                                                                                                        onClick={() => handleDelete(revenue.revenue_id)}
                                                                                                         disabled={isDeleting}
                                                                                                         className="inline-flex w-full justify-center rounded-md bg-mainColor px-6 py-3 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
                                                                                                 >

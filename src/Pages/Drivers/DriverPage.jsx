@@ -25,7 +25,7 @@ const DriverPage = () => {
                });
                if (response.status === 200) {
                       console.log(response.data)
-                      setDrivers(response.data.drivers)
+                      setDrivers(response.data)
                }
         } catch (error) {
                console.error('Error fetching data:', error);

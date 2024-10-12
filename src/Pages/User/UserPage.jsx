@@ -124,7 +124,6 @@ const UserPage = () => {
                     </thead>
                     <tbody className="w-full">
                             {users.map((user, index) => (
-
                                 <tr className="w-full border-b-2" key={user.id}>
                                         <td
                                                 className="min-w-[80px] sm:min-w-[50px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
