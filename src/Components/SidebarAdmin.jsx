@@ -19,7 +19,7 @@ const SidebarAdmin =({ isOpen }) => {
               </div> */}
 
 <aside
-  className={`fixed w-4/12 lg:w-3/12 xl:w-2/12 sm:w-8/12 left-0 overflow-y-auto z-10 h-screen flex flex-col items-center bg-mainColor gap-y-3 transition-transform transform ${
+  className={`fixed scrollSec w-4/12 lg:w-3/12 xl:w-2/12 sm:w-8/12 left-0 overflow-y-auto z-10 h-screen flex flex-col items-center bg-mainColor gap-y-3 transition-transform transform ${
     isOpen ? "translate-x-0" : "-translate-x-full"
   } lg:translate-x-0`} // Sidebar always visible on large screens
 >

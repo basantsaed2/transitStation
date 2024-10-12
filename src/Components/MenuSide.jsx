@@ -7,6 +7,7 @@ import {
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../Context/Auth";
 import { Link, useNavigate } from 'react-router-dom'
+import { IoIosLogOut } from "react-icons/io";
 
 const MenuSide = () => {
        const [isActiveHome, setIsActiveHome] = useState(true);
@@ -26,10 +27,10 @@ const MenuSide = () => {
 
        const auth = useAuth();
        const navigate = useNavigate();
-    //    const handleLogout = () => {
-    //           auth.logout();
-    //           navigate("/authentication/login", { replace: true });
-    //    }
+       const handleLogout = () => {
+              auth.logout();
+              // navigate("/", { replace: true });
+       }
 
        const handleClickHome = () => {
               setIsActiveHome(true);
@@ -187,7 +188,7 @@ const MenuSide = () => {
               setIsActiveParking(false);
               setIsActiveSubscriptions(false);
               setIsActiveDrivers(false);
-              setIsActiveFinancial(true);
+              setIsActiveFinancial(false);
               setIsActiveRevenue(false);
               setIsActiveExpenses(false);
               setShowRevenueSubMenu(false)
@@ -247,7 +248,7 @@ const MenuSide = () => {
                                           </ul>
                                    )}
                                    <NavLink to="expenses" onClick={handleClickExpenses} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <FinancialIcon isActive={isActiveExpenses} />
+                                          <ExpensesIcon isActive={isActiveExpenses} />
                                           <span>Expenses</span>
                                    </NavLink>
                                    {showExpensesSubMenu && (
@@ -276,6 +277,11 @@ const MenuSide = () => {
                                    <NavLink to="user" onClick={handleClickUser} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
                                           <UserIcon isActive={isActiveUser} />
                                           <span>User</span>
+                                   </NavLink>
+
+                                   <NavLink isActive={false} onClick={handleLogout } className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <IoIosLogOut size={23} style={{ strokeWidth: 2 }} />
+                                          <span>Log Out</span>
                                    </NavLink>
                             </div>
                      </div>

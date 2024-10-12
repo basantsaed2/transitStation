@@ -85,3 +85,20 @@ button:focus-visible {
   color: #3F4CD0 !important;
   transition: all 0.3s ease-in-out;
 }
+
+/* width Scroll*/
+.scrollSec::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track Scroll */
+.scrollSec::-webkit-scrollbar-track {
+  background: #f1f1f19d;
+  border-radius: 10px;
+}
+
+/* Handle Scroll*/
+.scrollSec::-webkit-scrollbar-thumb {
+  background: #999999;
+  border-radius: 10px;
+}
