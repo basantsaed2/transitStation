@@ -132,11 +132,11 @@ export const router = createBrowserRouter([
                   element: <PickUP_LocationLayout/>,
                 }, 
                 {
-                  path: 'addpickUp_location',
+                  path: 'add',
                   element: <AddPickUP_LocationLayout/>,
                 }, 
                 {
-                  path: 'editpickUp_location',
+                  path: 'edit/:locationId',
                   element: <EditPickUP_LocationLayout/>,
                 }, 
               ]
@@ -160,11 +160,11 @@ export const router = createBrowserRouter([
                   ]
                 }, 
                 {
-                  path: 'addparking',
+                  path: 'add',
                   element: <AddParkingLayout/>,
                 }, 
                 {
-                  path: 'editparking',
+                  path: 'edit/:parkingId',
                   element: <EditParkingLayout/>,
                 }, 
               ]

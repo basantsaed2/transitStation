@@ -50,7 +50,7 @@ const ParkingPage = () => {
        return (
               <>
             <div className='w-full flex flex-col gap-5'>
-                <Link to="addparking">
+                <Link to="add">
                     <div className='w-1/6'>
                         <ButtonAdd isWidth="true" BgColor ="mainColor" Color="white" iconColor="white"/>
                     </div>
