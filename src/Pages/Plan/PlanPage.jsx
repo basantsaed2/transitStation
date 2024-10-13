@@ -38,7 +38,7 @@ const PlanPage = () => {
 
     useEffect(() => {
         fetchData(); 
-    }, []);
+    }, [planChanged]);
 
     const handleOpenDialog = (planId) => {
        setOpenDialog(planId);

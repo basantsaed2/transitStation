@@ -51,11 +51,11 @@ const ParkingListPage = ({parkingId}) => {
        return (
             <>
                 <div className="w-full">
-                    <div className="w-full flex flex-wrap items-center justify-start gap-4">
+                    {/* <div className="w-full flex flex-wrap items-center justify-start gap-4">
                         <div className='lg:w-1/6'>
                             <ButtonAdd isWidth="true" BgColor ="mainColor" Color="white" iconColor="white"/>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="w-full flex items-center justify-between mt-4 overflow-x-auto">
                         <table className="w-full sm:min-w-0">
