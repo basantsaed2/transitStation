@@ -27,7 +27,7 @@ const EditDriversLayout = () => {
                             });
                             if (response.status === 200) {
                                    console.log(response.data)
-                                   setAllDriversData(response.data)
+                                   setAllDriversData(response.data.drivers)
                             }
                      } catch (error) {
                             console.error('Error fetching data:', error);

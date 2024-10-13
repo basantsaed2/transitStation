@@ -172,7 +172,7 @@ const RequestPage = () => {
                                                    <td
                                                            className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
                                                    >
-                                                           {request.user.subscription[0].offer?.offer_name || 'Null'}
+                                                           {request.user.subscription.offer?.offer_name || 'Null'}
                                                    </td>
                                                    <td
                                                            className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
