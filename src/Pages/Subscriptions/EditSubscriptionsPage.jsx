@@ -41,14 +41,15 @@ const EditSubscriptionsPage = () => {
               setStartDate(subscriptionContent.start_date || '')
               setEndDate(subscriptionContent.end_date || '')
               setAmount(subscriptionContent.amount || '') 
+              setSelectUserId(subscriptionContent.user_id || '')
 
-              // if (userContent.offer_id) {
-              //        setSelectPlan(userContent.offer.name);
-              //        setSelectPlanId(userContent.offer.id);
-              // } else {
-              //        setSelectPlan('Select Plan');
-              //        setSelectPlanId(null);
-              // }
+              if (subscriptionContent.offer_id) {
+                    setSelectOffer(subscriptionContent.offer_name);
+                    setSelectOfferId(subscriptionContent.offer_id);
+              } else {
+                    setSelectOffer('Select Plan');
+                    setSelectOfferId(null);
+              }
        }
      }, [subscriptionContent]);
 
@@ -166,7 +167,7 @@ const EditSubscriptionsPage = () => {
        }
 
        const formData = new FormData();
-       formData.append('user_id', selectUserId);
+    //    formData.append('user_id', selectUserId);
        formData.append('offer_id', selectOfferId);
        formData.append('amount', amount);
        formData.append('start_date', startDate);
@@ -178,7 +179,7 @@ const EditSubscriptionsPage = () => {
 
        setIsLoading(true);
        try {
-           const response = await axios.put(`https://transitstation.online/api/admin/subscription/update/${subscriptionId}`,formData, {
+           const response = await axios.put(`https://transitstation.online/api/admin/subscription/update/${selectUserId}`,formData, {
                headers: {
                    Authorization: `Bearer ${auth.user.token}`,
                    'Content-Type': 'application/json', // Use JSON since we're sending a JSON object now
@@ -209,7 +210,7 @@ const EditSubscriptionsPage = () => {
               <form onSubmit={(event) => handleSubmitEdit(subscriptionContent.subscription_id, event)} className="w-full flex flex-col items-center justify-center gap-y-10">
                   <div className="w-full flex flex-wrap items-center justify-start gap-10">
 
-                  <div className="lg:w-[30%] sm:w-full">
+                  {/* <div className="lg:w-[30%] sm:w-full">
                             <DropDownMenu
                             ref={dropdownUserRef}
                             handleOpen={handleOpenSelectUser}
@@ -218,7 +219,7 @@ const EditSubscriptionsPage = () => {
                             openMenu={openSelectUser}
                             options={userData}
                             />
-                     </div>
+                     </div> */}
                      <div className="lg:w-[30%] sm:w-full">
                             <DropDownMenu
                             ref={dropdownOfferRef}
