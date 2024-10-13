@@ -13,7 +13,7 @@ const ParkingListLayout = () => {
  
        return (
               <>
-              <HeaderPageSection handleClick={handleGoBack} name="Parking List" />
+              <HeaderPageSection handleClick={handleGoBack} name="Car Parking" />
               <ParkingListPage parkingId={parkingId}/>
               </>
        )

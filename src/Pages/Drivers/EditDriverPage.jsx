@@ -45,6 +45,22 @@ const EditDriverPage = () => {
                      setSalery(driverContent.salary|| '')
                      setCarCount(driverContent.cars_per_mounth|| '')
                      setUserImage(driverContent.image|| '')
+
+                     if (driverContent.parking_id) {
+                        setSelectParking(driverContent.parking_name);
+                        setSelectParkingId(driverContent.parking_id);
+                  } else {
+                        setSelectParking('Select Parking');
+                        setSelectParkingId(null);
+                  }
+
+                  if (driverContent.parking_id) {
+                    setSelectLocation(driverContent.location_address);
+                    setSelectLocationId(driverContent.location_id);
+              } else {
+                    setSelectLocation('Select Location');
+                    setSelectLocationId(null);
+              }
               }
        }, [driverContent]);
    
