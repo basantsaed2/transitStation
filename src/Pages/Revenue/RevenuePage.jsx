@@ -400,7 +400,7 @@ const RevenuePage = () => {
                                     </td>
                                     <td className="min-w-[100px] sm:min-w-[80px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
                                         <div className="flex items-center justify-center gap-x-3">
-                                            <Link to={`/edit/${revenue.revenue_id}`}>
+                                            <Link to={`edit/${revenue.revenue_id}`}>
                                                 <EditIcon />
                                             </Link>
                                             <span onClick={() => handleOpenDialog(revenue.revenue_id)}>

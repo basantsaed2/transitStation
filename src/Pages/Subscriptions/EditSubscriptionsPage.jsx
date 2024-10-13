@@ -166,7 +166,7 @@ const EditSubscriptionsPage = () => {
        }
 
        const formData = new FormData();
-    //    formData.append('user_id', selectUserId);
+       formData.append('user_id', selectUserId);
        formData.append('offer_id', selectOfferId);
        formData.append('amount', amount);
        formData.append('start_date', startDate);

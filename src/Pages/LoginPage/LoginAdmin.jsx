@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/Auth';
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import Logo from '../../assets/Logo';
+import { toast } from 'react-toastify';
 
 const LoginAdmin = () => {
     const auth = useAuth();
@@ -52,13 +53,17 @@ const LoginAdmin = () => {
                     ...response.data,
                     roles: [response.data.role] // Assuming role is the user's role
                 };
+                if(response.data.role === "admin"){
                 auth.login(userData); // Call auth.login with the user data
                 console.log('Login response:', response); // Debugging line
                 auth.toastSuccess('Login successfully!');
                 setData(userData);
                 setType(response.data.role)
                 navigate("/dashboard", { replace: true });
-            } else {
+            }else{
+                auth.toastError("Not Valid")
+            }
+        } else {
                 auth.toastError('Failed to login');
                 setError('Failed to login');
                 console.log("error", error);

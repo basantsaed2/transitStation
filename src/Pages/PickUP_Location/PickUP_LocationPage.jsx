@@ -136,7 +136,7 @@ const PickUP_LocationPage = () => {
             <div className='w-full flex flex-wrap gap-10'>
                   {/* Location list */}
                   {pickUp_Locations.map((location) => (
-                    <div key={location.id} className='w-full lg:w-[45%] h-[200px] p-4 pr-0 flex lg:flex-row sm:flex-col bg-[#FFF979] rounded-lg shadow-lg mb-4'>
+                    <div key={location.id} className='w-full lg:w-[45%] h-full lg:h-[200px]  p-4 pr-0 flex lg:flex-row sm:flex-col bg-[#FFF979] rounded-lg shadow-lg mb-4'>
                       <div className='w-1/6 sm:w-full p-2'>
                         <img src={location.location_image} alt="" className='w-full h-full object-contain rounded-md'/>
                       </div>
