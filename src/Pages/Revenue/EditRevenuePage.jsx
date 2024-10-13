@@ -29,9 +29,9 @@ const EditRevenuePage = () => {
               setRevenueDate(revenueContent.date || '');
               setRevenueAmount(revenueContent.revenue_amount|| ''); 
 
-              if (revenueContent.type_id) {
+              if (revenueContent.type_revenue_id) {
                 setSelectType(revenueContent.type);
-                setSelectTypeId(revenueContent.type_id);
+                setSelectTypeId(revenueContent.type_revenue_id);
              } else {
                 setSelectType('Select Type');
                 setSelectTypeId(null);
