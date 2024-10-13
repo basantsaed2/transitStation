@@ -129,7 +129,8 @@ const EditRevenuePage = () => {
 
        for (let pair of formData.entries()) {
               console.log(pair[0] + ', ' + pair[1]);
-       }        
+       }       
+       console.log(revenueId) 
 
        setIsLoading(true);
        try {
@@ -161,7 +162,7 @@ const EditRevenuePage = () => {
 
        return (
               <>
-              <form onSubmit={(event) => handleSubmitEdit(revenueContent.id, event)} className="w-full flex flex-col items-center justify-center gap-y-10">
+              <form onSubmit={(event) => handleSubmitEdit(revenueContent.revenue_id, event)} className="w-full flex flex-col items-center justify-center gap-y-10">
                   <div className="w-full flex flex-wrap items-center justify-start gap-10">
                       <div className="lg:w-[30%] sm:w-full">
                           <InputCustom
