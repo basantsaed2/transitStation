@@ -21,7 +21,7 @@ export default {
         // AddButton:"#ffffff",
       },
       screens: {
-        sm: "320px",
+        sm: "250px",
         md: "640px",
         lg: "740px",
         xl: "1280px",

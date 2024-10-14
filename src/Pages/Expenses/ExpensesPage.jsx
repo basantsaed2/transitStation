@@ -348,7 +348,7 @@ const ExpensesPage = () => {
                         </Link>
                     </div>
                      {/* Date Filter Inputs */}
-                <div className="flex items-center gap-4 mt-4">
+                <div className="flex items-center gap-4 mt-4 lg:flex-nowrap sm:flex-wrap">
                     <input 
                         type="date" 
                         value={startDate} 

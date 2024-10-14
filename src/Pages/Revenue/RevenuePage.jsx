@@ -349,7 +349,7 @@ const RevenuePage = () => {
                         </Link>
                     </div>               
                     {/* Date Range Filter */}
-                    <div className="flex gap-5 items-center">
+                    <div className="flex gap-5 items-center lg:flex-nowrap sm:flex-wrap">
                         <input 
                             type="date" 
                             value={startDate}

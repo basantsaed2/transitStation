@@ -234,6 +234,13 @@ const EditDriverPage = () => {
                    auth.toastError('Failed to Updated Driver.');
                }
            } catch (error) {
+            if(error.response.data.email?.[0] ==="The email has already been taken."){
+                auth.toastError("The email has already been taken.");
+            }
+            else if(error.response.data.phone?.[0] === "The phone has already been taken."){
+                auth.toastError("The phone has already been taken.");
+            }
+            console.log(error)
                const errorMessages = error?.response?.data.errors;
                let errorMessageString = 'Error occurred';
     
