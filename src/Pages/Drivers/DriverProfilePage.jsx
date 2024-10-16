@@ -54,11 +54,13 @@ const ProfileCard = () => {
     }, [driverContent]);
   return (
     <div className="w-full p-6">
+
+      
       {/* Profile Picture and Name */}
       <div className="flex lg:items-start sm:items-center gap-10 mb-6 sm:flex-col">
         <div className='w-48 h-48 rounded-full border-solid	relative'>
             <img
-            src={userImage}// Use a real image URL or state
+            src={`data:image/jpeg;base64,${userImage}`}// Use a real image URL or state
             alt="ProfileImage"
             className="w-full h-full rounded-full"
             />

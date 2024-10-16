@@ -206,9 +206,9 @@ const RequestPage = () => {
                                                    <td
                                                            className="min-w-[150px] sm:min-w-[100px] sm:w-2/12 lg:w-2/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
                                                    >  
-                                                        <Link to={"all_drivers"} state={request.id}>
+                                                        <Link to={"all_drivers"} state={{ requestId: request.id }}>
                                                         <button className='bg-mainColor text-white p-2 rounded-md text-center'>
-                                                                Approve
+                                                                Assign
                                                         </button>
                                                         </Link>
     
