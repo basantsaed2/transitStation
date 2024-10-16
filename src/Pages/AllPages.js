@@ -42,7 +42,7 @@ export { default as ExpensesPage } from "./Expenses/ExpensesPage";
 export { default as AddExpensesPage } from "./Expenses/AddExpensesPage";
 export { default as EditExpensesPage } from "./Expenses/EditExpensesPage";
 
-/* Expenses Page */
+/* Expenses Type Page */
 export { default as ExpensesTypePage } from "./Expenses/ExpensesType/ExpensesTypePage";
 export { default as AddExpensesTypePage } from "./Expenses/ExpensesType/AddExpensesTypePage";
 export { default as EditExpensesTypePage } from "./Expenses/ExpensesType/EditExpensesTypePage";
@@ -56,6 +56,7 @@ export { default as EditPlanPage } from "./Plan/EditPlanPage";
 export { default as RequestPage } from "./Request/RequestPage";
 export { default as AddRequestPage } from "./Request/AddRequestPage";
 export { default as EditRequestPage } from "./Request/EditRequestPage";
+export { default as AssignDriverPage } from "./Request/AssignDriverPage";
 
 /* User Page */
 export { default as UserPage } from "./User/UserPage";
