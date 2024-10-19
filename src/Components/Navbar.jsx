@@ -14,7 +14,7 @@ const Navbar = () => {
 
        return (
            <>
-                     <div className="flex lg:mr-0 sm:ml-20 items-center justify-between py-2 px-4 bg-white mb-10">
+                     <div className="flex lg:mr-0 sm:ml-12 lg:ml-0 items-center justify-between py-2 px-4 bg-white mb-10">
                             <div className='w-full flex items-center justify-start gap-5'>
                                    {/* image profile */}
                                    <div>
