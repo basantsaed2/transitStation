@@ -49,6 +49,7 @@ export { default as RequestLayout } from "./RequestLayout";
 export { default as AddRequestLayout } from "./AddRequestLayout";
 export { default as EditRequestLayout } from "./EditRequestLayout";
 export { default as AssignDriverLayout } from "./AssignDriverLayout";
+export { default as ReturnRequestLayout } from "./ReturnRequestLayout";
 
 /* User Layout */
 export { default as UserLayout } from "./UserLayout";

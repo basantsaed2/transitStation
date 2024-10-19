@@ -1,9 +1,9 @@
 import React from 'react'
 import HeaderPageSection from '../Components/HeaderPageSection'
 import { useNavigate } from 'react-router-dom';
-import { AddRequestPage } from '../Pages/AllPages'
+import { ReturnRequestPage } from '../Pages/AllPages'
 
-const AddRequestLayout = () => {
+const ReturnRequestLayout = () => {
 
     const navigate = useNavigate();
     const handleGoBack = () => {
@@ -11,10 +11,10 @@ const AddRequestLayout = () => {
     };
        return (
               <>
-              <HeaderPageSection handleClick={handleGoBack} name="Add New Request" />
-              <AddRequestPage/>
+              <HeaderPageSection handleClick={handleGoBack} name="Add Return Request" />
+              <ReturnRequestPage/>
               </>
        )
 }
 
-export default AddRequestLayout
+export default ReturnRequestLayout

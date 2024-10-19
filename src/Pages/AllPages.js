@@ -57,6 +57,7 @@ export { default as RequestPage } from "./Request/RequestPage";
 export { default as AddRequestPage } from "./Request/AddRequestPage";
 export { default as EditRequestPage } from "./Request/EditRequestPage";
 export { default as AssignDriverPage } from "./Request/AssignDriverPage";
+export { default as ReturnRequestPage } from "./Request/ReturnRequestPage";
 
 /* User Page */
 export { default as UserPage } from "./User/UserPage";

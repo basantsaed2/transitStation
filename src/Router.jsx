@@ -21,7 +21,8 @@ import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,Su
   AddRequestLayout,
   EditDriverLayout,
   AddDriverLayout,DriverProfileLayout,
-  AssignDriverLayout
+  AssignDriverLayout,
+  ReturnRequestLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
 import RevenueTypeLayout from "./Layouts/RevenueTypeLayout";
@@ -327,10 +328,16 @@ export const router = createBrowserRouter([
                       element: <AssignDriverLayout/>,
                     }
                   ]
-                },{
+                },
+                {
                   path: 'add',
                   element: <AddRequestLayout/>,
-                },{
+                },
+                {
+                  path: 'add_return',
+                  element: <ReturnRequestLayout/>,
+                },
+                {
                   path: 'edit/:requestId',
                   element: <EditRequestLayout/>,
                 },

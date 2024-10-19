@@ -19,6 +19,13 @@ const RequestPage = () => {
     const [isDeleting, setIsDeleting] = useState(false);
     const [openDialog, setOpenDialog] = useState(null);
 
+    const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+    // Toggle the dropdown visibility
+    const toggleDropdown = () => {
+        setDropdownVisible(!isDropdownVisible);
+    };
+
     const fetchData = async () => {
         setIsLoading(true);
         try {
@@ -142,10 +149,24 @@ const RequestPage = () => {
                     {activeTab === "pending" && requests && (
                        <div className="w-full">
                        <div className="w-full flex flex-wrap items-center justify-start gap-10">
-                        <div className='lg:w-1/6'>
-                        <Link to={'add'}>
-                               <ButtonAdd isWidth="true" BgColor ="white" Color="mainColor" iconColor="mainColor"/>
-                        </Link>
+                        <div className='lg:w-1/6 shadow'>
+                        {/* <Link to={'add_return'}> */}
+                               <ButtonAdd isWidth="true" BgColor ="white" Color="mainColor" iconColor="mainColor" handleClick={toggleDropdown}/>
+
+                                {/* Conditionally render the dropdown */}
+                                {isDropdownVisible && (
+                                        <div className="dropdown-menu absolute bg-white border border-gray-300 shadow-md mt-2 rounded">
+                                        <ul>
+                                        <Link to={'add'}>
+                                                <li className="p-2 font-semibold text-xl hover:bg-gray-100">New Request</li>
+                                        </Link>
+                                        <Link to={'add_return'}>
+                                                <li className="p-2 font-semibold text-xl hover:bg-gray-100">Return Request</li>
+                                        </Link>
+                                        </ul>
+                                        </div>
+                                )}
+                        {/* </Link> */}
                         </div>
                        </div>
            
@@ -278,11 +299,11 @@ const RequestPage = () => {
                     {activeTab === "current" && requests && (
                        <div className="w-full">
                        <div className="w-full flex flex-wrap items-center justify-start gap-10">
-                        <div className='lg:w-1/6'>
+                        {/* <div className='lg:w-1/6'>
                         <Link to={'add'}>
                                <ButtonAdd isWidth="true" BgColor ="white" Color="mainColor" iconColor="mainColor"/>
                         </Link>
-                        </div>
+                        </div> */}
                        </div>
            
                        <div className="w-full flex items-center justify-between mt-4 overflow-x-auto">
