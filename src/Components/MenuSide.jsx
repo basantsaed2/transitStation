@@ -41,7 +41,7 @@ const MenuSide = () => {
               const [openListSettings, setOpenListSettings] = useState(savedState.openListSettings ?? false);
               const [isActivePlan, setIsActivePlan] = useState(savedState.isActivePlan ?? false);
               // const [isActivePayment, setIsActivePayment] = useState(savedState.isActivePayment ?? false);
-              // const [isActiveCarColor, setIsActiveCarColor] = useState(savedState.isActiveCarColor ?? false);
+              const [isActiveCarColor, setIsActiveCarColor] = useState(savedState.isActiveCarColor ?? false);
               const [isActivePermission, setIsActivePermission] = useState(savedState.isActivePermission ?? false);
        // const [isActiveFinancial, setIsActiveFinancial] = useState(false);
        const [isActiveLogout, setIsActiveLogout] =  useState(savedState.isActiveLogout ?? true);
@@ -67,7 +67,8 @@ const MenuSide = () => {
                      isActiveExpenses,showExpenseSubMenu,isActiveExpenseType,
                      isActiveParkingList,openListAssets,isActiveParking,isActiveLocation,
                      isActiveSettingsList,openListSettings,isActivePlan,isActivePermission,
-                     // isActivePayment,isActiveCarColor
+                     // isActivePayment
+                     isActiveCarColor,
                      isActiveLogout
               };
               localStorage.setItem('sidebarState', JSON.stringify(sidebarState));
@@ -79,7 +80,8 @@ const MenuSide = () => {
            isActiveExpenses,showExpenseSubMenu,isActiveExpenseType,
            isActiveParkingList,openListAssets,isActiveParking,isActiveLocation,
            isActiveSettingsList,openListSettings,isActivePlan,isActivePermission,
-           // isActivePayment,isActiveCarColor
+           // isActivePayment
+           isActiveCarColor,
            isActiveLogout
              ]);
 
@@ -106,7 +108,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
               setIsActiveLogout(false)
        };
@@ -133,7 +135,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        };
        const handleClickSubscriptions = () => {
@@ -159,7 +161,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        };
        const handleClickUser = () => {
@@ -185,7 +187,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        };
        const handleClickEmployee = () => {
@@ -211,7 +213,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        };
        const handleClickDrivers = () => {
@@ -237,7 +239,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        };
        const handleClickAdmins = () => {
@@ -263,7 +265,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        };
        const handleClickRevenue =() =>{
@@ -289,7 +291,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        }
        const handleClickRevenueType =() =>{
@@ -315,7 +317,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        }
        const handleClickExpenses =() =>{
@@ -341,7 +343,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        }
        const handleClickExpensesType =() =>{
@@ -367,7 +369,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        }
        const handleClickParkingList = () => {
@@ -393,7 +395,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        };
        const handleClickParking = () => {
@@ -419,7 +421,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        };
        const handleClickLocation = () => {
@@ -445,7 +447,7 @@ const MenuSide = () => {
               setOpenListSettings(false)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        };
        const handleClickSettings = () => {
@@ -471,7 +473,7 @@ const MenuSide = () => {
               setOpenListSettings(true)
               setIsActivePlan(true)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        };
        const handleClickPlans = () => {
@@ -497,7 +499,7 @@ const MenuSide = () => {
               setOpenListSettings(true)
               setIsActivePlan(true)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(false)
        };
        const handleClickPermission = () => {
@@ -523,8 +525,34 @@ const MenuSide = () => {
               setOpenListSettings(true)
               setIsActivePlan(false)
               // setIsActivePayment(false)
-              // setIsActiveCarColor(false)
+              setIsActiveCarColor(false)
               setIsActivePermission(true)
+       };
+       const handleClickColor = () => {
+              setIsActiveHome(false);
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
+              setIsActiveUser(false)
+              setOpenListUser(false)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false);
+              setIsActiveLocation(false);
+              setIsActiveSettingsList(true)
+              setOpenListSettings(true)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              setIsActiveCarColor(true)
+              setIsActivePermission(false)
        };
 
 // "parkings"
@@ -674,10 +702,10 @@ const MenuSide = () => {
                                                         </Link>
                                                  {/* )} */}
                                                  {/* {(Premission.includes("admins"))&&(  */}
-                                                        {/* <Link to="supervisors" onClick={handleClickAdmins} className={`${isActiveAdmins ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                               <UserIcon isActive={isActiveAdmins} />
-                                                               <span className={`${isActiveAdmins ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Supervisors</span>
-                                                        </Link> */}
+                                                        <Link to="car_color" onClick={handleClickColor} className={`${isActiveCarColor ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                               <UserIcon isActive={isActiveCarColor} />
+                                                               <span className={`${isActiveCarColor ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Car Colors</span>
+                                                        </Link>
                                                  {/* )} */}
                                                  </ul>
                                           </div>
