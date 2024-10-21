@@ -56,7 +56,12 @@ export { default as UserLayout } from "./UserLayout";
 export { default as AddUserLayout } from "./AddUserLayout";
 export { default as EditUserLayout } from "./EditUserLayout";
 
-/* User Layout */
+/* admins Layout */
 export { default as EmployeesLayout } from "./EmployeesLayout";
 export { default as AddEmployeesLayout } from "./AddEmployeesLayout";
 export { default as EditEmployeesLayout } from "./EditEmployeesLayout";
+
+/*Permission Layout */
+export { default as PermissionLayout } from "./PermissionLayout";
+export { default as AddPermissionLayout } from "./AddPermissionLayout";
+export { default as EditPermissionLayout } from "./EditPermissionLayout";

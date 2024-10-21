@@ -68,3 +68,8 @@ export { default as EditUserPage } from "./User/EditUserPage";
 export { default as EmployeesPage } from "./Employees/EmployeesPage";
 export { default as AddEmployeesPage } from "./Employees/AddEmployeesPage";
 export { default as EditEmployeesPage } from "./Employees/EditEmployeesPage";
+
+/* Permissions Page */
+export { default as PermissionPage } from "./Permissions/PermissionPage";
+export { default as AddPermissionPage } from "./Permissions/AddPermissionPage";
+export { default as EditPermissionPage } from "./Permissions/EditPermissionPage";

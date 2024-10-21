@@ -22,6 +22,7 @@ const MenuSide = () => {
        const [isActiveRequest, setIsActiveRequest] = useState(false);
        const [isActiveUser, setIsActiveUser] = useState(false);
        const [isActiveEmployee, setIsActiveEmployee] = useState(false);
+       const [isActivePermission, setIsActivePermission] = useState(false);
 
        const [showExpensesSubMenu, setShowExpensesSubMenu] = useState(false);
        const [showRevenueSubMenu, setShowRevenueSubMenu] = useState(false);
@@ -245,6 +246,24 @@ const MenuSide = () => {
               setIsActiveUser(false)
               setIsActiveEmployee(true)
        }
+       const handleClickPermission=() =>{
+              setIsActivePermission(true)
+              setIsActiveHome(false);
+              setIsActiveLocation(false);
+              setIsActiveParking(false);
+              setIsActiveSubscriptions(false);
+              setIsActiveDrivers(false);
+              setIsActiveFinancial(false);
+              setIsActiveRevenue(false);
+              setIsActiveExpenses(false);
+              setShowRevenueSubMenu(false)
+              setShowExpensesSubMenu(false)
+              setShowUsersSubMenu(false)
+              setIsActivePlan(false)
+              setIsActiveRequest(false)
+              setIsActiveUser(false)
+              setIsActiveEmployee(false)
+       }
 
 // "parkings"
 // "locations"
@@ -366,6 +385,10 @@ const MenuSide = () => {
                                    <NavLink to="plan" onClick={handleClickPlan} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
                                           <PlanIcon isActive={isActivePlan} />
                                           <span>Plan</span>
+                                   </NavLink>
+                                   <NavLink to="permission" onClick={handleClickPermission} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <PlanIcon isActive={isActivePermission} />
+                                          <span>Permission</span>
                                    </NavLink>
                                    <NavLink isActive={false} onClick={handleLogout } className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
                                           <IoIosLogOut size={23} style={{ strokeWidth: 2 }} />
