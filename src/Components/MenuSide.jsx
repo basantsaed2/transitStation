@@ -21,6 +21,7 @@ const MenuSide = () => {
        const [isActivePlan, setIsActivePlan] = useState(false);
        const [isActiveRequest, setIsActiveRequest] = useState(false);
        const [isActiveUser, setIsActiveUser] = useState(false);
+       const [isActiveEmployee, setIsActiveEmployee] = useState(false);
 
        const [showExpensesSubMenu, setShowExpensesSubMenu] = useState(false);
        const [showRevenueSubMenu, setShowRevenueSubMenu] = useState(false);
@@ -46,6 +47,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
+              setIsActiveEmployee(false)
        };
        const handleClickLocation = () => {
               setIsActiveHome(false);
@@ -61,6 +63,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
+              setIsActiveEmployee(false)
        };
        const handleClickParking = () => {
               setIsActiveHome(false);
@@ -76,6 +79,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
+              setIsActiveEmployee(false)
        };
        const handleClickSubscriptions = () => {
               setIsActiveHome(false);
@@ -91,6 +95,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
+              setIsActiveEmployee(false)
        };
        const handleClickDrivers = () => {
               setIsActiveHome(false);
@@ -106,6 +111,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
+              setIsActiveEmployee(false)
        };
        const handleClickFinancial = () => {
               setIsActiveHome(false);
@@ -121,6 +127,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
+              setIsActiveEmployee(false)
        };
        const handleClickRevenue = () => {
               setIsActiveHome(false);
@@ -136,6 +143,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
+              setIsActiveEmployee(false)
        };
        const handleClickExpenses = () => {
               setIsActiveHome(false);
@@ -151,6 +159,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
+              setIsActiveEmployee(false)
        };
        const handleClickPlan = () => {
               setIsActiveHome(false);
@@ -166,6 +175,7 @@ const MenuSide = () => {
               setIsActivePlan(true)
               setIsActiveRequest(false)
               setIsActiveUser(false)
+              setIsActiveEmployee(false)
        };
        const handleClickRequest = () => {
               setIsActiveHome(false);
@@ -181,6 +191,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               setIsActiveRequest(true)
               setIsActiveUser(false)
+              setIsActiveEmployee(false)
        };
        const handleClickUser = () => {
               setIsActiveHome(false);
@@ -196,7 +207,24 @@ const MenuSide = () => {
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(true)
+              setIsActiveEmployee(false)
        };
+       const handleClickEmployee =() =>{
+              setIsActiveHome(false);
+              setIsActiveLocation(false);
+              setIsActiveParking(false);
+              setIsActiveSubscriptions(false);
+              setIsActiveDrivers(false);
+              setIsActiveFinancial(false);
+              setIsActiveRevenue(false);
+              setIsActiveExpenses(false);
+              setShowRevenueSubMenu(false)
+              setShowExpensesSubMenu(false)
+              setIsActivePlan(false)
+              setIsActiveRequest(false)
+              setIsActiveUser(false)
+              setIsActiveEmployee(true)
+       }
 
        return (
               <>
@@ -277,6 +305,10 @@ const MenuSide = () => {
                                    <NavLink to="user" onClick={handleClickUser} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
                                           <UserIcon isActive={isActiveUser} />
                                           <span>User</span>
+                                   </NavLink>
+                                   <NavLink to="employee" onClick={handleClickEmployee} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <UserIcon isActive={isActiveEmployee} />
+                                          <span>Employees</span>
                                    </NavLink>
 
                                    <NavLink isActive={false} onClick={handleLogout } className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">

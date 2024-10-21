@@ -56,3 +56,7 @@ export { default as UserLayout } from "./UserLayout";
 export { default as AddUserLayout } from "./AddUserLayout";
 export { default as EditUserLayout } from "./EditUserLayout";
 
+/* User Layout */
+export { default as EmployeesLayout } from "./EmployeesLayout";
+export { default as AddEmployeesLayout } from "./AddEmployeesLayout";
+export { default as EditEmployeesLayout } from "./EditEmployeesLayout";

@@ -63,3 +63,8 @@ export { default as ReturnRequestPage } from "./Request/ReturnRequestPage";
 export { default as UserPage } from "./User/UserPage";
 export { default as AddUserPage } from "./User/AddUserPage";
 export { default as EditUserPage } from "./User/EditUserPage";
+
+/* Employee Page */
+export { default as EmployeesPage } from "./Employees/EmployeesPage";
+export { default as AddEmployeesPage } from "./Employees/AddEmployeesPage";
+export { default as EditEmployeesPage } from "./Employees/EditEmployeesPage";

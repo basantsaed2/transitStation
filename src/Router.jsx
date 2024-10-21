@@ -22,7 +22,7 @@ import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,Su
   EditDriverLayout,
   AddDriverLayout,DriverProfileLayout,
   AssignDriverLayout,
-  ReturnRequestLayout
+  ReturnRequestLayout,EmployeesLayout,AddEmployeesLayout,EditEmployeesLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
 import RevenueTypeLayout from "./Layouts/RevenueTypeLayout";
@@ -108,6 +108,12 @@ const AppLayoutRequestDriver =() =>(
 )
 
 const AppLayoutUser =() =>(
+  <>
+  <Outlet/>
+  </>
+)
+
+const AppLayoutEmployees =()=>(
   <>
   <Outlet/>
   </>
@@ -356,6 +362,22 @@ export const router = createBrowserRouter([
                 },{
                   path:'edit/:userId',
                   element: <EditUserLayout/>
+                }
+              ]
+            },
+            {
+              path: 'employee',
+              element: <AppLayoutEmployees/>,
+              children:[
+                {
+                  path:'',
+                  element: <EmployeesLayout/>
+                },{
+                  path:'add',
+                  element: <AddEmployeesLayout/>
+                },{
+                  path:'edit/:employeeId',
+                  element: <EditEmployeesLayout/>
                 }
               ]
             },
