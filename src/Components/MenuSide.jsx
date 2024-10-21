@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 
 import {
        HomeIcon,LocationIcon,ParkingIcon,SubscriptionsIcon,DriversIcon,FinancialIcon,RevenueIcon
@@ -25,13 +25,21 @@ const MenuSide = () => {
 
        const [showExpensesSubMenu, setShowExpensesSubMenu] = useState(false);
        const [showRevenueSubMenu, setShowRevenueSubMenu] = useState(false);
+       const [showUsersSubMenu, setShowUsersSubMenu] = useState(false);
 
        const auth = useAuth();
        const navigate = useNavigate();
+       const [Premission] = useState(auth.user.permissions.role)
        const handleLogout = () => {
               auth.logout();
               // navigate("/", { replace: true });
        }
+
+       useEffect(() => {
+           console.log(auth.user.role)
+           console.log(Premission)
+              }
+       , [])
 
        const handleClickHome = () => {
               setIsActiveHome(true);
@@ -44,6 +52,7 @@ const MenuSide = () => {
               setIsActiveRevenue(false);
               setShowRevenueSubMenu(false)
               setShowExpensesSubMenu(false)
+              setShowUsersSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -60,6 +69,7 @@ const MenuSide = () => {
               setIsActiveRevenue(false);
               setShowRevenueSubMenu(false)
               setShowExpensesSubMenu(false)
+              setShowUsersSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -76,6 +86,7 @@ const MenuSide = () => {
               setIsActiveExpenses(false);
               setShowRevenueSubMenu(false)
               setShowExpensesSubMenu(false)
+              setShowUsersSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -92,6 +103,7 @@ const MenuSide = () => {
               setIsActiveExpenses(false);
               setShowRevenueSubMenu(false)
               setShowExpensesSubMenu(false)
+              setShowUsersSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -108,9 +120,10 @@ const MenuSide = () => {
               setIsActiveExpenses(false);
               setShowRevenueSubMenu(false)
               setShowExpensesSubMenu(false)
+              setShowUsersSubMenu(true)
               setIsActivePlan(false)
               setIsActiveRequest(false)
-              setIsActiveUser(false)
+              setIsActiveUser(true)
               setIsActiveEmployee(false)
        };
        const handleClickFinancial = () => {
@@ -124,6 +137,7 @@ const MenuSide = () => {
               setIsActiveExpenses(false);
               setShowRevenueSubMenu(false)
               setShowExpensesSubMenu(false)
+              setShowUsersSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -140,6 +154,7 @@ const MenuSide = () => {
               setIsActiveExpenses(false);
               setShowRevenueSubMenu(prevState => !prevState)
               setShowExpensesSubMenu(false)
+              setShowUsersSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -156,6 +171,7 @@ const MenuSide = () => {
               setIsActiveExpenses(true);
               setShowRevenueSubMenu(false)
               setShowExpensesSubMenu(prevState => !prevState)
+              setShowUsersSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -172,6 +188,7 @@ const MenuSide = () => {
               setIsActiveExpenses(false);
               setShowRevenueSubMenu(false)
               setShowExpensesSubMenu(false)
+              setShowUsersSubMenu(false)
               setIsActivePlan(true)
               setIsActiveRequest(false)
               setIsActiveUser(false)
@@ -188,6 +205,7 @@ const MenuSide = () => {
               setIsActiveExpenses(false);
               setShowRevenueSubMenu(false)
               setShowExpensesSubMenu(false)
+              setShowUsersSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(true)
               setIsActiveUser(false)
@@ -207,6 +225,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(true)
+              setShowUsersSubMenu(prevState => !prevState)
               setIsActiveEmployee(false)
        };
        const handleClickEmployee =() =>{
@@ -220,11 +239,22 @@ const MenuSide = () => {
               setIsActiveExpenses(false);
               setShowRevenueSubMenu(false)
               setShowExpensesSubMenu(false)
+              setShowUsersSubMenu(false)
               setIsActivePlan(false)
               setIsActiveRequest(false)
               setIsActiveUser(false)
               setIsActiveEmployee(true)
        }
+
+// "parkings"
+// "locations"
+// "drivers"
+// "subscriptions"
+// "requests"
+// "plans"
+// "users"
+// "revenues"
+// "expences"
 
        return (
               <>
@@ -234,6 +264,58 @@ const MenuSide = () => {
                                           <HomeIcon isActive={isActiveHome} />
                                           <span>Home</span>
                                    </NavLink>
+                                   {(Premission.includes("requests"))  && (    
+                                          <NavLink to="request" onClick={handleClickRequest} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                                 <RequestIcon isActive={isActiveRequest} />
+                                                 <span>Request</span>
+                                          </NavLink>
+                                          
+                                   )}
+
+                                   {(Premission.includes("subscriptions"))  && (    
+                                          <NavLink to="subscriptions" onClick={handleClickSubscriptions} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                                 <SubscriptionsIcon isActive={isActiveSubscriptions} />
+                                                 <span>#Subscriptions</span>
+                                          </NavLink>
+                                   )}
+
+                                   {(Premission.includes("users") ||Premission.includes("admins") ||Premission.includes("drivers"))  && (  
+                                          <>
+                                          <NavLink to="user" onClick={handleClickUser} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                                 <UserIcon isActive={isActiveUser} />
+                                                 <span>Users</span>
+                                          </NavLink>
+                                          {showUsersSubMenu && (
+                                          <ul className="ml-5 flex flex-col list-disc list-inside">
+                                                  {(Premission.includes("users"))&&(       
+                                                        <NavLink to="user" onClick={()=>setIsActiveUser(true) & setIsActiveDrivers(false)} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                                               <UserIcon isActive={isActiveUser} />
+                                                               <span>User</span>
+                                                        </NavLink>
+                                                  )}
+                                                  {(Premission.includes("drivers"))&&(       
+                                                        <NavLink to="driver" onClick={()=>setIsActiveUser(false) & setIsActiveDrivers(true) & setIsActiveEmployee(false) } className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                                               <DriversIcon isActive={isActiveDrivers} />
+                                                               <span>Drivers</span>
+                                                        </NavLink>
+                                                  )}
+                                                  {/* {(Premission.includes("admins"))&&(  */}
+                                                 <NavLink to="supervisors" onClick={()=>setIsActiveUser(false) & setIsActiveEmployee(true) & setIsActiveDrivers(false)} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                                        <UserIcon isActive={isActiveEmployee} />
+                                                        <span>Supervisors</span>
+                                                 </NavLink>
+                                                  {/* )} */}
+                                                 </ul>
+                                          )}
+                                          </>
+                                   )}
+
+
+
+                                   <NavLink to="financial" onClick={handleClickFinancial} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <FinancialIcon isActive={isActiveFinancial} />
+                                          <span>Financial</span>
+                                   </NavLink>
                                    <NavLink to="pickUp_location" onClick={handleClickLocation} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
                                           <LocationIcon isActive={isActiveLocation} />
                                           <span>#Pick_Up Location</span>
@@ -241,19 +323,6 @@ const MenuSide = () => {
                                    <NavLink to="parking" onClick={handleClickParking} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
                                           <ParkingIcon isActive={isActiveParking} />
                                           <span>#Parking</span>
-                                   </NavLink>
-
-                                   <NavLink to="subscriptions" onClick={handleClickSubscriptions} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <SubscriptionsIcon isActive={isActiveSubscriptions} />
-                                          <span>#Subscriptions</span>
-                                   </NavLink>
-                                   <NavLink to="driver" onClick={handleClickDrivers} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <DriversIcon isActive={isActiveDrivers} />
-                                          <span>#Drivers</span>
-                                   </NavLink>
-                                   <NavLink to="financial" onClick={handleClickFinancial} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <FinancialIcon isActive={isActiveFinancial} />
-                                          <span>Financial</span>
                                    </NavLink>
 
                                    <NavLink to="revenue" onClick={handleClickRevenue} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
@@ -298,19 +367,6 @@ const MenuSide = () => {
                                           <PlanIcon isActive={isActivePlan} />
                                           <span>Plan</span>
                                    </NavLink>
-                                   <NavLink to="request" onClick={handleClickRequest} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <RequestIcon isActive={isActiveRequest} />
-                                          <span>Request</span>
-                                   </NavLink>
-                                   <NavLink to="user" onClick={handleClickUser} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <UserIcon isActive={isActiveUser} />
-                                          <span>User</span>
-                                   </NavLink>
-                                   <NavLink to="employee" onClick={handleClickEmployee} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <UserIcon isActive={isActiveEmployee} />
-                                          <span>Employees</span>
-                                   </NavLink>
-
                                    <NavLink isActive={false} onClick={handleLogout } className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
                                           <IoIosLogOut size={23} style={{ strokeWidth: 2 }} />
                                           <span>Log Out</span>

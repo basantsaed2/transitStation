@@ -366,7 +366,7 @@ export const router = createBrowserRouter([
               ]
             },
             {
-              path: 'employee',
+              path: 'supervisors',
               element: <AppLayoutEmployees/>,
               children:[
                 {
