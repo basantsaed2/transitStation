@@ -25,7 +25,10 @@ import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,Su
   ReturnRequestLayout,EmployeesLayout,AddEmployeesLayout,EditEmployeesLayout,
   PermissionLayout,
   AddPermissionLayout,
-  EditPermissionLayout
+  EditPermissionLayout,
+  CarColorLayout,
+  AddCarColorLayout,
+  EditCarColorLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
 import RevenueTypeLayout from "./Layouts/RevenueTypeLayout";
@@ -123,6 +126,11 @@ const AppLayoutEmployees =()=>(
 )
 
 const AppLayoutPermission =()=>(
+  <>
+  <Outlet/>
+  </>
+)
+const AppLayoutCarColor =()=>(
   <>
   <Outlet/>
   </>
@@ -403,6 +411,22 @@ export const router = createBrowserRouter([
                 },{
                   path:'edit/:roleId',
                   element: <EditPermissionLayout/>
+                }
+              ]
+            },
+            {
+              path: 'car_color',
+              element: <AppLayoutCarColor/>,
+              children:[
+                {
+                  path:'',
+                  element: <CarColorLayout/>
+                },{
+                  path:'add',
+                  element: <AddCarColorLayout/>
+                },{
+                  path:'edit/:colorId',
+                  element: <EditCarColorLayout/>
                 }
               ]
             },

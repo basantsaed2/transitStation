@@ -65,3 +65,8 @@ export { default as EditEmployeesLayout } from "./EditEmployeesLayout";
 export { default as PermissionLayout } from "./PermissionLayout";
 export { default as AddPermissionLayout } from "./AddPermissionLayout";
 export { default as EditPermissionLayout } from "./EditPermissionLayout";
+
+/*CarColor Layout */
+export { default as CarColorLayout } from "./CarColorLayout";
+export { default as AddCarColorLayout } from "./AddCarColorLayout";
+export { default as EditCarColorLayout } from "./EditCarColorLayout";
