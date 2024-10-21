@@ -86,6 +86,10 @@ button:focus-visible {
   transition: all 0.3s ease-in-out;
 }
 
+.listUser {
+  list-style: inside !important;
+}
+
 /* width Scroll*/
 .scrollSec::-webkit-scrollbar {
   width: 5px;

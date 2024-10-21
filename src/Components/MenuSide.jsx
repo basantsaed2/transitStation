@@ -10,27 +10,42 @@ import { Link, useNavigate } from 'react-router-dom'
 import { IoIosLogOut } from "react-icons/io";
 
 const MenuSide = () => {
-       const [isActiveHome, setIsActiveHome] = useState(true);
-       const [isActiveLocation, setIsActiveLocation] = useState(false);
-       const [isActiveParking, setIsActiveParking] = useState(false);
-       const [isActiveSubscriptions, setIsActiveSubscriptions] = useState(false);
-       const [isActiveDrivers, setIsActiveDrivers] = useState(false);
-       const [isActiveFinancial, setIsActiveFinancial] = useState(false);
-       const [isActiveRevenue, setIsActiveRevenue] = useState(false);
-       const [isActiveExpenses, setIsActiveExpenses] = useState(false);
-       const [isActivePlan, setIsActivePlan] = useState(false);
-       const [isActiveRequest, setIsActiveRequest] = useState(false);
-       const [isActiveUser, setIsActiveUser] = useState(false);
-       const [isActiveEmployee, setIsActiveEmployee] = useState(false);
-       const [isActivePermission, setIsActivePermission] = useState(false);
-
-       const [showExpensesSubMenu, setShowExpensesSubMenu] = useState(false);
-       const [showRevenueSubMenu, setShowRevenueSubMenu] = useState(false);
-       const [showUsersSubMenu, setShowUsersSubMenu] = useState(false);
 
        const auth = useAuth();
        const navigate = useNavigate();
        const [Premission] = useState(auth.user.permissions.role)
+       const savedState = JSON.parse(localStorage.getItem('sidebarState')) || {};
+
+
+
+
+       const [isActiveHome, setIsActiveHome] =  useState(savedState.isActiveHome ?? true);
+       const [isActiveRequest, setIsActiveRequest] = useState(savedState.isActiveRequest ?? false);
+       const [isActiveSubscriptions, setIsActiveSubscriptions] = useState(savedState.isActiveSubscriptions ?? false);
+       const [isActiveUser, setIsActiveUser] =  useState(savedState.isActiveUser ?? false);
+              const [openListUser, setOpenListUser] = useState(savedState.openListUser ?? false);
+              const [isActiveEmployee, setIsActiveEmployee] = useState(savedState.isActiveEmployee ?? false);
+              const [isActiveDrivers, setIsActiveDrivers] = useState(savedState.isActiveDrivers ?? false);
+              const [isActiveAdmins, setIsActiveAdmins] = useState(savedState.isActiveAdmins ?? false);
+       const [isActiveRevenue, setIsActiveRevenue] = useState(savedState.isActiveRevenue ?? false);
+              const [showRevenueSubMenu, setShowRevenueSubMenu] = useState(savedState.showRevenueSubMenu ?? false);
+              const [isActiveRevenueType, setIsActiveRevenueType] = useState(savedState.isActiveRevenueType ?? false);
+       const [isActiveExpenses, setIsActiveExpenses] = useState(savedState.isActiveExpenses ?? false);
+              const [showExpenseSubMenu, setShowExpenseSubMenu] = useState(savedState.showExpenseSubMenu ?? false);
+              const [isActiveExpenseType, setIsActiveExpenseType] = useState(savedState.isActiveExpenseType ?? false);
+       const [isActiveParkingList, setIsActiveParkingList] = useState(savedState.isActiveParkingList ?? false);
+              const [openListAssets, setOpenListAssets] = useState(savedState.openListAssets ?? false);
+              const [isActiveParking, setIsActiveParking] =  useState(savedState.isActiveParking ?? false);
+              const [isActiveLocation, setIsActiveLocation] =  useState(savedState.isActiveLocation ?? false);
+       const [isActiveSettingsList, setIsActiveSettingsList] = useState(savedState.isActiveSettingsList ?? false);
+              const [openListSettings, setOpenListSettings] = useState(savedState.openListSettings ?? false);
+              const [isActivePlan, setIsActivePlan] = useState(savedState.isActivePlan ?? false);
+              // const [isActivePayment, setIsActivePayment] = useState(savedState.isActivePayment ?? false);
+              // const [isActiveCarColor, setIsActiveCarColor] = useState(savedState.isActiveCarColor ?? false);
+              const [isActivePermission, setIsActivePermission] = useState(savedState.isActivePermission ?? false);
+       // const [isActiveFinancial, setIsActiveFinancial] = useState(false);
+       const [isActiveLogout, setIsActiveLogout] =  useState(savedState.isActiveLogout ?? true);
+     
        const handleLogout = () => {
               auth.logout();
               // navigate("/", { replace: true });
@@ -42,228 +57,475 @@ const MenuSide = () => {
               }
        , [])
 
+       useEffect(() => {
+              const sidebarState = {
+                     isActiveHome,
+                     isActiveRequest,
+                     isActiveSubscriptions,
+                     isActiveUser,openListUser,isActiveEmployee,isActiveDrivers,isActiveAdmins,
+                     isActiveRevenue,showRevenueSubMenu,isActiveRevenueType,
+                     isActiveExpenses,showExpenseSubMenu,isActiveExpenseType,
+                     isActiveParkingList,openListAssets,isActiveParking,isActiveLocation,
+                     isActiveSettingsList,openListSettings,isActivePlan,isActivePermission,
+                     // isActivePayment,isActiveCarColor
+                     isActiveLogout
+              };
+              localStorage.setItem('sidebarState', JSON.stringify(sidebarState));
+       }, [isActiveHome,
+           isActiveRequest,
+           isActiveSubscriptions,
+           isActiveUser,openListUser,isActiveEmployee,isActiveDrivers,isActiveAdmins,
+           isActiveRevenue,showRevenueSubMenu,isActiveRevenueType,
+           isActiveExpenses,showExpenseSubMenu,isActiveExpenseType,
+           isActiveParkingList,openListAssets,isActiveParking,isActiveLocation,
+           isActiveSettingsList,openListSettings,isActivePlan,isActivePermission,
+           // isActivePayment,isActiveCarColor
+           isActiveLogout
+             ]);
+
        const handleClickHome = () => {
               setIsActiveHome(true);
-              setIsActiveLocation(false);
-              setIsActiveParking(false);
-              setIsActiveSubscriptions(false);
-              setIsActiveDrivers(false);
-              setIsActiveFinancial(false);
-              setIsActiveExpenses(false);
-              setIsActiveRevenue(false);
-              setShowRevenueSubMenu(false)
-              setShowExpensesSubMenu(false)
-              setShowUsersSubMenu(false)
-              setIsActivePlan(false)
               setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
               setIsActiveUser(false)
+              setOpenListUser(false)
               setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false)
+              setIsActiveLocation(false)
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+              setIsActiveLogout(false)
        };
-       const handleClickLocation = () => {
-              setIsActiveHome(false);
-              setIsActiveLocation(true);
-              setIsActiveParking(false);
-              setIsActiveSubscriptions(false);
-              setIsActiveDrivers(false);
-              setIsActiveFinancial(false);
-              setIsActiveExpenses(false);
-              setIsActiveRevenue(false);
-              setShowRevenueSubMenu(false)
-              setShowExpensesSubMenu(false)
-              setShowUsersSubMenu(false)
-              setIsActivePlan(false)
-              setIsActiveRequest(false)
+       const handleClickRequest = () => {
+              setIsActiveHome(false)
+              setIsActiveRequest(true)
+              setIsActiveSubscriptions(false)
               setIsActiveUser(false)
+              setOpenListUser(false)
               setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false);
+              setIsActiveLocation(false);
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+       };
+       const handleClickSubscriptions = () => {
+              setIsActiveHome(false)
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(true)
+              setIsActiveUser(false)
+              setOpenListUser(false)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false)
+              setIsActiveLocation(false)
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+       };
+       const handleClickUser = () => {
+              setIsActiveHome(false)
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false)
+              setIsActiveUser(true)
+              setOpenListUser(true)
+              setIsActiveEmployee(true)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false)
+              setIsActiveLocation(false)
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+       };
+       const handleClickEmployee = () => {
+              setIsActiveHome(false)
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false)
+              setIsActiveUser(true)
+              setOpenListUser(true)
+              setIsActiveEmployee(true)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false)
+              setIsActiveLocation(false)
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+       };
+       const handleClickDrivers = () => {
+              setIsActiveHome(false)
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false)
+              setIsActiveUser(true)
+              setOpenListUser(true)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(true)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false)
+              setIsActiveLocation(false)
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+       };
+       const handleClickAdmins = () => {
+              setIsActiveHome(false);
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
+              setIsActiveUser(true)
+              setOpenListUser(true)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(true)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false);
+              setIsActiveLocation(false);
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+       };
+       const handleClickRevenue =() =>{
+              setIsActiveHome(false);
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
+              setIsActiveUser(false)
+              setOpenListUser(false)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(true)
+              setShowRevenueSubMenu(true)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false);
+              setIsActiveLocation(false);
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+       }
+       const handleClickRevenueType =() =>{
+              setIsActiveHome(false);
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
+              setIsActiveUser(false)
+              setOpenListUser(false)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(true)
+              setIsActiveRevenueType(true)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false);
+              setIsActiveLocation(false);
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+       }
+       const handleClickExpenses =() =>{
+              setIsActiveHome(false);
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
+              setIsActiveUser(false)
+              setOpenListUser(false)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(true)
+              setShowExpenseSubMenu(true)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false);
+              setIsActiveLocation(false);
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+       }
+       const handleClickExpensesType =() =>{
+              setIsActiveHome(false);
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
+              setIsActiveUser(false)
+              setOpenListUser(false)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(true)
+              setIsActiveExpenseType(true)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false);
+              setIsActiveLocation(false);
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+       }
+       const handleClickParkingList = () => {
+              setIsActiveHome(false);
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
+              setIsActiveUser(false)
+              setOpenListUser(false)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(true)
+              setOpenListAssets(true)
+              setIsActiveParking(true);
+              setIsActiveLocation(false);
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
        };
        const handleClickParking = () => {
               setIsActiveHome(false);
-              setIsActiveLocation(false);
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
+              setIsActiveUser(false)
+              setOpenListUser(false)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(true)
+              setOpenListAssets(true)
               setIsActiveParking(true);
-              setIsActiveSubscriptions(false);
-              setIsActiveDrivers(false);
-              setIsActiveFinancial(false);
-              setIsActiveRevenue(false);
-              setIsActiveExpenses(false);
-              setShowRevenueSubMenu(false)
-              setShowExpensesSubMenu(false)
-              setShowUsersSubMenu(false)
+              setIsActiveLocation(false);
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
               setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+       };
+       const handleClickLocation = () => {
+              setIsActiveHome(false);
               setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
               setIsActiveUser(false)
+              setOpenListUser(false)
               setIsActiveEmployee(false)
-       };
-       const handleClickSubscriptions = () => {
-              setIsActiveHome(false);
-              setIsActiveLocation(false);
-              setIsActiveParking(false);
-              setIsActiveSubscriptions(true);
-              setIsActiveDrivers(false);
-              setIsActiveFinancial(false);
-              setIsActiveRevenue(false);
-              setIsActiveExpenses(false);
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
               setShowRevenueSubMenu(false)
-              setShowExpensesSubMenu(false)
-              setShowUsersSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(true)
+              setOpenListAssets(true)
+              setIsActiveParking(false);
+              setIsActiveLocation(true);
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
               setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+       };
+       const handleClickSettings = () => {
+              setIsActiveHome(false);
               setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
               setIsActiveUser(false)
+              setOpenListUser(false)
               setIsActiveEmployee(false)
-       };
-       const handleClickDrivers = () => {
-              setIsActiveHome(false);
-              setIsActiveLocation(false);
-              setIsActiveParking(false);
-              setIsActiveSubscriptions(false);
-              setIsActiveDrivers(true);
-              setIsActiveFinancial(false);
-              setIsActiveRevenue(false);
-              setIsActiveExpenses(false);
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
               setShowRevenueSubMenu(false)
-              setShowExpensesSubMenu(false)
-              setShowUsersSubMenu(true)
-              setIsActivePlan(false)
-              setIsActiveRequest(false)
-              setIsActiveUser(true)
-              setIsActiveEmployee(false)
-       };
-       const handleClickFinancial = () => {
-              setIsActiveHome(false);
-              setIsActiveLocation(false);
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
               setIsActiveParking(false);
-              setIsActiveSubscriptions(false);
-              setIsActiveDrivers(false);
-              setIsActiveFinancial(true);
-              setIsActiveRevenue(false);
-              setIsActiveExpenses(false);
-              setShowRevenueSubMenu(false)
-              setShowExpensesSubMenu(false)
-              setShowUsersSubMenu(false)
-              setIsActivePlan(false)
-              setIsActiveRequest(false)
-              setIsActiveUser(false)
-              setIsActiveEmployee(false)
-       };
-       const handleClickRevenue = () => {
-              setIsActiveHome(false);
               setIsActiveLocation(false);
-              setIsActiveParking(false);
-              setIsActiveSubscriptions(false);
-              setIsActiveDrivers(false);
-              setIsActiveFinancial(false);
-              setIsActiveRevenue(true);
-              setIsActiveExpenses(false);
-              setShowRevenueSubMenu(prevState => !prevState)
-              setShowExpensesSubMenu(false)
-              setShowUsersSubMenu(false)
-              setIsActivePlan(false)
-              setIsActiveRequest(false)
-              setIsActiveUser(false)
-              setIsActiveEmployee(false)
-       };
-       const handleClickExpenses = () => {
-              setIsActiveHome(false);
-              setIsActiveLocation(false);
-              setIsActiveParking(false);
-              setIsActiveSubscriptions(false);
-              setIsActiveDrivers(false);
-              setIsActiveFinancial(false);
-              setIsActiveRevenue(false);
-              setIsActiveExpenses(true);
-              setShowRevenueSubMenu(false)
-              setShowExpensesSubMenu(prevState => !prevState)
-              setShowUsersSubMenu(false)
-              setIsActivePlan(false)
-              setIsActiveRequest(false)
-              setIsActiveUser(false)
-              setIsActiveEmployee(false)
-       };
-       const handleClickPlan = () => {
-              setIsActiveHome(false);
-              setIsActiveLocation(false);
-              setIsActiveParking(false);
-              setIsActiveSubscriptions(false);
-              setIsActiveDrivers(false);
-              setIsActiveFinancial(false);
-              setIsActiveRevenue(false);
-              setIsActiveExpenses(false);
-              setShowRevenueSubMenu(false)
-              setShowExpensesSubMenu(false)
-              setShowUsersSubMenu(false)
+              setIsActiveSettingsList(true)
+              setOpenListSettings(true)
               setIsActivePlan(true)
-              setIsActiveRequest(false)
-              setIsActiveUser(false)
-              setIsActiveEmployee(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
        };
-       const handleClickRequest = () => {
+       const handleClickPlans = () => {
               setIsActiveHome(false);
-              setIsActiveLocation(false);
-              setIsActiveParking(false);
-              setIsActiveSubscriptions(false);
-              setIsActiveDrivers(false);
-              setIsActiveFinancial(false);
-              setIsActiveRevenue(false);
-              setIsActiveExpenses(false);
-              setShowRevenueSubMenu(false)
-              setShowExpensesSubMenu(false)
-              setShowUsersSubMenu(false)
-              setIsActivePlan(false)
-              setIsActiveRequest(true)
-              setIsActiveUser(false)
-              setIsActiveEmployee(false)
-       };
-       const handleClickUser = () => {
-              setIsActiveHome(false);
-              setIsActiveLocation(false);
-              setIsActiveParking(false);
-              setIsActiveSubscriptions(false);
-              setIsActiveDrivers(false);
-              setIsActiveFinancial(false);
-              setIsActiveRevenue(false);
-              setIsActiveExpenses(false);
-              setShowRevenueSubMenu(false)
-              setShowExpensesSubMenu(false)
-              setIsActivePlan(false)
               setIsActiveRequest(false)
-              setIsActiveUser(true)
-              setShowUsersSubMenu(prevState => !prevState)
-              setIsActiveEmployee(false)
-       };
-       const handleClickEmployee =() =>{
-              setIsActiveHome(false);
-              setIsActiveLocation(false);
-              setIsActiveParking(false);
               setIsActiveSubscriptions(false);
-              setIsActiveDrivers(false);
-              setIsActiveFinancial(false);
-              setIsActiveRevenue(false);
-              setIsActiveExpenses(false);
-              setShowRevenueSubMenu(false)
-              setShowExpensesSubMenu(false)
-              setShowUsersSubMenu(false)
-              setIsActivePlan(false)
-              setIsActiveRequest(false)
               setIsActiveUser(false)
-              setIsActiveEmployee(true)
-       }
-       const handleClickPermission=() =>{
+              setOpenListUser(false)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false);
+              setIsActiveLocation(false);
+              setIsActiveSettingsList(true)
+              setOpenListSettings(true)
+              setIsActivePlan(true)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
+              setIsActivePermission(false)
+       };
+       const handleClickPermission = () => {
+              setIsActiveHome(false);
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
+              setIsActiveUser(false)
+              setOpenListUser(false)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false);
+              setIsActiveLocation(false);
+              setIsActiveSettingsList(true)
+              setOpenListSettings(true)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              // setIsActiveCarColor(false)
               setIsActivePermission(true)
-              setIsActiveHome(false);
-              setIsActiveLocation(false);
-              setIsActiveParking(false);
-              setIsActiveSubscriptions(false);
-              setIsActiveDrivers(false);
-              setIsActiveFinancial(false);
-              setIsActiveRevenue(false);
-              setIsActiveExpenses(false);
-              setShowRevenueSubMenu(false)
-              setShowExpensesSubMenu(false)
-              setShowUsersSubMenu(false)
-              setIsActivePlan(false)
-              setIsActiveRequest(false)
-              setIsActiveUser(false)
-              setIsActiveEmployee(false)
-       }
+       };
 
 // "parkings"
 // "locations"
@@ -279,121 +541,158 @@ const MenuSide = () => {
               <>
                      <div className="w-full h-full mt-3 flex justify-center">
                             <div className="MenuSide w-5/6 flex flex-col items-center gap-y-4">
-                                   <NavLink to="/dashboard" onClick={handleClickHome} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium ">
+                                   {/* <NavLink to="/dashboard" onClick={handleClickHome} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium ">
                                           <HomeIcon isActive={isActiveHome} />
                                           <span>Home</span>
-                                   </NavLink>
+                                   </NavLink> */}
+                                   <Link to="/dashboard" onClick={handleClickHome} className={`${isActiveHome ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                          <HomeIcon isActive={isActiveHome} />
+                                          <span className={`${isActiveHome ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Home</span>
+                                   </Link>
                                    {(Premission.includes("requests"))  && (    
-                                          <NavLink to="request" onClick={handleClickRequest} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <Link to="request" onClick={handleClickRequest} className={`${isActiveRequest ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                  <RequestIcon isActive={isActiveRequest} />
-                                                 <span>Request</span>
-                                          </NavLink>
-                                          
+                                                 <span className={`${isActiveRequest ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Request</span>
+                                          </Link>             
                                    )}
-
                                    {(Premission.includes("subscriptions"))  && (    
-                                          <NavLink to="subscriptions" onClick={handleClickSubscriptions} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <Link to="subscriptions" onClick={handleClickSubscriptions} className={`${isActiveSubscriptions ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                  <SubscriptionsIcon isActive={isActiveSubscriptions} />
-                                                 <span>#Subscriptions</span>
-                                          </NavLink>
+                                                 <span className={`${isActiveSubscriptions ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Subscriptions</span>
+                                          </Link>  
                                    )}
-
-                                   {(Premission.includes("users") ||Premission.includes("admins") ||Premission.includes("drivers"))  && (  
+                                   {(Premission.includes("users") ||Premission.includes("admins") ||Premission.includes("drivers"))  && ( 
                                           <>
-                                          <NavLink to="user" onClick={handleClickUser} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                          <Link to="user" onClick={handleClickUser} className={`${isActiveUser ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                  <UserIcon isActive={isActiveUser} />
-                                                 <span>Users</span>
-                                          </NavLink>
-                                          {showUsersSubMenu && (
-                                          <ul className="ml-5 flex flex-col list-disc list-inside">
-                                                  {(Premission.includes("users"))&&(       
-                                                        <NavLink to="user" onClick={()=>setIsActiveUser(true) & setIsActiveDrivers(false)} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                                               <UserIcon isActive={isActiveUser} />
-                                                               <span>User</span>
-                                                        </NavLink>
-                                                  )}
-                                                  {(Premission.includes("drivers"))&&(       
-                                                        <NavLink to="driver" onClick={()=>setIsActiveUser(false) & setIsActiveDrivers(true) & setIsActiveEmployee(false) } className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
+                                                 <span className={`${isActiveUser ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Users</span>
+                                          </Link>
+                                          <div className={`${openListUser ? "h-36" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
+                                                 <ul className={`${openListUser ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
+                                                 {(Premission.includes("users"))&&(       
+                                                        <Link to="user" onClick={handleClickEmployee} className={`${isActiveEmployee ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                               <UserIcon isActive={isActiveEmployee} />
+                                                               <span className={`${isActiveEmployee ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Customers</span>
+                                                        </Link> 
+                                                 )}
+                                                 {(Premission.includes("drivers"))&&(       
+                                                        <Link to="driver" onClick={handleClickDrivers} className={`${isActiveDrivers ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <DriversIcon isActive={isActiveDrivers} />
-                                                               <span>Drivers</span>
-                                                        </NavLink>
-                                                  )}
-                                                  {/* {(Premission.includes("admins"))&&(  */}
-                                                 <NavLink to="supervisors" onClick={()=>setIsActiveUser(false) & setIsActiveEmployee(true) & setIsActiveDrivers(false)} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                                        <UserIcon isActive={isActiveEmployee} />
-                                                        <span>Supervisors</span>
-                                                 </NavLink>
-                                                  {/* )} */}
+                                                               <span className={`${isActiveDrivers ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Drivers</span>
+                                                        </Link>
+                                                 )}
+                                                 {/* {(Premission.includes("admins"))&&(  */}
+                                                        <Link to="supervisors" onClick={handleClickAdmins} className={`${isActiveAdmins ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                               <UserIcon isActive={isActiveAdmins} />
+                                                               <span className={`${isActiveAdmins ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Supervisors</span>
+                                                        </Link>
+                                                 {/* )} */}
                                                  </ul>
-                                          )}
+                                          </div>
                                           </>
                                    )}
-
-
-
+                                   {(Premission.includes("revenues")) && ( 
+                                          <>
+                                          <Link to="revenue" onClick={handleClickRevenue} className={`${isActiveRevenue ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                 <RevenueIcon isActive={isActiveRevenue} />
+                                                 <span className={`${isActiveRevenue ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Revenue</span>
+                                          </Link>
+                                          <div className={`${ showRevenueSubMenu? "h-15" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
+                                                 <ul className={`${showRevenueSubMenu ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
+                                                 {(Premission.includes("revenues"))&&(       
+                                                        <Link to="revenue/type" onClick={handleClickRevenueType} className={`${isActiveRevenueType ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                               <UserIcon isActive={isActiveRevenueType} />
+                                                               <span className={`${isActiveRevenueType ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Revenue Types</span>
+                                                        </Link> 
+                                                 )}
+                                                
+                                                 </ul>
+                                          </div>
+                                          </>
+                                   )}
+                                   {(Premission.includes("expences")) && ( 
+                                          <>
+                                          <Link to="expenses" onClick={handleClickExpenses} className={`${isActiveExpenses ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                 <ExpensesIcon isActive={isActiveExpenses} />
+                                                 <span className={`${isActiveExpenses ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Expences</span>
+                                          </Link>
+                                          <div className={`${ showExpenseSubMenu? "h-15" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
+                                                 <ul className={`${showExpenseSubMenu ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
+                                                 {(Premission.includes("expences"))&&(       
+                                                        <Link to="expenses/type" onClick={handleClickExpensesType} className={`${isActiveExpenseType ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                               <UserIcon isActive={isActiveExpenseType} />
+                                                               <span className={`${isActiveExpenseType ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Expences Types</span>
+                                                        </Link> 
+                                                 )}
+                                                
+                                                 </ul>
+                                          </div>
+                                          </>
+                                   )}
+                                   {(Premission.includes("parkings") ||Premission.includes("locations"))  && ( 
+                                          <>
+                                          <Link to="parking" onClick={handleClickParkingList} className={`${isActiveParkingList ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                 <ParkingIcon isActive={isActiveParkingList} />
+                                                 <span className={`${isActiveParkingList ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Assets</span>
+                                          </Link>
+                                          <div className={`${openListAssets ? "h-15" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
+                                                 <ul className={`${openListAssets ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
+                                                 {(Premission.includes("parkings"))&&(       
+                                                        <Link to="parking" onClick={handleClickParking} className={`${isActiveParking ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                               <ParkingIcon isActive={isActiveParking} />
+                                                               <span className={`${isActiveParking ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Parkings</span>
+                                                        </Link> 
+                                                 )}
+                                                 {(Premission.includes("locations"))&&(       
+                                                        <Link to="pickUp_location" onClick={handleClickLocation} className={`${isActiveLocation ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                               <LocationIcon isActive={isActiveLocation} />
+                                                               <span className={`${isActiveLocation ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Pickup locations </span>
+                                                        </Link>
+                                                 )}             
+                                                 </ul>
+                                          </div>
+                                          </>
+                                   )}
+                                   {(Premission.includes("plans")) && ( 
+                                          <>
+                                          <Link to="plan" onClick={handleClickSettings} className={`${isActiveSettingsList ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                 <PlanIcon isActive={isActiveSettingsList} />
+                                                 <span className={`${isActiveSettingsList ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Settings</span>
+                                          </Link>
+                                          <div className={`${openListSettings ? "h-15" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
+                                                 <ul className={`${openListSettings ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
+                                                 {(Premission.includes("plans"))&&(       
+                                                        <Link to="plan" onClick={handleClickPlans} className={`${isActivePlan ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                               <PlanIcon isActive={isActivePlan} />
+                                                               <span className={`${isActivePlan ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Plans</span>
+                                                        </Link> 
+                                                 )}
+                                                 {/* {(Premission.includes("drivers"))&&(        */}
+                                                        <Link to="permission" onClick={handleClickPermission} className={`${isActivePermission ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                               <PlanIcon isActive={isActivePermission} />
+                                                               <span className={`${isActivePermission ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Permissions</span>
+                                                        </Link>
+                                                 {/* )} */}
+                                                 {/* {(Premission.includes("admins"))&&(  */}
+                                                        {/* <Link to="supervisors" onClick={handleClickAdmins} className={`${isActiveAdmins ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                               <UserIcon isActive={isActiveAdmins} />
+                                                               <span className={`${isActiveAdmins ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Supervisors</span>
+                                                        </Link> */}
+                                                 {/* )} */}
+                                                 </ul>
+                                          </div>
+                                          </>
+                                   )}
+                                   <Link to="/" onClick={handleLogout} className="w-full flex items-center justify-start px-0 py-2 gap-x-5">
+                                          <IoIosLogOut size={23} style={{ strokeWidth: 2 }} color="#ffff"/>
+                                          <span className="text-secoundColor text-xl font-medium">Log Out</span>
+                                   </Link>
+                                   {/* 
                                    <NavLink to="financial" onClick={handleClickFinancial} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
                                           <FinancialIcon isActive={isActiveFinancial} />
                                           <span>Financial</span>
-                                   </NavLink>
-                                   <NavLink to="pickUp_location" onClick={handleClickLocation} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <LocationIcon isActive={isActiveLocation} />
-                                          <span>#Pick_Up Location</span>
-                                   </NavLink>
-                                   <NavLink to="parking" onClick={handleClickParking} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <ParkingIcon isActive={isActiveParking} />
-                                          <span>#Parking</span>
-                                   </NavLink>
-
-                                   <NavLink to="revenue" onClick={handleClickRevenue} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <RevenueIcon isActive={isActiveRevenue} />
-                                          <span>Revenue</span>
-                                   </NavLink>
-                                   {showRevenueSubMenu && (
-                                          <ul className="ml-5 flex flex-col list-disc list-inside">
-                                          <NavLink 
-                                                 to="revenue/type" 
-                                                 className="w-full flex pl-3 pr-3 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium"
-                                          >
-                                                 <li className={({ isActive }) =>
-                                                 `w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-lg font-medium 
-                                                 ${isActive ? 'pl-3 pr-3 bg-white rounded-lg text-mainColor' : 'text-secoundColor'}`
-                                                 }>
-                                                 Revenue Types
-                                                 </li>
-                                          </NavLink>
-                                          </ul>
-                                   )}
-                                   <NavLink to="expenses" onClick={handleClickExpenses} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <ExpensesIcon isActive={isActiveExpenses} />
-                                          <span>Expenses</span>
-                                   </NavLink>
-                                   {showExpensesSubMenu && (
-                                          <ul className="ml-5 flex flex-col list-disc list-inside">
-                                          <NavLink 
-                                                 to="expenses/type" 
-                                                className="w-full flex pl-3 pr-3 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium"
-                                          >
-                                                 <li className={({ isActive }) =>
-                                                 `w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-lg font-medium 
-                                                 ${isActive ? 'pl-3 pr-3 bg-white rounded-lg text-mainColor' : 'text-secoundColor'}`
-                                                 }>
-                                                 Expenses Types
-                                                 </li>
-                                          </NavLink>
-                                          </ul>
-                                   )}
-                                   <NavLink to="plan" onClick={handleClickPlan} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <PlanIcon isActive={isActivePlan} />
-                                          <span>Plan</span>
-                                   </NavLink>
-                                   <NavLink to="permission" onClick={handleClickPermission} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <PlanIcon isActive={isActivePermission} />
-                                          <span>Permission</span>
-                                   </NavLink>
-                                   <NavLink isActive={false} onClick={handleLogout } className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium">
-                                          <IoIosLogOut size={23} style={{ strokeWidth: 2 }} />
-                                          <span>Log Out</span>
-                                   </NavLink>
+                                   </NavLink>               
+                                  */}
                             </div>
                      </div>
               </>

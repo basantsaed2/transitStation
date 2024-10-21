@@ -6,6 +6,7 @@ import Loading from '../../Components/Loading';
 import { useAuth } from '../../Context/Auth';
 import { useNavigate } from 'react-router-dom';
 import DropDownMenu from '../../Components/DropDownMenu';
+import {Wroning,DeleteIcon,EditIcon} from '../../Components/Icons/All_Icons';
 
 import { PermissionDataContext } from '../../Layouts/EditPermissionLayout';
 
@@ -29,7 +30,7 @@ const EditPermissionPage = () => {
        useEffect(() => {
               if (premissionContent) {
                      setRoleName(premissionContent?.name || '-')
-                     // setPremissionRole(premissionContent?.roles.map((role) => (role.role)) || '-')
+                     setPremissionRole(premissionContent?.role.map((role) => (role.role_name)) || '-')
               }
        }, [premissionContent]);
 
@@ -108,8 +109,8 @@ const EditPermissionPage = () => {
        };
 
 
-       const handleSubmitAdd = async (e) => {
-              e.preventDefault();
+       const handleSubmitEdit = async (permissionId,event) => {
+              event.preventDefault();
 
               if (!roleName) {
                      auth.toastError('Please Enter Role Name.');
@@ -132,7 +133,7 @@ const EditPermissionPage = () => {
                             formData.append('role_name[]', role); // Use 'role_name[]' to send it as an array
                      });
   
-                     const response = await axios.post('https://transitstation.online/api/admin/addadminposition', formData, {
+                     const response = await axios.put(`https://transitstation.online/api/admin/updateadminposition/${permissionId}`, formData, {
                             headers: {
                                    Authorization: `Bearer ${auth.user.token}`,
                                    'Content-Type': 'multipart/form-data',
@@ -144,8 +145,11 @@ const EditPermissionPage = () => {
 
                      if (response.status === 200) {
                             handleGoBack();
-                            auth.toastSuccess("Role added successfully!");
+                            auth.toastSuccess("Role Updated successfully!");
                      }
+                     else {
+                            auth.toastError('Failed to Updated Role.');
+                        }
               } catch (error) {
                      auth.toastError(`Error: ${error}`);
               } finally {
@@ -159,7 +163,7 @@ const EditPermissionPage = () => {
                                    <Loading />
                             </div>
                      </> :
-                           <form onSubmit={handleSubmitAdd} className="w-full flex flex-col items-center justify-center gap-y-10">
+                           <form  onSubmit={(event) => handleSubmitEdit(premissionContent.id, event)} className="w-full flex flex-col items-center justify-center gap-y-10">
                                    <div className="w-full flex flex-wrap items-center justify-start gap-10">
                                           <div className="lg:w-[30%] sm:w-full">
                                                  <InputCustom
