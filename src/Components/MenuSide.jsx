@@ -687,7 +687,7 @@ const MenuSide = () => {
                                                  <PlanIcon isActive={isActiveSettingsList} />
                                                  <span className={`${isActiveSettingsList ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Settings</span>
                                           </Link>
-                                          <div className={`${openListSettings ? "h-15" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
+                                          <div className={`${openListSettings ? "h-13" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
                                                  <ul className={`${openListSettings ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
                                                  {(Premission.includes("plans"))&&(       
                                                         <Link to="plan" onClick={handleClickPlans} className={`${isActivePlan ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
