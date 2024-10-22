@@ -66,7 +66,7 @@ const AddPermissionPage = () => {
                      setPremissionRole((prev) => [...prev, Premission]);
               }
 
-              console.log('premissionRole sss', premissionRole)
+              console.log('premissionRole', premissionRole)
               setOpenPremissionRole(false);
        };
 
@@ -121,6 +121,10 @@ const AddPermissionPage = () => {
                      premissionRole.forEach((role) => {
                             formData.append('role_name[]', role); // Use 'role_name[]' to send it as an array
                      });
+
+                     for (let pair of formData.entries()) {
+                            console.log(pair[0] + ', ' + pair[1]);
+                          }
   
                      const response = await axios.post('https://transitstation.online/api/admin/addadminposition', formData, {
                             headers: {
@@ -142,9 +146,6 @@ const AddPermissionPage = () => {
                      setIsLoading(false);
               }
        };
-
-
-
 
        return (
               <>

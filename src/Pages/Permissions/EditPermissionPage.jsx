@@ -77,7 +77,7 @@ const EditPermissionPage = () => {
                      setPremissionRole((prev) => [...prev, Premission]);
               }
 
-              console.log('premissionRole sss', premissionRole)
+              console.log('premissionRole', premissionRole)
               setOpenPremissionRole(false);
        };
 
@@ -128,18 +128,23 @@ const EditPermissionPage = () => {
                      const formData = new FormData();
                      formData.append('name', roleName);
         
-                     // Append each role in the array separately
-                     premissionRole.forEach((role) => {
-                            formData.append('role_name[]', role); // Use 'role_name[]' to send it as an array
-                     });
+                     // // Append each role in the array separately
+                     // premissionRole.forEach((role) => {
+                     //        formData.append('role_name[]', role); // Use 'role_name[]' to send it as an array
+                     // });
+                     formData.append('role_name',premissionRole); // Sends as role_name: ["Location", "parking"]
+
+                     for (let pair of formData.entries()) {
+                            console.log(pair[0] + ', ' + pair[1]);
+                          }
   
                      const response = await axios.put(`https://transitstation.online/api/admin/updateadminposition/${permissionId}`, formData, {
                             headers: {
                                    Authorization: `Bearer ${auth.user.token}`,
-                                   'Content-Type': 'multipart/form-data',
-                                   'Cache-Control': 'no-cache',           // Disable cache
-                                   'Pragma': 'no-cache',                 // Disable cache
-                                   'Expires': '0',                       // Disable cache
+                                   // 'Content-Type': 'multipart/form-data',
+                                   // 'Cache-Control': 'no-cache',           // Disable cache
+                                   // 'Pragma': 'no-cache',                 // Disable cache
+                                   // 'Expires': '0',                       // Disable cache
                             },
                      });
 
