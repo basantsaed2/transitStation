@@ -68,7 +68,7 @@ const EmployeesPage = () => {
 
        const deleteUser = async (employeeId, authToken) => {
               try {
-                     const response = await axios.delete(`https://transitstation.online/api/admin/adminposition/delete/${employeeId}`, {
+                     const response = await axios.delete(`https://transitstation.online/api/admin/deleteadmin/${employeeId}`, {
                             headers: {
                                    Authorization: `Bearer ${authToken}`,
                             },
