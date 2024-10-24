@@ -567,7 +567,7 @@ const MenuSide = () => {
 
        return (
               <>
-                     <div className="w-full h-full mt-3 flex justify-center">
+                     <div className="w-full h-full mt-3 flex justify-center mb-10">
                             <div className="MenuSide w-5/6 flex flex-col items-center gap-y-4">
                                    {/* <NavLink to="/dashboard" onClick={handleClickHome} className="w-full flex px-0 py-2 items-center justify-start gap-x-5 text-secoundColor text-xl font-medium ">
                                           <HomeIcon isActive={isActiveHome} />

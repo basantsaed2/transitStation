@@ -25,14 +25,6 @@ export const ContextProvider = ({ children }) => {
     setUser(userData);
   };
 
-  // const logout = () => {
-  //   setUser(null);
-  //   // localStorage.removeItem("sidebarState")
-  //   // localStorage.removeItem("students")
-  //   // localStorage.removeItem("Categories")
-  //   // localStorage.removeItem("subjects")
-  //   // localStorage.removeItem("Countries")
-  // };
 
 
 const logout = async () => {
@@ -51,6 +43,7 @@ const logout = async () => {
         if (response.status === 200) {
             // Clear local storage or cookies
                  setUser(null);
+                 localStorage.removeItem("sidebarState")
             // Redirect to login page
             // window.location.href = '/login';
         } else {
