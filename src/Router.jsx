@@ -28,7 +28,8 @@ import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,Su
   EditPermissionLayout,
   CarColorLayout,
   AddCarColorLayout,
-  EditCarColorLayout
+  EditCarColorLayout,
+  ProfileLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
 import RevenueTypeLayout from "./Layouts/RevenueTypeLayout";
@@ -430,6 +431,10 @@ export const router = createBrowserRouter([
                 }
               ]
             },
+            {
+              path:'profile',
+              element: <ProfileLayout/>
+            }
 
           ],
         },

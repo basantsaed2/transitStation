@@ -4,7 +4,6 @@ import {
        HomeIcon,LocationIcon,ParkingIcon,SubscriptionsIcon,DriversIcon,FinancialIcon,RevenueIcon
        ,ExpensesIcon,PlanIcon,RequestIcon,UserIcon
 } from "./Icons/All_Icons";
-import { NavLink } from "react-router-dom";
 import { useAuth } from "../Context/Auth";
 import { Link, useNavigate } from 'react-router-dom'
 import { IoIosLogOut } from "react-icons/io";
@@ -15,9 +14,6 @@ const MenuSide = () => {
        const navigate = useNavigate();
        const [Premission] = useState(auth.user.permissions.role)
        const savedState = JSON.parse(localStorage.getItem('sidebarState')) || {};
-
-
-
 
        const [isActiveHome, setIsActiveHome] =  useState(savedState.isActiveHome ?? true);
        const [isActiveRequest, setIsActiveRequest] = useState(savedState.isActiveRequest ?? false);
@@ -44,6 +40,7 @@ const MenuSide = () => {
               const [isActiveCarColor, setIsActiveCarColor] = useState(savedState.isActiveCarColor ?? false);
               const [isActivePermission, setIsActivePermission] = useState(savedState.isActivePermission ?? false);
        // const [isActiveFinancial, setIsActiveFinancial] = useState(false);
+       const [isActiveProfile, setIsActiveProfile] =  useState(savedState.isActiveProfile ?? true);
        const [isActiveLogout, setIsActiveLogout] =  useState(savedState.isActiveLogout ?? true);
      
        const handleLogout = () => {
@@ -53,7 +50,7 @@ const MenuSide = () => {
 
        useEffect(() => {
            console.log(auth.user.role)
-           console.log(Premission)
+       //     console.log(Premission)
               }
        , [])
 
@@ -69,6 +66,7 @@ const MenuSide = () => {
                      isActiveSettingsList,openListSettings,isActivePlan,isActivePermission,
                      // isActivePayment
                      isActiveCarColor,
+                     isActiveProfile,
                      isActiveLogout
               };
               localStorage.setItem('sidebarState', JSON.stringify(sidebarState));
@@ -82,6 +80,7 @@ const MenuSide = () => {
            isActiveSettingsList,openListSettings,isActivePlan,isActivePermission,
            // isActivePayment
            isActiveCarColor,
+           isActiveProfile,
            isActiveLogout
              ]);
 
@@ -110,6 +109,7 @@ const MenuSide = () => {
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
               setIsActivePermission(false)
+              setIsActiveProfile(false)
               setIsActiveLogout(false)
        };
        const handleClickRequest = () => {
@@ -136,6 +136,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        };
        const handleClickSubscriptions = () => {
@@ -162,6 +163,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        };
        const handleClickUser = () => {
@@ -188,6 +190,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        };
        const handleClickEmployee = () => {
@@ -214,6 +217,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        };
        const handleClickDrivers = () => {
@@ -240,6 +244,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        };
        const handleClickAdmins = () => {
@@ -266,6 +271,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        };
        const handleClickRevenue =() =>{
@@ -292,6 +298,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        }
        const handleClickRevenueType =() =>{
@@ -318,6 +325,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        }
        const handleClickExpenses =() =>{
@@ -344,6 +352,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        }
        const handleClickExpensesType =() =>{
@@ -370,6 +379,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        }
        const handleClickParkingList = () => {
@@ -396,6 +406,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        };
        const handleClickParking = () => {
@@ -422,6 +433,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        };
        const handleClickLocation = () => {
@@ -448,6 +460,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        };
        const handleClickSettings = () => {
@@ -474,6 +487,7 @@ const MenuSide = () => {
               setIsActivePlan(true)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        };
        const handleClickPlans = () => {
@@ -500,6 +514,7 @@ const MenuSide = () => {
               setIsActivePlan(true)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        };
        const handleClickPermission = () => {
@@ -526,6 +541,7 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
+              setIsActiveProfile(false)
               setIsActivePermission(true)
        };
        const handleClickColor = () => {
@@ -552,18 +568,36 @@ const MenuSide = () => {
               setIsActivePlan(false)
               // setIsActivePayment(false)
               setIsActiveCarColor(true)
+              setIsActiveProfile(false)
               setIsActivePermission(false)
        };
-
-// "parkings"
-// "locations"
-// "drivers"
-// "subscriptions"
-// "requests"
-// "plans"
-// "users"
-// "revenues"
-// "expences"
+       const handleClickProfile = () => {
+              setIsActiveHome(false);
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
+              setIsActiveUser(false)
+              setOpenListUser(false)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false);
+              setIsActiveLocation(false);
+              setIsActiveSettingsList(false)
+              setOpenListSettings(false)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              setIsActiveCarColor(false)
+              setIsActiveProfile(true)
+              setIsActivePermission(false)
+       };
 
        return (
               <>
@@ -609,12 +643,12 @@ const MenuSide = () => {
                                                                <span className={`${isActiveDrivers ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Drivers</span>
                                                         </Link>
                                                  )}
-                                                 {/* {(Premission.includes("admins"))&&(  */}
+                                                 {(Premission.includes("admins"))&&( 
                                                         <Link to="supervisors" onClick={handleClickAdmins} className={`${isActiveAdmins ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <UserIcon isActive={isActiveAdmins} />
                                                                <span className={`${isActiveAdmins ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Supervisors</span>
                                                         </Link>
-                                                 {/* )} */}
+                                                 )}
                                                  </ul>
                                           </div>
                                           </>
@@ -681,7 +715,7 @@ const MenuSide = () => {
                                           </div>
                                           </>
                                    )}
-                                   {(Premission.includes("plans")) && ( 
+                                   {(Premission.includes("plans") ||Premission.includes("colors")) && ( 
                                           <>
                                           <Link to="plan" onClick={handleClickSettings} className={`${isActiveSettingsList ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                  <PlanIcon isActive={isActiveSettingsList} />
@@ -695,22 +729,28 @@ const MenuSide = () => {
                                                                <span className={`${isActivePlan ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Plans</span>
                                                         </Link> 
                                                  )}
-                                                 {/* {(Premission.includes("drivers"))&&(        */}
+                                                 {/* {(Premission.includes("admins"))&&(        */}
                                                         <Link to="permission" onClick={handleClickPermission} className={`${isActivePermission ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <PlanIcon isActive={isActivePermission} />
                                                                <span className={`${isActivePermission ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Permissions</span>
                                                         </Link>
                                                  {/* )} */}
-                                                 {/* {(Premission.includes("admins"))&&(  */}
+                                                 {(Premission.includes("colors"))&&( 
                                                         <Link to="car_color" onClick={handleClickColor} className={`${isActiveCarColor ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <UserIcon isActive={isActiveCarColor} />
                                                                <span className={`${isActiveCarColor ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Car Colors</span>
                                                         </Link>
-                                                 {/* )} */}
+                                                 )}
                                                  </ul>
                                           </div>
                                           </>
                                    )}
+                                   {/* {(Premission.includes("requests"))  && (     */}
+                                          <Link to="profile" onClick={handleClickProfile} className={`${isActiveProfile ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                 <UserIcon isActive={isActiveProfile} />
+                                                 <span className={`${isActiveProfile ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Profile</span>
+                                          </Link>             
+                                   {/* )} */}
                                    <Link to="/" onClick={handleLogout} className="w-full flex items-center justify-start px-0 py-2 gap-x-5">
                                           <IoIosLogOut size={23} style={{ strokeWidth: 2 }} color="#ffff"/>
                                           <span className="text-secoundColor text-xl font-medium">Log Out</span>

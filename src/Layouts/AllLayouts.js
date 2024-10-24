@@ -70,3 +70,6 @@ export { default as EditPermissionLayout } from "./EditPermissionLayout";
 export { default as CarColorLayout } from "./CarColorLayout";
 export { default as AddCarColorLayout } from "./AddCarColorLayout";
 export { default as EditCarColorLayout } from "./EditCarColorLayout";
+
+/*Profile Layout */
+export { default as ProfileLayout } from "./ProfileLayout";

@@ -78,3 +78,6 @@ export { default as EditPermissionPage } from "./Permissions/EditPermissionPage"
 export { default as CarColorPage } from "./CarColor/CarColorPage";
 export { default as AddCarColorPage } from "./CarColor/AddCarColorPage";
 export { default as EditCarColorPage } from "./CarColor/EditCarColorPage";
+
+/* Profile Page */
+export { default as ProfilePage } from "./Profile/ProfilePage";
