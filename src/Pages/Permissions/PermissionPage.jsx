@@ -103,7 +103,7 @@ const PermissionPage = () => {
        }    
          
        if (!positions) {
-           return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No Positions data available</div>;
+           return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No Positions Role data available</div>;
        }
 
        return (

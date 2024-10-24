@@ -46,7 +46,7 @@ const ParkingListPage = ({parkingId}) => {
         } 
 
     if (!parkinglist) {
-        return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No PiclUp Location data available</div>;
+        return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No cars in this parking data available</div>;
     }       
        return (
             <>

@@ -175,7 +175,7 @@ const ReturnRequestPage = () => {
         }    
             
         if (!data) {
-            return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No data available</div>;
+            return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No Return Requestdata available</div>;
         }
 
         const handleSubmitAdd = async (event) => {

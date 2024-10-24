@@ -139,7 +139,7 @@ const EditSubscriptionsPage = () => {
           }    
             
           if (!data) {
-              return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No Revenues data available</div>;
+              return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No subscriptions data available</div>;
           }
 
    const handleSubmitEdit = async (subscriptionId,event) => {

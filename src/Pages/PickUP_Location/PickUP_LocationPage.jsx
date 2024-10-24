@@ -107,7 +107,7 @@ const PickUP_LocationPage = () => {
     }    
       
     if (!pickUp_Locations) {
-        return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No PiclUp Location data available</div>;
+        return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No PickUp Location data available</div>;
     }
 
        return (
