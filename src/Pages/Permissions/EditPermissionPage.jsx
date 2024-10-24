@@ -108,59 +108,49 @@ const EditPermissionPage = () => {
               navigate(-1, { replace: true });
        };
 
-
-       const handleSubmitEdit = async (permissionId,event) => {
+       const handleSubmitEdit = async (permissionId, event) => {
               event.preventDefault();
-
+          
               if (!roleName) {
-                     auth.toastError('Please Enter Role Name.');
-                     return;
+                  auth.toastError('Please Enter Role Name.');
+                  return;
               }
-
+          
               if (!premissionRole || premissionRole.length === 0) {
-                     auth.toastError('Please Select Permission Role.');
-                     return;
+                  auth.toastError('Please Select Permission Role.');
+                  return;
               }
-
+          
               setIsLoading(true);
-
+          
               try {
-                     const formData = new FormData();
-                     formData.append('name', roleName);
-        
-                     // // Append each role in the array separately
-                     // premissionRole.forEach((role) => {
-                     //        formData.append('role_name[]', role); // Use 'role_name[]' to send it as an array
-                     // });
-                     formData.append('role_name',premissionRole); // Sends as role_name: ["Location", "parking"]
-
-                     for (let pair of formData.entries()) {
-                            console.log(pair[0] + ', ' + pair[1]);
-                          }
-  
-                     const response = await axios.put(`https://transitstation.online/api/admin/updateadminposition/${permissionId}`, formData, {
-                            headers: {
-                                   Authorization: `Bearer ${auth.user.token}`,
-                                   // 'Content-Type': 'multipart/form-data',
-                                   // 'Cache-Control': 'no-cache',           // Disable cache
-                                   // 'Pragma': 'no-cache',                 // Disable cache
-                                   // 'Expires': '0',                       // Disable cache
-                            },
-                     });
-
-                     if (response.status === 200) {
-                            handleGoBack();
-                            auth.toastSuccess("Role Updated successfully!");
-                     }
-                     else {
-                            auth.toastError('Failed to Updated Role.');
-                        }
+                  // Prepare payload as JSON
+                  const payload = {
+                      name: roleName,
+                      role_name: premissionRole  // This will send ['parking', 'locationa'] as an array
+                  };
+          
+                  // Make the PUT request with JSON payload
+                  const response = await axios.put(`https://transitstation.online/api/admin/updateadminposition/${permissionId}`, payload, {
+                      headers: {
+                          Authorization: `Bearer ${auth.user.token}`,
+                          'Content-Type': 'application/json',  // Ensure the content type is set to JSON
+                      },
+                  });
+          
+                  if (response.status === 200) {
+                      handleGoBack();
+                      auth.toastSuccess("Role Updated successfully!");
+                  } else {
+                      auth.toastError('Failed to Update Role.');
+                  }
               } catch (error) {
-                     auth.toastError(`Error: ${error}`);
+                  auth.toastError(`Error: ${error.message}`);
               } finally {
-                     setIsLoading(false);
+                  setIsLoading(false);
               }
-       };
+          };
+          
        return (
               <>
                      {isLoading ? <>

@@ -130,9 +130,6 @@ const AddPermissionPage = () => {
                             headers: {
                                    Authorization: `Bearer ${auth.user.token}`,
                                    'Content-Type': 'multipart/form-data',
-                                   'Cache-Control': 'no-cache',           // Disable cache
-                                   'Pragma': 'no-cache',                 // Disable cache
-                                   'Expires': '0',                       // Disable cache
                             },
                      });
 
@@ -141,7 +138,12 @@ const AddPermissionPage = () => {
                             auth.toastSuccess("Role added successfully!");
                      }
               } catch (error) {
+                     console.log(error)
+                     if(error.response.status === 422 && error.response.data.message===("The name has already been taken.")){
+                            auth.toastError(`"The role name has already been taken."`);
+                     }else{
                      auth.toastError(`Error: ${error}`);
+                     }
               } finally {
                      setIsLoading(false);
               }
