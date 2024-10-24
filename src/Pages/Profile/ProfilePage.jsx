@@ -1,14 +1,3 @@
-// import React from 'react'
-
-// const ProfilePage = () => {
-//        return (
-//               <>
-//               <h1>ProfilePage</h1>
-//               </>
-//        )
-// }
-
-// export default ProfilePage
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from '../../Components/Loading';
@@ -26,37 +15,37 @@ const ProfilePage = () => {
 
   const auth = useAuth();
 
-  // Function to fetch admin data
-  const fetchData = async () => {
-    setIsLoading(true);
-    try {
-           const response = await axios.get('https://transitstation.online/api/admin/adminposition', {
-                  headers: {
-                         Authorization: `Bearer ${auth.user.token}`,
-                  },
-           });
-           console.log(response)
+//   // Function to fetch admin data
+//   const fetchData = async () => {
+//     setIsLoading(true);
+//     try {
+//            const response = await axios.get('https://transitstation.online/api/admin/adminposition', {
+//                   headers: {
+//                          Authorization: `Bearer ${auth.user.token}`,
+//                   },
+//            });
+//            console.log(response)
 
-           if (response.status === 200) {
-              const allUsers = response.data.admins;
-              // Search for the logged-in user's data
-              const currentUserData = allUsers.find(u => u.id === auth.user.data.id);
-              if (currentUserData) {
-                setUserData(currentUserData);
-              } else {
-                setError("User data not found");
-              }
-           }
-    } catch (error) {
-           console.error('Error fetching data:', error);
-    } finally {
-           setIsLoading(false);
-    }
-    };
+//            if (response.status === 200) {
+//               const allUsers = response.data.admins;
+//               // Search for the logged-in user's data
+//               const currentUserData = allUsers.find(u => u.id === auth.user.data.id);
+//               if (currentUserData) {
+//                 setUserData(currentUserData);
+//               } else {
+//                 setError("User data not found");
+//               }
+//            }
+//     } catch (error) {
+//            console.error('Error fetching data:', error);
+//     } finally {
+//            setIsLoading(false);
+//     }
+//     };
 
-    useEffect(() => {
-        fetchData(); 
-    }, []);
+//     useEffect(() => {
+//         fetchData(); 
+//     }, []);
 
 
   if (isLoading) {
@@ -67,19 +56,19 @@ const ProfilePage = () => {
     );
 }    
   
-if (!userData) {
-    return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No Admin data available</div>;
-}
+// if (!userData) {
+//     return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No Admin data available</div>;
+// }
   return (
     <form className="w-full flex flex-col items-center justify-center gap-y-10 p-4">
         {/* <div className="w-full flex justify-center"> */}
         <div className='w-72 h-72 flex justify-center relative rounded-full border-4 border-mainColor'>
             <img
-                src={`data:image/jpeg;base64,${userData.image}`}// Use a real image URL or state
+                src={`data:image/jpeg;base64,${auth.user.data.image}`}// Use a real image URL or state
                 alt="ProfileImage"
                 className="w-full rounded-full"
                 />
-            <Link to={`/dashboard/supervisors/edit/${userData.id}`} state={userData.id} type="button">
+            <Link to={`/dashboard/supervisors/edit/${auth.user.data.id}`} state={auth.user.data.id} type="button">
                 <button className="bg-mainColor p-2 rounded-full absolute flex items-center bottom-6 right-3 hover:bg-gray-300">
                     <MdModeEdit size={25} />
                 </button>
@@ -93,7 +82,7 @@ if (!userData) {
                         type="text"
                         placeholder="Name"
                         borderColor="mainColor"
-                        value={userData.name}
+                        value={auth.user.data.name}
                         readonly="true"
                     />
                 </div>
@@ -102,7 +91,7 @@ if (!userData) {
                         type="email"
                         placeholder="Email"
                         borderColor="mainColor"
-                        value={userData.email}
+                        value={auth.user.data.email}
                         readonly="true"
                     />
                 </div>
@@ -113,7 +102,7 @@ if (!userData) {
                         type="text"
                         placeholder="Phone"
                         borderColor="mainColor"
-                        value={userData.phone}
+                        value={auth.user.data.phone}
                         readonly="true"
                     />
                 </div>
@@ -122,13 +111,13 @@ if (!userData) {
                         type="text"
                         placeholder="Position"
                         borderColor="mainColor"
-                        value={userData.admin_position.name}
+                        value={auth.user.data.admin_position.name}
                         readonly="true"
                     />
                 </div>
             </div>
              <div className="w-full flex items-center justify-center">
-             <Link to={`/dashboard/supervisors/edit/${userData.id}`} state={userData.id} type="button">
+             <Link to={`/dashboard/supervisors/edit/${auth.user.data.id}`} state={auth.user.data.id} type="button">
                       <div className="flex items-center justify-center w-full lg:w-96 md:w-96 ">
                           <Button
                               Text="Edit Profile"
