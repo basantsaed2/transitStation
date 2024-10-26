@@ -1,8 +1,9 @@
 import React, { useState ,useEffect} from "react";
 
 import {
-       HomeIcon,LocationIcon,ParkingIcon,SubscriptionsIcon,DriversIcon,FinancialIcon,RevenueIcon
-       ,ExpensesIcon,PlanIcon,RequestIcon,UserIcon
+       HomeIcon,LocationIcon,ParkingIcon,SubscriptionsIcon,DriversIcon,FinancialIcon,RevenueIcon,ProfileIcon
+       ,ExpensesIcon,PlanIcon,RequestIcon,UserIcon,SettingIcon,AssetIcon,RevenueTypes,ColorIcon,PermissionIcon,
+       CustomerIcon,SupervisorIcon
 } from "./Icons/All_Icons";
 import { useAuth } from "../Context/Auth";
 import { Link, useNavigate } from 'react-router-dom'
@@ -629,11 +630,11 @@ const MenuSide = () => {
                                                  <UserIcon isActive={isActiveUser} />
                                                  <span className={`${isActiveUser ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Users</span>
                                           </Link>
-                                          <div className={`${openListUser ? "h-36" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
+                                          <div className={`${openListUser ? "h-37" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
                                                  <ul className={`${openListUser ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
                                                  {(Premission.includes("users"))&&(       
                                                         <Link to="user" onClick={handleClickEmployee} className={`${isActiveEmployee ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                               <UserIcon isActive={isActiveEmployee} />
+                                                               <CustomerIcon isActive={isActiveEmployee} />
                                                                <span className={`${isActiveEmployee ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Customers</span>
                                                         </Link> 
                                                  )}
@@ -645,7 +646,7 @@ const MenuSide = () => {
                                                  )}
                                                  {(Premission.includes("admins"))&&( 
                                                         <Link to="supervisors" onClick={handleClickAdmins} className={`${isActiveAdmins ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                               <UserIcon isActive={isActiveAdmins} />
+                                                               <SupervisorIcon isActive={isActiveAdmins} />
                                                                <span className={`${isActiveAdmins ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Supervisors</span>
                                                         </Link>
                                                  )}
@@ -663,7 +664,7 @@ const MenuSide = () => {
                                                  <ul className={`${showRevenueSubMenu ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
                                                  {(Premission.includes("revenues"))&&(       
                                                         <Link to="revenue/type" onClick={handleClickRevenueType} className={`${isActiveRevenueType ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                               <UserIcon isActive={isActiveRevenueType} />
+                                                               <RevenueTypes isActive={isActiveRevenueType} />
                                                                <span className={`${isActiveRevenueType ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Revenue Types</span>
                                                         </Link> 
                                                  )}
@@ -682,7 +683,7 @@ const MenuSide = () => {
                                                  <ul className={`${showExpenseSubMenu ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
                                                  {(Premission.includes("expences"))&&(       
                                                         <Link to="expenses/type" onClick={handleClickExpensesType} className={`${isActiveExpenseType ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                               <UserIcon isActive={isActiveExpenseType} />
+                                                               <RevenueTypes isActive={isActiveExpenseType} />
                                                                <span className={`${isActiveExpenseType ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Expences Types</span>
                                                         </Link> 
                                                  )}
@@ -694,7 +695,7 @@ const MenuSide = () => {
                                    {(Premission.includes("parkings") ||Premission.includes("locations"))  && ( 
                                           <>
                                           <Link to="parking" onClick={handleClickParkingList} className={`${isActiveParkingList ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                 <ParkingIcon isActive={isActiveParkingList} />
+                                                 <AssetIcon isActive={isActiveParkingList} />
                                                  <span className={`${isActiveParkingList ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Assets</span>
                                           </Link>
                                           <div className={`${openListAssets ? "h-15" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
@@ -718,7 +719,7 @@ const MenuSide = () => {
                                    {(Premission.includes("plans") ||Premission.includes("colors")) && ( 
                                           <>
                                           <Link to="plan" onClick={handleClickSettings} className={`${isActiveSettingsList ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                 <PlanIcon isActive={isActiveSettingsList} />
+                                                 <SettingIcon isActive={isActiveSettingsList} />
                                                  <span className={`${isActiveSettingsList ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Settings</span>
                                           </Link>
                                           <div className={`${openListSettings ? "h-13" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
@@ -731,13 +732,13 @@ const MenuSide = () => {
                                                  )}
                                                  {/* {(Premission.includes("admins"))&&(        */}
                                                         <Link to="permission" onClick={handleClickPermission} className={`${isActivePermission ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                               <PlanIcon isActive={isActivePermission} />
+                                                               <PermissionIcon isActive={isActivePermission} />
                                                                <span className={`${isActivePermission ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Permissions</span>
                                                         </Link>
                                                  {/* )} */}
                                                  {(Premission.includes("colors"))&&( 
                                                         <Link to="car_color" onClick={handleClickColor} className={`${isActiveCarColor ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                               <UserIcon isActive={isActiveCarColor} />
+                                                               <ColorIcon isActive={isActiveCarColor} />
                                                                <span className={`${isActiveCarColor ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Car Colors</span>
                                                         </Link>
                                                  )}
@@ -747,7 +748,7 @@ const MenuSide = () => {
                                    )}
                                    {/* {(Premission.includes("requests"))  && (     */}
                                           <Link to="profile" onClick={handleClickProfile} className={`${isActiveProfile ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                 <UserIcon isActive={isActiveProfile} />
+                                                 <ProfileIcon isActive={isActiveProfile} />
                                                  <span className={`${isActiveProfile ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Profile</span>
                                           </Link>             
                                    {/* )} */}

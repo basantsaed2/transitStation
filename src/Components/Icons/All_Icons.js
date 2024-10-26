@@ -9,6 +9,14 @@ export { default as RevenueIcon } from "./RevenueIcon";
 export { default as PlanIcon } from "./PlanIcon";
 export { default as LocationIcon } from "./LocationIcon";
 export { default as FinancialIcon } from "./FinancialIcon";
+export { default as SettingIcon } from "./SettingIcon";
+export { default as AssetIcon } from "./AssetIcon";
+export { default as RevenueTypes } from "./RevenueTypes";
+export { default as ColorIcon } from "./ColorIcon";
+export { default as PermissionIcon } from "./PermissionIcon";
+export { default as ProfileIcon } from "./ProfileIcon";
+export { default as CustomerIcon } from "./CustomerIcon";
+export { default as SupervisorIcon } from "./SupervisorIcon";
 
 export { default as EditIcon } from "./EditIcon";
 export { default as DeleteIcon } from "./DeleteIcon";

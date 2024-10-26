@@ -43,9 +43,9 @@ const ProfilePage = () => {
 //     }
 //     };
 
-//     useEffect(() => {
-//         fetchData(); 
-//     }, []);
+    // useEffect(() => {
+    //     fetchData(); 
+    // }, []);
 
 
   if (isLoading) {
@@ -62,11 +62,11 @@ const ProfilePage = () => {
   return (
     <form className="w-full flex flex-col items-center justify-center gap-y-10 p-4">
         {/* <div className="w-full flex justify-center"> */}
-        <div className='w-72 h-72 flex justify-center relative rounded-full border-4 border-mainColor'>
+        <div className='w-72 h-72 flex justify-center relative rounded-full border-2 border-mainColor'>
             <img
                 src={`data:image/jpeg;base64,${auth.user.data.image}`}// Use a real image URL or state
                 alt="ProfileImage"
-                className="w-full rounded-full"
+                className="w-full object-contain rounded-full"
                 />
             <Link to={`/dashboard/supervisors/edit/${auth.user.data.id}`} state={auth.user.data.id} type="button">
                 <button className="bg-mainColor p-2 rounded-full absolute flex items-center bottom-6 right-3 hover:bg-gray-300">
