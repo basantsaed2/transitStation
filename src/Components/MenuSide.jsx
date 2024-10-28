@@ -40,6 +40,7 @@ const MenuSide = () => {
               // const [isActivePayment, setIsActivePayment] = useState(savedState.isActivePayment ?? false);
               const [isActiveCarColor, setIsActiveCarColor] = useState(savedState.isActiveCarColor ?? false);
               const [isActivePermission, setIsActivePermission] = useState(savedState.isActivePermission ?? false);
+              const [isActivePromoCode, setIsActivePromoCode] = useState(savedState.isActivePromoCode ?? false);
        // const [isActiveFinancial, setIsActiveFinancial] = useState(false);
        const [isActiveProfile, setIsActiveProfile] =  useState(savedState.isActiveProfile ?? true);
        const [isActiveLogout, setIsActiveLogout] =  useState(savedState.isActiveLogout ?? true);
@@ -66,7 +67,7 @@ const MenuSide = () => {
                      isActiveParkingList,openListAssets,isActiveParking,isActiveLocation,
                      isActiveSettingsList,openListSettings,isActivePlan,isActivePermission,
                      // isActivePayment
-                     isActiveCarColor,
+                     isActiveCarColor,isActivePromoCode,
                      isActiveProfile,
                      isActiveLogout
               };
@@ -80,7 +81,7 @@ const MenuSide = () => {
            isActiveParkingList,openListAssets,isActiveParking,isActiveLocation,
            isActiveSettingsList,openListSettings,isActivePlan,isActivePermission,
            // isActivePayment
-           isActiveCarColor,
+           isActiveCarColor,isActivePromoCode,
            isActiveProfile,
            isActiveLogout
              ]);
@@ -110,6 +111,7 @@ const MenuSide = () => {
               // setIsActivePayment(false)
               setIsActiveCarColor(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
               setIsActiveProfile(false)
               setIsActiveLogout(false)
        };
@@ -139,6 +141,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        };
        const handleClickSubscriptions = () => {
               setIsActiveHome(false)
@@ -166,6 +169,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        };
        const handleClickUser = () => {
               setIsActiveHome(false)
@@ -193,6 +197,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        };
        const handleClickEmployee = () => {
               setIsActiveHome(false)
@@ -220,6 +225,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        };
        const handleClickDrivers = () => {
               setIsActiveHome(false)
@@ -247,6 +253,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        };
        const handleClickAdmins = () => {
               setIsActiveHome(false);
@@ -274,6 +281,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        };
        const handleClickRevenue =() =>{
               setIsActiveHome(false);
@@ -301,6 +309,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        }
        const handleClickRevenueType =() =>{
               setIsActiveHome(false);
@@ -328,6 +337,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        }
        const handleClickExpenses =() =>{
               setIsActiveHome(false);
@@ -355,6 +365,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        }
        const handleClickExpensesType =() =>{
               setIsActiveHome(false);
@@ -382,6 +393,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        }
        const handleClickParkingList = () => {
               setIsActiveHome(false);
@@ -409,6 +421,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        };
        const handleClickParking = () => {
               setIsActiveHome(false);
@@ -436,6 +449,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        };
        const handleClickLocation = () => {
               setIsActiveHome(false);
@@ -463,6 +477,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        };
        const handleClickSettings = () => {
               setIsActiveHome(false);
@@ -490,6 +505,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        };
        const handleClickPlans = () => {
               setIsActiveHome(false);
@@ -517,6 +533,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        };
        const handleClickPermission = () => {
               setIsActiveHome(false);
@@ -544,6 +561,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(false)
               setIsActivePermission(true)
+              setIsActivePromoCode(false)
        };
        const handleClickColor = () => {
               setIsActiveHome(false);
@@ -571,6 +589,35 @@ const MenuSide = () => {
               setIsActiveCarColor(true)
               setIsActiveProfile(false)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
+       };
+       const handleClickPromoCode = () => {
+              setIsActiveHome(false);
+              setIsActiveRequest(false)
+              setIsActiveSubscriptions(false);
+              setIsActiveUser(false)
+              setOpenListUser(false)
+              setIsActiveEmployee(false)
+              setIsActiveDrivers(false)
+              setIsActiveAdmins(false)
+              setIsActiveRevenue(false)
+              setShowRevenueSubMenu(false)
+              setIsActiveRevenueType(false)
+              setIsActiveExpenses(false)
+              setShowExpenseSubMenu(false)
+              setIsActiveExpenseType(false)
+              setIsActiveParkingList(false)
+              setOpenListAssets(false)
+              setIsActiveParking(false);
+              setIsActiveLocation(false);
+              setIsActiveSettingsList(true)
+              setOpenListSettings(true)
+              setIsActivePlan(false)
+              // setIsActivePayment(false)
+              setIsActiveCarColor(false)
+              setIsActiveProfile(false)
+              setIsActivePermission(false)
+              setIsActivePromoCode(true)
        };
        const handleClickProfile = () => {
               setIsActiveHome(false);
@@ -598,6 +645,7 @@ const MenuSide = () => {
               setIsActiveCarColor(false)
               setIsActiveProfile(true)
               setIsActivePermission(false)
+              setIsActivePromoCode(false)
        };
 
        return (
@@ -716,7 +764,7 @@ const MenuSide = () => {
                                           </div>
                                           </>
                                    )}
-                                   {(Premission.includes("plans") ||Premission.includes("colors")) && ( 
+                                   {(Premission.includes("plans") ||Premission.includes("colors")||Premission.includes("promocodes")) && ( 
                                           <>
                                           <Link to="plan" onClick={handleClickSettings} className={`${isActiveSettingsList ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                  <SettingIcon isActive={isActiveSettingsList} />
@@ -740,6 +788,12 @@ const MenuSide = () => {
                                                         <Link to="car_color" onClick={handleClickColor} className={`${isActiveCarColor ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <ColorIcon isActive={isActiveCarColor} />
                                                                <span className={`${isActiveCarColor ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Car Colors</span>
+                                                        </Link>
+                                                 )}
+                                                  {(Premission.includes("promocodes"))&&( 
+                                                        <Link to="promo_code" onClick={handleClickPromoCode} className={`${isActivePromoCode ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                               <ColorIcon isActive={isActivePromoCode} />
+                                                               <span className={`${isActivePromoCode ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Promo Code</span>
                                                         </Link>
                                                  )}
                                                  </ul>
