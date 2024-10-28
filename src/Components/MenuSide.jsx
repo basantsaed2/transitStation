@@ -792,7 +792,7 @@ const MenuSide = () => {
                                                  )}
                                                   {(Premission.includes("promocodes"))&&( 
                                                         <Link to="promo_code" onClick={handleClickPromoCode} className={`${isActivePromoCode ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                               <ColorIcon isActive={isActivePromoCode} />
+                                                               {/* <ColorIcon isActive={isActivePromoCode} /> */}
                                                                <span className={`${isActivePromoCode ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Promo Code</span>
                                                         </Link>
                                                  )}
