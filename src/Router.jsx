@@ -29,7 +29,10 @@ import {DashboardLayout , AdminLayout ,ParkingLayout , PickUP_LocationLayout ,Su
   CarColorLayout,
   AddCarColorLayout,
   EditCarColorLayout,
-  ProfileLayout
+  ProfileLayout,
+  PromoCodeLayout,
+  AddPromoCodeLayout,
+  EditPromoCodeLayout
 } from './Layouts/AllLayouts'
 import LoginAdmin from "./Pages/LoginPage/LoginAdmin";
 import RevenueTypeLayout from "./Layouts/RevenueTypeLayout";
@@ -132,6 +135,11 @@ const AppLayoutPermission =()=>(
   </>
 )
 const AppLayoutCarColor =()=>(
+  <>
+  <Outlet/>
+  </>
+)
+const AppLayoutPromoCode =()=>(
   <>
   <Outlet/>
   </>
@@ -434,7 +442,23 @@ export const router = createBrowserRouter([
             {
               path:'profile',
               element: <ProfileLayout/>
-            }
+            },
+            {
+              path: 'promo_code',
+              element: <AppLayoutPromoCode/>,
+              children:[
+                {
+                  path:'',
+                  element: <PromoCodeLayout/>
+                },{
+                  path:'add',
+                  element: <AddPromoCodeLayout/>
+                },{
+                  path:'edit/:promoId',
+                  element: <EditPromoCodeLayout/>
+                }
+              ]
+            },
 
           ],
         },

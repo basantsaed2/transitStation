@@ -288,6 +288,10 @@ const AssignDriverPage = () => {
         console.log(requestId)
     }, []);
 
+    const handleGoBack = () => {
+        navigate(-1, { replace: true });
+    };
+
     useEffect(() => {
         if (selectParkingId) {
             const filtered = drivers.filter(driver => driver.parking_id === selectParkingId);
@@ -326,8 +330,9 @@ const AssignDriverPage = () => {
             });
 
             if (response.status === 200) {
-                console.log('Driver assigned successfully!');
+                auth.toastSuccess('Driver assigned successfully!');
                 setShowConfirmPopup(false); // Close the modal after success
+                handleGoBack()
             }
         } catch (error) {
             console.error('Error assigning driver:', error);

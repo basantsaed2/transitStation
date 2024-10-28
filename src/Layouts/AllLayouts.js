@@ -73,3 +73,9 @@ export { default as EditCarColorLayout } from "./EditCarColorLayout";
 
 /*Profile Layout */
 export { default as ProfileLayout } from "./ProfileLayout";
+
+
+/*Profile Layout */
+export { default as PromoCodeLayout } from "./PromoCodeLayout";
+export { default as AddPromoCodeLayout } from "./AddPromoCodeLayout";
+export { default as EditPromoCodeLayout } from "./EditPromoCodeLayout";

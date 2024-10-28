@@ -81,3 +81,8 @@ export { default as EditCarColorPage } from "./CarColor/EditCarColorPage";
 
 /* Profile Page */
 export { default as ProfilePage } from "./Profile/ProfilePage";
+
+/* PromoCode Page */
+export { default as PromoCodePage } from "./PromoCode/PromoCodePage";
+export { default as AddPromoCodePage } from "./PromoCode/AddPromoCodePage";
+export { default as EditPromoCodePage } from "./PromoCode/EditPromoCodePage";
