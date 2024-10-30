@@ -764,7 +764,7 @@ const MenuSide = () => {
                                           </div>
                                           </>
                                    )}
-                                   {(Premission.includes("plans") ||Premission.includes("colors")||Premission.includes("promocodes")) && ( 
+                                   {(Premission.includes("plans") ||Premission.includes("colors")||Premission.includes("promocodes")||Premission.includes("roles")) && ( 
                                           <>
                                           <Link to="plan" onClick={handleClickSettings} className={`${isActiveSettingsList ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                  <SettingIcon isActive={isActiveSettingsList} />
@@ -778,7 +778,7 @@ const MenuSide = () => {
                                                                <span className={`${isActivePlan ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Plans</span>
                                                         </Link> 
                                                  )}
-                                                 {/* {(Premission.includes("admins"))&&(        */}
+                                                 {/* {(Premission.includes("roles"))&&(        */}
                                                         <Link to="permission" onClick={handleClickPermission} className={`${isActivePermission ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <PermissionIcon isActive={isActivePermission} />
                                                                <span className={`${isActivePermission ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Permissions</span>
@@ -800,12 +800,10 @@ const MenuSide = () => {
                                           </div>
                                           </>
                                    )}
-                                   {/* {(Premission.includes("requests"))  && (     */}
-                                          <Link to="profile" onClick={handleClickProfile} className={`${isActiveProfile ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                 <ProfileIcon isActive={isActiveProfile} />
-                                                 <span className={`${isActiveProfile ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Profile</span>
-                                          </Link>             
-                                   {/* )} */}
+                                   <Link to="profile" onClick={handleClickProfile} className={`${isActiveProfile ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                          <ProfileIcon isActive={isActiveProfile} />
+                                          <span className={`${isActiveProfile ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Profile</span>
+                                   </Link>             
                                    <Link to="/" onClick={handleLogout} className="w-full flex items-center justify-start px-0 py-2 gap-x-5">
                                           <IoIosLogOut size={23} style={{ strokeWidth: 2 }} color="#ffff"/>
                                           <span className="text-secoundColor text-xl font-medium">Log Out</span>
