@@ -145,14 +145,15 @@ const AppLayoutPromoCode =()=>(
   </>
 )
 
-export const router = createBrowserRouter([
+export const router = (Permission) => 
+  createBrowserRouter([
 
     {
         path: "/",
         element: <LoginAdmin />,
     },
     {
-      element: <ProtectedRoute allowedRoles={['admin']} />,
+      element: <ProtectedRoute allowedRoles={['admin']} Permission={Permission}/>,
       path: '/dashboard',
       children: [
         {
@@ -167,18 +168,24 @@ export const router = createBrowserRouter([
               path: 'pickUp_location',
               element: <AppLayoutPickUP_Location/>,
               children: [
-                {
-                  path: '',
-                  element: <PickUP_LocationLayout/>,
-                }, 
-                {
-                  path: 'add',
-                  element: <AddPickUP_LocationLayout/>,
-                }, 
-                {
-                  path: 'edit/:locationId',
-                  element: <EditPickUP_LocationLayout/>,
-                }, 
+                // ...(Permission?.includes('locations') ? [
+                  {
+                    path: '',
+                    element: <PickUP_LocationLayout/>,
+                  }, 
+                // ] : []),
+                ...(Permission?.includes('add location') ? [
+                  {
+                    path: 'add',
+                    element: <AddPickUP_LocationLayout/>,
+                  },
+                ] : []), 
+                ...(Permission?.includes('edit location') ? [
+                  {
+                    path: 'edit/:locationId',
+                    element: <EditPickUP_LocationLayout/>,
+                  }, 
+                ] : []), 
               ]
             },
             {
@@ -189,60 +196,78 @@ export const router = createBrowserRouter([
                   path: '',
                   element: <AppLayoutParkingList/>,
                   children:[
-                    {
-                      path: '',
-                      element: <ParkingLayout/>,
-                    },
-                    {
-                      path:'parkinglist/:parkingId',
-                      element:<ParkingListLayout/>
-                    }
+                  //  ...(Permission?.includes('parkings') ? [
+                      {
+                        path: '',
+                        element: <ParkingLayout/>,
+                      },
+                      {
+                        path:'parkinglist/:parkingId',
+                        element:<ParkingListLayout/>
+                      }
+                  // ] : []),
                   ]
                 }, 
-                {
-                  path: 'add',
-                  element: <AddParkingLayout/>,
-                }, 
-                {
-                  path: 'edit/:parkingId',
-                  element: <EditParkingLayout/>,
-                }, 
+                ...(Permission?.includes('add parking') ? [
+                  {
+                    path: 'add',
+                    element: <AddParkingLayout/>,
+                  }, 
+                ] : []),
+                ...(Permission?.includes('edit parking') ? [
+                  {
+                    path: 'edit/:parkingId',
+                    element: <EditParkingLayout/>,
+                  }, 
+                ] : []),
               ]
             }, 
             {
               path: 'subscriptions',
               element: <AppLayoutSubscriptions/>,
               children: [
-                {
-                  path: '',
-                  element: <SubscriptionsLayout/>,
-                }, 
-                {
-                  path: 'add',
-                  element: <AddSubscriptionsLayout/>,
-                }, 
-                {
-                  path: 'edit/:subscriptionId',
-                  element: <EditSubscriptionsLayout/>,
-                }, 
+                // ...(Permission?.includes('subscriptions') ? [
+                  {
+                    path: '',
+                    element: <SubscriptionsLayout/>,
+                  }, 
+                // ] : []),
+                ...(Permission?.includes('add subscription') ? [
+                  {
+                    path: 'add',
+                    element: <AddSubscriptionsLayout/>,
+                  },
+                ] : []),
+                ...(Permission?.includes('edit subscription') ? [
+                  {
+                    path: 'edit/:subscriptionId',
+                    element: <EditSubscriptionsLayout/>,
+                  },
+                ] : []), 
               ]
             },
             {
               path: 'driver',
               element: <AppLayoutDriver/>,
               children :[
-                {
-                  path: '',
-                  element: <DriverLayout/>,
-                },
-                {
-                  path: 'add',
-                  element: <AddDriverLayout/>,
-                },
-                {
-                  path: 'edit/:driverId',
-                  element: <EditDriverLayout/>,
-                },
+                // ...(Permission?.includes('drivers') ? [
+                  {
+                    path: '',
+                    element: <DriverLayout/>,
+                  },
+                // ] : []),
+                ...(Permission?.includes('add driver') ? [
+                  {
+                    path: 'add',
+                    element: <AddDriverLayout/>,
+                  },
+                ] : []),
+                ...(Permission?.includes('edit driver') ? [
+                  {
+                    path: 'edit/:driverId',
+                    element: <EditDriverLayout/>,
+                  },
+                ] : []),
                 {
                   path: 'profile/:driverId',
                   element: <DriverProfileLayout/>,
@@ -253,18 +278,24 @@ export const router = createBrowserRouter([
               path: 'revenue',
               element: <AppLayoutRevenue/>,
               children: [
-                {
-                  path: '',
-                  element: <RevenueLayout/>,
-                }, 
-                {
-                  path: 'add',
-                  element: <AddRevenueLayout/>,
-                }, 
-                {
-                  path: 'edit/:revenueId',
-                  element: <EditRevenueLayout/>,
-                }, 
+                // ...(Permission?.includes('revenues') ? [
+                  {
+                    path: '',
+                    element: <RevenueLayout/>,
+                  },
+                // ] : []),
+                ...(Permission?.includes('add revenue') ? [
+                  {
+                    path: 'add',
+                    element: <AddRevenueLayout/>,
+                  }, 
+                ] : []),
+                ...(Permission?.includes('edit revenue') ? [
+                  {
+                    path: 'edit/:revenueId',
+                    element: <EditRevenueLayout/>,
+                  }, 
+                ] : []),
                 {
                   path: 'type',
                   element: <AppLayoutRevenueType/>,
@@ -273,14 +304,19 @@ export const router = createBrowserRouter([
                       path:'',
                       element: <RevenueTypeLayout/>,
                     },
+                    ...(Permission?.includes('add revenue_type') ? [
                     {
                       path:'add',
                       element: <AddRevenueTypeLayout/>,
                     },
+                  ] : []),
+                    ...(Permission?.includes('edit revenue_type') ? [
                     {
                       path:'edit/:typeId',
                       element: <EditRevenueTypeLayout/>,
                     },
+                  ] : []),
+
                   ]
                 }, 
               ]
@@ -289,18 +325,24 @@ export const router = createBrowserRouter([
               path: 'expenses',
               element: <AppLayoutExpenses/>,
               children: [
-                {
-                  path: '',
-                  element: <ExpensesLayout/>,
-                }, 
-                {
-                  path: 'add',
-                  element: <AddExpensesLayout/>,
-                }, 
-                {
-                  path: 'edit/:expenseId',
-                  element: <EditExpensesLayout/>,
-                },
+                // ...(Permission?.includes('expences') ? [
+                  {
+                    path: '',
+                    element: <ExpensesLayout/>,
+                  }, 
+                // ] : []),
+                ...(Permission?.includes('add expence') ? [
+                  {
+                    path: 'add',
+                    element: <AddExpensesLayout/>,
+                  }, 
+                ] : []),
+                ...(Permission?.includes('edit expence') ? [
+                  {
+                    path: 'edit/:expenseId',
+                    element: <EditExpensesLayout/>,
+                  },
+                ] : []),
                 {
                   path: 'type',
                   element: <AppLayoutExpensesType/>,
@@ -309,14 +351,18 @@ export const router = createBrowserRouter([
                       path:'',
                       element: <ExpensesTypeLayout/>,
                     },
+                    ...(Permission?.includes('add expence_type') ? [
                     {
                       path:'add',
                       element: <AddExpensesTypeLayout/>,
                     },
+                  ] : []),
+                  ...(Permission?.includes('edit expence_type') ? [
                     {
                       path:'edit/:typeId',
                       element: <EditExpensesTypeLayout/>,
                     },
+                  ] : []),
                   ]
                 }, 
               ]
@@ -329,18 +375,24 @@ export const router = createBrowserRouter([
               path: 'plan',
               element: <AppLayoutPlan/>,
               children : [
-                {
-                  path:'',
-                  element :<PlanLayout/>
-                },
-                {
-                  path:'add',
-                  element :<AddPlanLayout/>
-                },
-                {
-                  path:'edit/:planId',
-                  element :<EditPlanLayout/>
-                },
+                // ...(Permission?.includes('plans') ? [
+                  {
+                    path:'',
+                    element :<PlanLayout/>
+                  },
+                // ] : []),
+                ...(Permission?.includes('add plan') ? [
+                  {
+                    path:'add',
+                    element :<AddPlanLayout/>
+                  },
+                ] : []),
+                ...(Permission?.includes('edit plan') ? [
+                  {
+                    path:'edit/:planId',
+                    element :<EditPlanLayout/>
+                  },
+                ] : []),
               ]
             },
             {
@@ -351,92 +403,130 @@ export const router = createBrowserRouter([
                   path: '',
                   element: <AppLayoutRequestDriver/>,
                   children:[
+                  // ...(Permission?.includes('requests') ? [
                     {
-                      path: '',
-                      element: <RequestLayout/>,
+                    path: '',
+                    element: <RequestLayout/>,
                     },
+                  // ] : []),
                     {
                       path: 'all_drivers',
                       element: <AssignDriverLayout/>,
                     }
-                  ]
-                },
-                {
-                  path: 'add',
-                  element: <AddRequestLayout/>,
-                },
-                {
-                  path: 'add_return',
-                  element: <ReturnRequestLayout/>,
-                },
-                {
-                  path: 'edit/:requestId',
-                  element: <EditRequestLayout/>,
-                },
+                    ]
+                  },
+                  ...(Permission?.includes('add request') ? [
+                      {
+                        path: 'add',
+                        element: <AddRequestLayout/>,
+                      },
+                      {
+                        path: 'add_return',
+                        element: <ReturnRequestLayout/>,
+                      },
+                  ] : []),
+                  ...(Permission?.includes('edit request') ? [
+                    {
+                      path: 'edit/:requestId',
+                      element: <EditRequestLayout/>,
+                    },
+                  ] : []),
               ]
             },
             {
               path: 'user',
               element: <AppLayoutUser/>,
               children:[
-                {
-                  path:'',
-                  element: <UserLayout/>
-                },{
-                  path:'add',
-                  element: <AddUserLayout/>
-                },{
-                  path:'edit/:userId',
-                  element: <EditUserLayout/>
-                }
+                // ...(Permission?.includes('user') ? [
+                  {
+                    path:'',
+                    element: <UserLayout/>
+                  },
+                // ] : []),
+                ...(Permission?.includes('add user') ? [
+                  {
+                    path:'add',
+                    element: <AddUserLayout/>
+                  }
+                ] : []),
+                ...(Permission?.includes('edit user') ? [
+                  {
+                    path:'edit/:userId',
+                    element: <EditUserLayout/>
+                  }
+                ] : []),
               ]
             },
             {
               path: 'supervisors',
               element: <AppLayoutEmployees/>,
               children:[
-                {
-                  path:'',
-                  element: <EmployeesLayout/>
-                },{
-                  path:'add',
-                  element: <AddEmployeesLayout/>
-                },{
-                  path:'edit/:employeeId',
-                  element: <EditEmployeesLayout/>
-                }
+                // ...(Permission?.includes('admins') ? [
+                  {
+                    path:'',
+                    element: <EmployeesLayout/>
+                  },
+                // ] : []),
+                ...(Permission?.includes('add admin') ? [
+                  {
+                    path:'add',
+                    element: <AddEmployeesLayout/>
+                  }
+                ] : []),
+                ...(Permission?.includes('edit admin') ? [
+                  {
+                    path:'edit/:employeeId',
+                    element: <EditEmployeesLayout/>
+                  }
+                ] : []),
               ]
             },
             {
               path: 'permission',
               element: <AppLayoutPermission/>,
               children:[
-                {
-                  path:'',
-                  element: <PermissionLayout/>
-                },{
-                  path:'add',
-                  element: <AddPermissionLayout/>
-                },{
-                  path:'edit/:roleId',
-                  element: <EditPermissionLayout/>
-                }
+                // ...(Permission?.includes('roles') ? [
+                  {
+                    path:'',
+                    element: <PermissionLayout/>
+                  },
+                // ] : []),
+                ...(Permission?.includes('add role') ? [
+                  {
+                    path:'add',
+                    element: <AddPermissionLayout/>
+                  }
+                ] : []),
+                ...(Permission?.includes('edit role') ? [
+                  {
+                    path:'edit/:roleId',
+                    element: <EditPermissionLayout/>
+                  }
+                ] : []),
               ]
             },
             {
               path: 'car_color',
               element: <AppLayoutCarColor/>,
               children:[
-                {
-                  path:'',
-                  element: <CarColorLayout/>
-                },{
-                  path:'add',
-                  element: <AddCarColorLayout/>
-                },{
-                  path:'edit/:colorId',
-                  element: <EditCarColorLayout/>
-                }
+                // ...(Permission?.includes('colors') ? [
+                  {
+                    path:'',
+                    element: <CarColorLayout/>
+                  },
+                // ] : []),
+                ...(Permission?.includes('add color') ? [
+                  {
+                    path:'add',
+                    element: <AddCarColorLayout/>
+                  }
+                ] : []),
+                ...(Permission?.includes('edit color') ? [
+                  {
+                    path:'edit/:colorId',
+                    element: <EditCarColorLayout/>
+                  }
+                ] : []),
               ]
             },
             {
@@ -447,16 +537,24 @@ export const router = createBrowserRouter([
               path: 'promo_code',
               element: <AppLayoutPromoCode/>,
               children:[
-                {
-                  path:'',
-                  element: <PromoCodeLayout/>
-                },{
-                  path:'add',
-                  element: <AddPromoCodeLayout/>
-                },{
-                  path:'edit/:promoId',
-                  element: <EditPromoCodeLayout/>
-                }
+                // ...(Permission?.includes('promocodes') ? [
+                  {
+                    path:'',
+                    element: <PromoCodeLayout/>
+                  },
+                // ] : []),
+                ...(Permission?.includes('add promocode') ? [
+                  {
+                    path:'add',
+                    element: <AddPromoCodeLayout/>
+                  }
+                ] : []),
+                ...(Permission?.includes('edit promocode') ? [
+                  {
+                    path:'edit/:promoId',
+                    element: <EditPromoCodeLayout/>
+                  }
+                ] : []),
               ]
             },
 

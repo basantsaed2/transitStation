@@ -64,7 +64,7 @@ const AdminLayout = () => {
       <SidebarAdmin isOpen={isSidebarOpen} />
 
       {/* Main Content Section */}
-      <div className={`contentSection md:w-full sm:w-full lg:w-4/5 min-h-screen transition-opacity ${isSidebarOpen ? 'opacity-50' : 'opacity-100'}`}>
+      <div className={`contentSection md:w-full sm:w-full lg:w-[78%] min-h-screen transition-opacity ${isSidebarOpen ? 'opacity-50' : 'opacity-100'}`}>
                     {/* <HeaderStudent /> */}
                     <Navbar />
                     <div className="pl-5">

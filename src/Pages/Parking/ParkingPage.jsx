@@ -11,6 +11,7 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 
 const ParkingPage = () => {
        const auth = useAuth();
+       const [Premission] = useState(auth.user.permissions.role);
        const [isLoading, setIsLoading] = useState(false);
        const [parking , setParking] =useState('')
        const [parkingChanged, setParkingChanged] = useState(false);
@@ -108,18 +109,27 @@ const ParkingPage = () => {
               );
             } 
 
-        if (!parking) {
-            return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No parking data available</div>;
-        }         
+       //  if (!parking) {
+       //      return <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>No parking data available</div>;
+       //  }         
 
        return (
               <>
             <div className='w-full flex flex-col gap-5'>
-                <Link to="add">
+              
                     <div className='w-1/6'>
+                    {Premission.includes('add parking') && (
+                    <Link to="add">
                         <ButtonAdd isWidth="true" BgColor ="mainColor" Color="white" iconColor="white"/>
+                     </Link>
+                    )}
                     </div>
-                </Link>
+              {Premission?.includes('parkings') && (
+               parking.length === 0 ? (
+                <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>
+                        No parking data available
+                </div>
+                ) : (
                 <div className="w-full flex flex-wrap gap-10 ml-5 mt-5">
                 {parking.map((park) => (
                     <>
@@ -137,20 +147,20 @@ const ParkingPage = () => {
                                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M12 6v.01M12 12v.01M12 18v.01" />
                                                  </svg>
                                           </button>
-
-                                          {/* Dropdown menu for the specific location */}
-                                          {openDropdownId === park.id && (
+                                          {(Premission.includes("edit parking") ||Premission.includes("delete parking"))  && ( 
+                                           openDropdownId === park.id && (
                                                  <div className="absolute top-8 right-0 w-32 bg-white shadow-lg rounded-md py-2 z-10">
                                                  <ul>
+                                                 {Premission?.includes('edit parking') && (
                                                  <Link to={`edit/${park.id}`} state={park.id} type="button">
                                                  <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer flex gap-3"><EditIcon /> Edit</li>
                                                  </Link>
-                                                 {/* <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Option 1</li> */}
+                                                 )},
+                                                 {Premission?.includes('delete parking') && (
                                                  <li onClick={() => handleOpenDialog(park.id)} className="px-4 flex gap-3 py-2 hover:bg-gray-200 cursor-pointer">
-                                                 {/* <button className='flex gap-3' type="button" onClick={() => handleOpenDialog(location.id)}> */}
                                                         <DeleteIcon /> Delete
-                                                 {/* </button> */}
                                                  </li>
+                                                 )}
                                                  {openDialog === park.id && (
                                                         <Dialog open={true} onClose={handleCloseDialog} className="relative z-10">
                                                                <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
@@ -192,7 +202,8 @@ const ParkingPage = () => {
                                                  )}
                                                  </ul>
                                                  </div>
-                                          )}
+                                          )
+                                          )}  
                                    </div>
                             </div>
                             {/* <span className='w-full text-left text-xl text-secoundColor font-medium'>{park.name}</span> */}
@@ -208,6 +219,7 @@ const ParkingPage = () => {
                     </>
                 ))}           
                 </div>
+              ))}
             </div>
               </>
        )

@@ -11,6 +11,7 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 const RequestPage = () => {
 
     const auth = useAuth();
+    const [Premission] = useState(auth.user.permissions.role);
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [activeTab, setActiveTab] = useState("pending");
@@ -109,6 +110,41 @@ const RequestPage = () => {
        return (
               <>
                 <div className='w-full'>
+
+                {Premission.includes('add request') && activeTab === "pending" && requests && (
+                <div className="w-full mb-5 flex flex-wrap items-center justify-start gap-10">
+                        <div className="lg:w-1/6 shadow">
+                        <ButtonAdd 
+                                isWidth="true" 
+                                BgColor="white" 
+                                Color="mainColor" 
+                                iconColor="mainColor" 
+                                handleClick={toggleDropdown} 
+                        />
+                        
+                        {isDropdownVisible && (
+                                <div className="dropdown-menu absolute bg-white border border-gray-300 shadow-md mt-2 rounded">
+                                <ul>
+                                        <Link to="add">
+                                        <li className="p-2 font-semibold text-xl hover:bg-gray-100">New Request</li>
+                                        </Link>
+                                        <Link to="add_return">
+                                        <li className="p-2 font-semibold text-xl hover:bg-gray-100">Return Request</li>
+                                        </Link>
+                                </ul>
+                                </div>
+                        )}
+                        </div>
+                </div>
+                )}
+
+              {Premission?.includes('requests') && (
+                 requests.length === 0 ? (
+                <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>
+                        No  requests data available
+                </div>
+                ) : (
+                <>
                     <div className="flex w-full gap-5 mb-5">
                         {/* Tab buttons */}
                         <div className='sm:w-1/4'> 
@@ -146,349 +182,142 @@ const RequestPage = () => {
                         </div>            
                     </div>
 
-                    {/* {activeTab === "pending" && requests && (
-                       <div className="w-full">
-                       <div className="w-full flex flex-wrap items-center justify-start gap-10">
-                        <div className='lg:w-1/6 shadow'>
-                               <ButtonAdd isWidth="true" BgColor ="white" Color="mainColor" iconColor="mainColor" handleClick={toggleDropdown}/>
-
-                                {isDropdownVisible && (
-                                        <div className="dropdown-menu absolute bg-white border border-gray-300 shadow-md mt-2 rounded">
-                                        <ul>
-                                        <Link to={'add'}>
-                                                <li className="p-2 font-semibold text-xl hover:bg-gray-100">New Request</li>
-                                        </Link>
-                                        <Link to={'add_return'}>
-                                                <li className="p-2 font-semibold text-xl hover:bg-gray-100">Return Request</li>
-                                        </Link>
-                                        </ul>
-                                        </div>
-                                )}
-                        </div>
-                       </div>
-           
-                       <div className="w-full flex items-center justify-between mt-4 overflow-x-auto">
-                           <table className="w-full sm:min-w-0">
-                               <thead className="w-full">
-                                   <tr className="w-full border-b-2">
-                                       <th className="min-w-[80px] sm:w-1/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">#</th>
-                                       <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Name</th>
-                                       <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Phone</th>
-                                       <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Plan</th>
-                                       <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Date</th>
-                                       <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Time</th>
-                                       <th className="min-w-[180px] sm:w-2/12 lg:w-2/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Pick_Up Location</th>
-                                       <th className="min-w-[180px] sm:w-2/12 lg:w-2/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Assign Driver</th>
-                                       <th className="min-w-[100px] sm:w-1/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Action</th>
-                                   </tr>
-                               </thead>
-                               <tbody className="w-full">
-                                       {requests.map((request, index) => (
-                                                     request.status === "pending" && (
-                                           <tr className="w-full border-b-2" key={request.id}>
-                                                   <td
-                                                           className="min-w-[80px] sm:min-w-[50px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
-                                                   >
-                                                           {index + 1}
-                                                   </td>
-                                                   <td
-                                                           className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
-                                                   >
-                                                           {request.user_name || 'Null'}
-                                                   </td>
-                                                   <td
-                                                           className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
-                                                   >
-                                                           {request.user_phone || 'Null'}
-                                                   </td>
-                                                   <td
-                                                           className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
-                                                   >
-                                                           {request.offer_name || 'Null'}
-                                                   </td>
-                                                   <td
-                                                           className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
-                                                   >
-                                                           {request.pick_up_date || 'Null'}
-                                                   </td>
-                                                   <td
-                                                           className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
-                                                   >
-                                                           {request.request_time || 'Null'}
-                                                   </td>
-                                                   <td
-                                                           className="min-w-[150px] sm:min-w-[100px] sm:w-2/12 lg:w-2/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
-                                                   >
-                                                           {request.pick_up_address || 'Null'}
-                                                   </td>  
-                                                   <td
-                                                           className="min-w-[150px] sm:min-w-[100px] sm:w-2/12 lg:w-2/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
-                                                   >  
-                                                        <Link to={"all_drivers"} state={{ requestId: request.id }}>
-                                                        <button className='bg-mainColor text-white p-2 rounded-md text-center'>
-                                                                Assign
-                                                        </button>
-                                                        </Link>
-    
-                                                   </td>  
-                                                   
-                                                   <td
-                                                className="min-w-[100px] sm:min-w-[80px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
-                                        >
-                                                <div className="flex items-center justify-center gap-x-3">
-                                                <Link to={`edit/${request.id}`} state={request.id} type="button">
-                                                        <EditIcon />
-                                                </Link>
-                                                <button type="button" onClick={() => handleOpenDialog(request.id)}>
-                                                        <DeleteIcon />
-                                                </button>
-                                                {openDialog === request.id && (
-                                                        <Dialog open={true} onClose={handleCloseDialog} className="relative z-10">
-                                                                <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-                                                                <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                                                                        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                                                                                <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-lg">
-                                                                                <div className="flex flex-col items-center justify-center bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                                                                                        <Wroning Width='28' Height='28' aria-hidden="true" />
-                                                                                        <div className="flex items-center">
-                                                                                                <div className="mt-2 text-center">
-                                                                                                        <DialogTitle as="h3" className="text-xl font-semibold leading-10 text-gray-900">
-                                                                                                                You will delete request {request.user_name|| "null"}
-                                                                                                        </DialogTitle>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                </div>
-                                                                                <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                                                                        <button
-                                                                                                type="button"
-                                                                                                onClick={() => handleDelete(request.id)}
-                                                                                                disabled={isDeleting}
-                                                                                                className="inline-flex w-full justify-center rounded-md bg-mainColor px-6 py-3 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
-                                                                                        >
-                                                                                                {isDeleting ? <div className="flex w-10 h-5"><Loading /></div> : 'Delete'}
-                                                                                        </button>
-                                                                                        <button
-                                                                                                type="button"
-                                                                                                data-autofocus
-                                                                                                onClick={handleCloseDialog}
-                                                                                                className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-6 py-3 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 sm:mt-0 sm:w-auto"
-                                                                                        >
-                                                                                                Cancel
-                                                                                        </button>
-                                                                                </div>
-                                                                                </DialogPanel>
-                                                                        </div>
-                                                                </div>
-                                                        </Dialog>
-                                                )}
-                                                </div>
-                                        </td>           
-                                           </tr>
-                                                     )
-                                       ))}
-                               </tbody>
-                           </table>
-                       </div>
-                       </div>  
-                    )} */}
-
-
                         {activeTab === "pending" && requests && (
-                        <div className="w-full">
-                        <div className="w-full flex flex-wrap items-center justify-start gap-10">
-                        <div className='lg:w-1/6 shadow'>
-                                <ButtonAdd isWidth="true" BgColor="white" Color="mainColor" iconColor="mainColor" handleClick={toggleDropdown} />
+                                <div className="w-full">
+                                <div className="w-full flex items-center justify-between mt-4 overflow-x-auto">
+                                <table className="w-full sm:min-w-0">
+                                        <thead className="w-full">
+                                        <tr className="w-full border-b-2">
+                                        <th className="min-w-[80px] sm:w-1/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">#</th>
+                                        <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Name</th>
+                                        <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Phone</th>
+                                        <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Plan</th>
+                                        <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Date</th>
+                                        <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Time</th>
+                                        <th className="min-w-[180px] sm:w-2/12 lg:w-2/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Pick_Up Location</th>
+                                        <th className="min-w-[180px] sm:w-2/12 lg:w-2/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Assign Driver</th>
+                                        {(Premission.includes("edit request") ||Premission.includes("delete request"))  && ( 
+                                        <th className="min-w-[100px] sm:w-1/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Action</th>
+                                        )}
+                                        </tr>
+                                        </thead>
+                                        <tbody className="w-full">
+                                        {requests
+                                        .filter(request => request.status === "pending")
+                                        .sort((a, b) => {
+                                        // First, compare by pick_up_date
+                                        const pickUpDateComparison = new Date(a.pick_up_date) - new Date(b.pick_up_date);
+                                        if (pickUpDateComparison !== 0) {
+                                                return pickUpDateComparison;
+                                        }
+                                        // If pick_up_date is the same, compare by request_time
+                                        const timeA = a.request_time.split(':').map(Number); // Split "HH:MM:SS" and convert to numbers
+                                        const timeB = b.request_time.split(':').map(Number);
 
-                                {isDropdownVisible && (
-                                <div className="dropdown-menu absolute bg-white border border-gray-300 shadow-md mt-2 rounded">
-                                <ul>
-                                <Link to={'add'}>
-                                        <li className="p-2 font-semibold text-xl hover:bg-gray-100">New Request</li>
-                                </Link>
-                                <Link to={'add_return'}>
-                                        <li className="p-2 font-semibold text-xl hover:bg-gray-100">Return Request</li>
-                                </Link>
-                                </ul>
-                                </div>
-                                )}
-                        </div>
-                        </div>
+                                        // Convert to minutes since the start of the day for easy comparison
+                                        const totalMinutesA = timeA[0] * 60 + timeA[1];
+                                        const totalMinutesB = timeB[0] * 60 + timeB[1];
 
-                        <div className="w-full flex items-center justify-between mt-4 overflow-x-auto">
-                        <table className="w-full sm:min-w-0">
-                                <thead className="w-full">
-                                <tr className="w-full border-b-2">
-                                <th className="min-w-[80px] sm:w-1/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">#</th>
-                                <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Name</th>
-                                <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Phone</th>
-                                <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Plan</th>
-                                <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Date</th>
-                                <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Time</th>
-                                <th className="min-w-[180px] sm:w-2/12 lg:w-2/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Pick_Up Location</th>
-                                <th className="min-w-[180px] sm:w-2/12 lg:w-2/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Assign Driver</th>
-                                <th className="min-w-[100px] sm:w-1/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Action</th>
-                                </tr>
-                                </thead>
-                                <tbody className="w-full">
-                                {requests
-                                .filter(request => request.status === "pending")
-                                .sort((a, b) => {
-                                // First, compare by pick_up_date
-                                const pickUpDateComparison = new Date(a.pick_up_date) - new Date(b.pick_up_date);
-                                if (pickUpDateComparison !== 0) {
-                                        return pickUpDateComparison;
-                                }
-                                // If pick_up_date is the same, compare by request_time
-                                const timeA = a.request_time.split(':').map(Number); // Split "HH:MM:SS" and convert to numbers
-                                const timeB = b.request_time.split(':').map(Number);
-
-                                // Convert to minutes since the start of the day for easy comparison
-                                const totalMinutesA = timeA[0] * 60 + timeA[1];
-                                const totalMinutesB = timeB[0] * 60 + timeB[1];
-
-                                return totalMinutesA - totalMinutesB;
-                                })
-                                .map((request, index) => (
-                                <tr className="w-full border-b-2" key={request.id}>
-                                        <td className="min-w-[80px] sm:min-w-[50px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
-                                        {index + 1}
-                                        </td>
-                                        <td className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
-                                        {request.user_name || 'Null'}
-                                        </td>
-                                        <td className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
-                                        {request.user_phone || 'Null'}
-                                        </td>
-                                        <td className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
-                                        {request.offer_name || 'Null'}
-                                        </td>
-                                        <td className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
-                                        {request.pick_up_date || 'Null'}
-                                        </td>
-                                        <td className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
-                                        {request.request_time || 'Null'}
-                                        </td>
-                                        <td className="min-w-[150px] sm:min-w-[100px] sm:w-2/12 lg:w-2/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
-                                        {request.pick_up_address || 'Null'}
-                                        </td>
-                                        <td className="min-w-[150px] sm:min-w-[100px] sm:w-2/12 lg:w-2/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
-                                        <Link to={"all_drivers"} state={{ requestId: request.id }}>
-                                        <button className='bg-mainColor text-white p-2 rounded-md text-center'>
-                                        Assign
-                                        </button>
-                                        </Link>
-                                        </td>
-                                        <td className="min-w-[100px] sm:min-w-[80px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
-                                                {/* <div className="flex items-center justify-center gap-x-3">
-                                                <Link to={`edit/${request.id}`} state={request.id} type="button">
-                                                <EditIcon />
-                                                </Link>
-                                                <button type="button" onClick={() => handleOpenDialog(request.id)}>
-                                                <DeleteIcon />
+                                        return totalMinutesA - totalMinutesB;
+                                        })
+                                        .map((request, index) => (
+                                        <tr className="w-full border-b-2" key={request.id}>
+                                                <td className="min-w-[80px] sm:min-w-[50px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
+                                                {index + 1}
+                                                </td>
+                                                <td className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
+                                                {request.user_name || 'Null'}
+                                                </td>
+                                                <td className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
+                                                {request.user_phone || 'Null'}
+                                                </td>
+                                                <td className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
+                                                {request.offer_name || 'Null'}
+                                                </td>
+                                                <td className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
+                                                {request.pick_up_date || 'Null'}
+                                                </td>
+                                                <td className="min-w-[100px] sm:min-w-[100px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
+                                                {request.request_time || 'Null'}
+                                                </td>
+                                                <td className="min-w-[150px] sm:min-w-[100px] sm:w-2/12 lg:w-2/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
+                                                {request.pick_up_address || 'Null'}
+                                                </td>
+                                                <td className="min-w-[150px] sm:min-w-[100px] sm:w-2/12 lg:w-2/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
+                                                <Link to={"all_drivers"} state={{ requestId: request.id }}>
+                                                <button className='bg-mainColor text-white p-2 rounded-md text-center'>
+                                                Assign
                                                 </button>
-                                                {openDialog === request.id && (
-                                                <Dialog open={true} onClose={handleCloseDialog} className="relative z-10">
-                                                        <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-                                                        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                                                        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                                                        <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-lg">
-                                                        <div className="flex flex-col items-center justify-center bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                                                                <Wroning Width='28' Height='28' aria-hidden="true" />
-                                                                <div className="flex items-center">
-                                                                <div className="mt-2 text-center">
-                                                                <DialogTitle as="h3" className="text-xl font-semibold leading-10 text-gray-900">
-                                                                You will delete request {request.user_name || "null"}
-                                                                </DialogTitle>
-                                                                </div>
-                                                                </div>
-                                                        </div>
-                                                        <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                                                <button
-                                                                type="button"
-                                                                onClick={() => handleDelete(request.id)}
-                                                                disabled={isDeleting}
-                                                                className="inline-flex w-full justify-center rounded-md bg-mainColor px-6 py-3 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
-                                                                >
-                                                                {isDeleting ? <div className="flex w-10 h-5 justify-center items-center"><LoadingSpinner /></div> : 'Delete'}
-                                                                </button>
-                                                                <button
-                                                                type="button"
-                                                                className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-6 py-3 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 sm:mt-0 sm:w-auto"
-                                                                onClick={handleCloseDialog}
-                                                                >
-                                                                Cancel
-                                                                </button>
-                                                        </div>
-                                                        </DialogPanel>
-                                                        </div>
-                                                        </div>
-                                                </Dialog>
-                                                )}
-                                                </div> */}
-                                                <div className="flex items-center justify-center gap-x-3">
-                                                <Link to={`edit/${request.id}`} state={request.id} type="button">
-                                                        <EditIcon />
                                                 </Link>
-                                                <button type="button" onClick={() => handleOpenDialog(request.id)}>
-                                                        <DeleteIcon />
-                                                </button>
-                                                {openDialog === request.id && (
-                                                        <Dialog open={true} onClose={handleCloseDialog} className="relative z-10">
-                                                                <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-                                                                <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                                                                        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                                                                                <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-lg">
-                                                                                <div className="flex flex-col items-center justify-center bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                                                                                        <Wroning Width='28' Height='28' aria-hidden="true" />
-                                                                                        <div className="flex items-center">
-                                                                                                <div className="mt-2 text-center">
-                                                                                                        <DialogTitle as="h3" className="text-xl font-semibold leading-10 text-gray-900">
-                                                                                                                You will delete request {request.user_name|| "null"}
-                                                                                                        </DialogTitle>
+                                                </td>
+                                                {(Premission.includes("edit request") ||Premission.includes("delete request"))  && ( 
+                                                <td className="min-w-[100px] sm:min-w-[80px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden">
+                                                        <div className="flex items-center justify-center gap-x-3">
+                                                        {Premission?.includes('edit request') && (
+                                                        <Link to={`edit/${request.id}`} state={request.id} type="button">
+                                                                <EditIcon />
+                                                        </Link>
+                                                        )}
+                                                        {Premission?.includes('delete request') && (
+                                                        <button type="button" onClick={() => handleOpenDialog(request.id)}>
+                                                                <DeleteIcon />
+                                                        </button>
+                                                        )}
+                                                        {openDialog === request.id && (
+                                                                <Dialog open={true} onClose={handleCloseDialog} className="relative z-10">
+                                                                        <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                                                                        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                                                                                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                                                                                        <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-lg">
+                                                                                        <div className="flex flex-col items-center justify-center bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                                                                                                <Wroning Width='28' Height='28' aria-hidden="true" />
+                                                                                                <div className="flex items-center">
+                                                                                                        <div className="mt-2 text-center">
+                                                                                                                <DialogTitle as="h3" className="text-xl font-semibold leading-10 text-gray-900">
+                                                                                                                        You will delete request {request.user_name|| "null"}
+                                                                                                                </DialogTitle>
+                                                                                                        </div>
                                                                                                 </div>
                                                                                         </div>
+                                                                                        <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                                                                                                <button
+                                                                                                        type="button"
+                                                                                                        onClick={() => handleDelete(request.id)}
+                                                                                                        disabled={isDeleting}
+                                                                                                        className="inline-flex w-full justify-center rounded-md bg-mainColor px-6 py-3 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
+                                                                                                >
+                                                                                                        {isDeleting ? <div className="flex w-10 h-5"><Loading /></div> : 'Delete'}
+                                                                                                </button>
+                                                                                                <button
+                                                                                                        type="button"
+                                                                                                        data-autofocus
+                                                                                                        onClick={handleCloseDialog}
+                                                                                                        className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-6 py-3 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 sm:mt-0 sm:w-auto"
+                                                                                                >
+                                                                                                        Cancel
+                                                                                                </button>
+                                                                                        </div>
+                                                                                        </DialogPanel>
                                                                                 </div>
-                                                                                <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                                                                        <button
-                                                                                                type="button"
-                                                                                                onClick={() => handleDelete(request.id)}
-                                                                                                disabled={isDeleting}
-                                                                                                className="inline-flex w-full justify-center rounded-md bg-mainColor px-6 py-3 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
-                                                                                        >
-                                                                                                {isDeleting ? <div className="flex w-10 h-5"><Loading /></div> : 'Delete'}
-                                                                                        </button>
-                                                                                        <button
-                                                                                                type="button"
-                                                                                                data-autofocus
-                                                                                                onClick={handleCloseDialog}
-                                                                                                className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-6 py-3 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 sm:mt-0 sm:w-auto"
-                                                                                        >
-                                                                                                Cancel
-                                                                                        </button>
-                                                                                </div>
-                                                                                </DialogPanel>
                                                                         </div>
-                                                                </div>
-                                                        </Dialog>
+                                                                </Dialog>
+                                                        )}
+                                                        </div>
+                                                </td>
                                                 )}
-                                                </div>
-                                        </td>
-                                </tr>
-                                ))}
-                                </tbody>
-                        </table>
+                                        </tr>
+                                        ))}
+                                        </tbody>
+                                </table>
+                                </div>
+                        
                         </div>
-                        </div>
+                        
                         )}
 
                         {activeTab === "current" && requests && (
                         <div className="w-full">
-                        <div className="w-full flex flex-wrap items-center justify-start gap-10">
-                        {/* <div className='lg:w-1/6'>
-                        <Link to={'add'}>
-                                <ButtonAdd isWidth="true" BgColor ="white" Color="mainColor" iconColor="mainColor"/>
-                        </Link>
-                        </div> */}
+                        <div className="w-full flex flex-wrap items-center justify-start gap-10">         
                         </div>
                 
                         <div className="w-full flex items-center justify-between mt-4 overflow-x-auto">
@@ -502,7 +331,9 @@ const RequestPage = () => {
                                         <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Date</th>
                                         <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Time</th>
                                         <th className="min-w-[180px] sm:w-2/12 lg:w-2/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Location</th>
+                                        {(Premission.includes("edit request") ||Premission.includes("delete request"))  && ( 
                                         <th className="min-w-[100px] sm:w-1/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Action</th>
+                                        )}
                                         </tr>
                                 </thead>
                                 <tbody className="w-full">
@@ -544,57 +375,63 @@ const RequestPage = () => {
                                                         >
                                                                 {request.pick_up_address || 'Null'}
                                                         </td>  
+                                                        {(Premission.includes("edit request") ||Premission.includes("delete request"))  && ( 
                                                         <td
-                                                className="min-w-[100px] sm:min-w-[80px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
-                                        >
-                                                <div className="flex items-center justify-center gap-x-3">
-                                                <Link to={`edit/${request.id}`} state={request.id} type="button">
-                                                        <EditIcon />
-                                                </Link>
-                                                <button type="button" onClick={() => handleOpenDialog(request.id)}>
-                                                        <DeleteIcon />
-                                                </button>
-                                                {openDialog === request.id && (
-                                                        <Dialog open={true} onClose={handleCloseDialog} className="relative z-10">
-                                                                <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-                                                                <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                                                                        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                                                                                <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-lg">
-                                                                                <div className="flex flex-col items-center justify-center bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                                                                                        <Wroning Width='28' Height='28' aria-hidden="true" />
-                                                                                        <div className="flex items-center">
-                                                                                                <div className="mt-2 text-center">
-                                                                                                        <DialogTitle as="h3" className="text-xl font-semibold leading-10 text-gray-900">
-                                                                                                                You will delete request {request.user_name|| "null"}
-                                                                                                        </DialogTitle>
+                                                           className="min-w-[100px] sm:min-w-[80px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
+                                                        >
+                                                                <div className="flex items-center justify-center gap-x-3">
+                                                                {Premission?.includes('edit request') && (
+                                                                <Link to={`edit/${request.id}`} state={request.id} type="button">
+                                                                        <EditIcon />
+                                                                </Link>
+                                                                )}
+                                                                {Premission?.includes('edit delete') && (
+                                                                <button type="button" onClick={() => handleOpenDialog(request.id)}>
+                                                                        <DeleteIcon />
+                                                                </button>
+                                                                )}
+                                                                {openDialog === request.id && (
+                                                                        <Dialog open={true} onClose={handleCloseDialog} className="relative z-10">
+                                                                                <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                                                                                <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                                                                                        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                                                                                                <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:max-w-lg">
+                                                                                                <div className="flex flex-col items-center justify-center bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                                                                                                        <Wroning Width='28' Height='28' aria-hidden="true" />
+                                                                                                        <div className="flex items-center">
+                                                                                                                <div className="mt-2 text-center">
+                                                                                                                        <DialogTitle as="h3" className="text-xl font-semibold leading-10 text-gray-900">
+                                                                                                                                You will delete request {request.user_name|| "null"}
+                                                                                                                        </DialogTitle>
+                                                                                                                </div>
+                                                                                                        </div>
                                                                                                 </div>
+                                                                                                <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                                                                                                        <button
+                                                                                                                type="button"
+                                                                                                                onClick={() => handleDelete(request.id)}
+                                                                                                                disabled={isDeleting}
+                                                                                                                className="inline-flex w-full justify-center rounded-md bg-mainColor px-6 py-3 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
+                                                                                                        >
+                                                                                                                {isDeleting ? <div className="flex w-10 h-5"><Loading /></div> : 'Delete'}
+                                                                                                        </button>
+                                                                                                        <button
+                                                                                                                type="button"
+                                                                                                                data-autofocus
+                                                                                                                onClick={handleCloseDialog}
+                                                                                                                className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-6 py-3 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 sm:mt-0 sm:w-auto"
+                                                                                                        >
+                                                                                                                Cancel
+                                                                                                        </button>
+                                                                                                </div>
+                                                                                                </DialogPanel>
                                                                                         </div>
                                                                                 </div>
-                                                                                <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                                                                        <button
-                                                                                                type="button"
-                                                                                                onClick={() => handleDelete(request.id)}
-                                                                                                disabled={isDeleting}
-                                                                                                className="inline-flex w-full justify-center rounded-md bg-mainColor px-6 py-3 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
-                                                                                        >
-                                                                                                {isDeleting ? <div className="flex w-10 h-5"><Loading /></div> : 'Delete'}
-                                                                                        </button>
-                                                                                        <button
-                                                                                                type="button"
-                                                                                                data-autofocus
-                                                                                                onClick={handleCloseDialog}
-                                                                                                className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-6 py-3 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 sm:mt-0 sm:w-auto"
-                                                                                        >
-                                                                                                Cancel
-                                                                                        </button>
-                                                                                </div>
-                                                                                </DialogPanel>
-                                                                        </div>
+                                                                        </Dialog>
+                                                                )}
                                                                 </div>
-                                                        </Dialog>
-                                                )}
-                                                </div>
-                                        </td>           
+                                                        </td>  
+                                                        )}         
                                                 </tr>
                                                         )
                                         ))}
@@ -617,7 +454,9 @@ const RequestPage = () => {
                                         <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Date</th>
                                         <th className="min-w-[150px] sm:w-2/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Time</th>
                                         <th className="min-w-[180px] sm:w-2/12 lg:w-2/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Location</th>
+                                        {(Premission.includes("edit request") ||Premission.includes("delete request"))  && ( 
                                         <th className="min-w-[100px] sm:w-1/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Action</th>
+                                        )}
                                         </tr>
                                 </thead>
                                 <tbody className="w-full">
@@ -659,16 +498,21 @@ const RequestPage = () => {
                                                         >
                                                                 {request.pick_up_address || 'Null'}
                                                         </td> 
+                                                        {(Premission.includes("edit request") ||Premission.includes("delete request"))  && ( 
                                                         <td
                                                 className="min-w-[100px] sm:min-w-[80px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
                                         >
                                                 <div className="flex items-center justify-center gap-x-3">
+                                                {Premission?.includes('edit request') && (
                                                 <Link to={`edit/${request.id}`} state={request.id} type="button">
                                                         <EditIcon />
                                                 </Link>
+                                                )}
+                                                {Premission?.includes('delete request') && (
                                                 <button type="button" onClick={() => handleOpenDialog(request.id)}>
                                                         <DeleteIcon />
                                                 </button>
+                                                )}
                                                 {openDialog === request.id && (
                                                         <Dialog open={true} onClose={handleCloseDialog} className="relative z-10">
                                                                 <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
@@ -709,7 +553,8 @@ const RequestPage = () => {
                                                         </Dialog>
                                                 )}
                                                 </div>
-                                        </td>           
+                                                        </td>   
+                                                        )}        
                                                 </tr>
                                                         )
                                         ))}
@@ -718,8 +563,8 @@ const RequestPage = () => {
                         </div>
                         </div>  
                         )}
-
-      
+                </>
+                ))}
                 </div>
               </>
        )

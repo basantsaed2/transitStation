@@ -3,7 +3,7 @@ import React, { useState ,useEffect} from "react";
 import {
        HomeIcon,LocationIcon,ParkingIcon,SubscriptionsIcon,DriversIcon,FinancialIcon,RevenueIcon,ProfileIcon
        ,ExpensesIcon,PlanIcon,RequestIcon,UserIcon,SettingIcon,AssetIcon,RevenueTypes,ColorIcon,PermissionIcon,
-       CustomerIcon,SupervisorIcon
+       CustomerIcon,SupervisorIcon,PromoCodeIcon
 } from "./Icons/All_Icons";
 import { useAuth } from "../Context/Auth";
 import { Link, useNavigate } from 'react-router-dom'
@@ -660,39 +660,42 @@ const MenuSide = () => {
                                           <HomeIcon isActive={isActiveHome} />
                                           <span className={`${isActiveHome ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Home</span>
                                    </Link>
-                                   {(Premission.includes("requests"))  && (    
+                                   {(Premission.includes("requests") || Premission.includes("add request"))  && (    
                                           <Link to="request" onClick={handleClickRequest} className={`${isActiveRequest ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                  <RequestIcon isActive={isActiveRequest} />
                                                  <span className={`${isActiveRequest ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Request</span>
                                           </Link>             
                                    )}
-                                   {(Premission.includes("subscriptions"))  && (    
+                                   {(Premission.includes("subscriptions") || Premission.includes("add subscription"))  && (    
                                           <Link to="subscriptions" onClick={handleClickSubscriptions} className={`${isActiveSubscriptions ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                  <SubscriptionsIcon isActive={isActiveSubscriptions} />
                                                  <span className={`${isActiveSubscriptions ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Subscriptions</span>
                                           </Link>  
                                    )}
-                                   {(Premission.includes("users") ||Premission.includes("admins") ||Premission.includes("drivers"))  && ( 
+                                   {(Premission.includes("users") ||Premission.includes("admins") ||Premission.includes("drivers")
+                                   ||Premission.includes("add user") ||Premission.includes("add admin") ||Premission.includes("add driver"))  && ( 
                                           <>
+                                          {/* {(Premission.includes("users") ||Premission.includes("add user"))&&(        */}
                                           <Link to="user" onClick={handleClickUser} className={`${isActiveUser ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                  <UserIcon isActive={isActiveUser} />
                                                  <span className={`${isActiveUser ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Users</span>
                                           </Link>
+                                          {/* )} */}
                                           <div className={`${openListUser ? "h-37" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
                                                  <ul className={`${openListUser ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
-                                                 {(Premission.includes("users"))&&(       
+                                                 {(Premission.includes("users") ||Premission.includes("add user"))&&(       
                                                         <Link to="user" onClick={handleClickEmployee} className={`${isActiveEmployee ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <CustomerIcon isActive={isActiveEmployee} />
                                                                <span className={`${isActiveEmployee ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Customers</span>
                                                         </Link> 
                                                  )}
-                                                 {(Premission.includes("drivers"))&&(       
+                                                 {(Premission.includes("drivers")||Premission.includes("add driver"))&&(       
                                                         <Link to="driver" onClick={handleClickDrivers} className={`${isActiveDrivers ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <DriversIcon isActive={isActiveDrivers} />
                                                                <span className={`${isActiveDrivers ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Drivers</span>
                                                         </Link>
                                                  )}
-                                                 {(Premission.includes("admins"))&&( 
+                                                 {(Premission.includes("admins")||Premission.includes("add admin"))&&( 
                                                         <Link to="supervisors" onClick={handleClickAdmins} className={`${isActiveAdmins ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <SupervisorIcon isActive={isActiveAdmins} />
                                                                <span className={`${isActiveAdmins ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Supervisors</span>
@@ -702,59 +705,67 @@ const MenuSide = () => {
                                           </div>
                                           </>
                                    )}
-                                   {(Premission.includes("revenues")) && ( 
+                                   {(Premission.includes("revenues") ||Premission.includes("add revenue")
+                                    ||Premission.includes("revenue_types")||Premission.includes("add revenue_type")) && ( 
                                           <>
+                                          {/* {(Premission.includes("revenues") ||Premission.includes("add revenue"))&&(        */}
                                           <Link to="revenue" onClick={handleClickRevenue} className={`${isActiveRevenue ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                  <RevenueIcon isActive={isActiveRevenue} />
                                                  <span className={`${isActiveRevenue ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Revenue</span>
                                           </Link>
+                                          {/* )} */}
+                                          {(Premission.includes("revenue_types")||Premission.includes("add revenue_type"))&&(       
                                           <div className={`${ showRevenueSubMenu? "h-15" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
                                                  <ul className={`${showRevenueSubMenu ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
-                                                 {(Premission.includes("revenues"))&&(       
                                                         <Link to="revenue/type" onClick={handleClickRevenueType} className={`${isActiveRevenueType ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <RevenueTypes isActive={isActiveRevenueType} />
                                                                <span className={`${isActiveRevenueType ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Revenue Types</span>
-                                                        </Link> 
-                                                 )}
-                                                
+                                                        </Link>                                                 
                                                  </ul>
                                           </div>
+                                          )}
                                           </>
                                    )}
-                                   {(Premission.includes("expences")) && ( 
+                                   {(Premission.includes("expences") ||Premission.includes("add expence")
+                                          ||Premission.includes("expence_types")||Premission.includes("add expence_type")) && (  
                                           <>
+                                          {/* {(Premission.includes("expences") ||Premission.includes("add expence"))&&(        */}
                                           <Link to="expenses" onClick={handleClickExpenses} className={`${isActiveExpenses ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                  <ExpensesIcon isActive={isActiveExpenses} />
                                                  <span className={`${isActiveExpenses ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Expences</span>
                                           </Link>
+                                          {/* )} */}
+                                          {(Premission.includes("expence_types")||Premission.includes("add expence_type"))&&(       
                                           <div className={`${ showExpenseSubMenu? "h-15" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
                                                  <ul className={`${showExpenseSubMenu ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
-                                                 {(Premission.includes("expences"))&&(       
                                                         <Link to="expenses/type" onClick={handleClickExpensesType} className={`${isActiveExpenseType ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <RevenueTypes isActive={isActiveExpenseType} />
                                                                <span className={`${isActiveExpenseType ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Expences Types</span>
                                                         </Link> 
-                                                 )}
-                                                
+                                          
                                                  </ul>
                                           </div>
+                                          )}
                                           </>
                                    )}
-                                   {(Premission.includes("parkings") ||Premission.includes("locations"))  && ( 
+                                   {(Premission.includes("parkings") ||Premission.includes("locations")
+                                    ||Premission.includes("add parking") ||Premission.includes("add location"))  && ( 
                                           <>
+                                          {/* {(Premission.includes("parkings")||Premission.includes("add parking"))&&( */}
                                           <Link to="parking" onClick={handleClickParkingList} className={`${isActiveParkingList ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                  <AssetIcon isActive={isActiveParkingList} />
                                                  <span className={`${isActiveParkingList ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Assets</span>
                                           </Link>
+                                          {/* )} */}
                                           <div className={`${openListAssets ? "h-15" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
                                                  <ul className={`${openListAssets ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
-                                                 {(Premission.includes("parkings"))&&(       
+                                                 {(Premission.includes("parkings")||Premission.includes("add parking"))&&(       
                                                         <Link to="parking" onClick={handleClickParking} className={`${isActiveParking ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <ParkingIcon isActive={isActiveParking} />
                                                                <span className={`${isActiveParking ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Parkings</span>
                                                         </Link> 
                                                  )}
-                                                 {(Premission.includes("locations"))&&(       
+                                                 {(Premission.includes("locations")||Premission.includes("add location"))&&(       
                                                         <Link to="pickUp_location" onClick={handleClickLocation} className={`${isActiveLocation ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <LocationIcon isActive={isActiveLocation} />
                                                                <span className={`${isActiveLocation ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Pickup locations </span>
@@ -764,35 +775,38 @@ const MenuSide = () => {
                                           </div>
                                           </>
                                    )}
-                                   {(Premission.includes("plans") ||Premission.includes("colors")||Premission.includes("promocodes")||Premission.includes("roles")) && ( 
+                                   {(Premission.includes("plans") ||Premission.includes("colors")||Premission.includes("promocodes")||Premission.includes("roles")
+                                     ||Premission.includes("add plan") ||Premission.includes("add color")||Premission.includes("add promocode")||Premission.includes("add role")) && ( 
                                           <>
+                                          {/* {(Premission.includes("plans")||Premission.includes("add plan"))&&(        */}
                                           <Link to="plan" onClick={handleClickSettings} className={`${isActiveSettingsList ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                  <SettingIcon isActive={isActiveSettingsList} />
                                                  <span className={`${isActiveSettingsList ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Settings</span>
                                           </Link>
+                                          {/* )} */}
                                           <div className={`${openListSettings ? "h-13" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
                                                  <ul className={`${openListSettings ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
-                                                 {(Premission.includes("plans"))&&(       
+                                                 {(Premission.includes("plans")||Premission.includes("add plan"))&&(       
                                                         <Link to="plan" onClick={handleClickPlans} className={`${isActivePlan ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <PlanIcon isActive={isActivePlan} />
                                                                <span className={`${isActivePlan ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Plans</span>
                                                         </Link> 
                                                  )}
-                                                 {/* {(Premission.includes("roles"))&&(        */}
+                                                 {(Premission.includes("roles")||Premission.includes("add role"))&&(       
                                                         <Link to="permission" onClick={handleClickPermission} className={`${isActivePermission ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <PermissionIcon isActive={isActivePermission} />
                                                                <span className={`${isActivePermission ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Permissions</span>
                                                         </Link>
-                                                 {/* )} */}
-                                                 {(Premission.includes("colors"))&&( 
+                                                 )}
+                                                 {(Premission.includes("colors")||Premission.includes("add color"))&&( 
                                                         <Link to="car_color" onClick={handleClickColor} className={`${isActiveCarColor ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <ColorIcon isActive={isActiveCarColor} />
                                                                <span className={`${isActiveCarColor ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Car Colors</span>
                                                         </Link>
                                                  )}
-                                                  {(Premission.includes("promocodes"))&&( 
+                                                  {(Premission.includes("promocodes")||Premission.includes("add promocode"))&&( 
                                                         <Link to="promo_code" onClick={handleClickPromoCode} className={`${isActivePromoCode ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                               {/* <ColorIcon isActive={isActivePromoCode} /> */}
+                                                               <PromoCodeIcon isActive={isActivePromoCode} />
                                                                <span className={`${isActivePromoCode ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Promo Code</span>
                                                         </Link>
                                                  )}

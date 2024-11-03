@@ -9,6 +9,7 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 
 const PickUP_LocationPage = () => {
     const auth = useAuth();
+    const [Premission] = useState(auth.user.permissions.role);
     const [isLoading, setIsLoading] = useState(false);
     const [pickUp_Locations, setPickUp_Locations] = useState(false);
     const [locationChanged, setLocationChanged] = useState(false);
@@ -114,9 +115,11 @@ const PickUP_LocationPage = () => {
             <>
             <div className='w-full flex flex-col gap-5'>
               <div className='w-2/6 lg:w-1/6'>
+              {Premission.includes('add location') && (
                 <Link to="add">
                         <ButtonAdd isWidth="true" BgColor ="mainColor" Color="white" iconColor="white"/>
                 </Link>
+              )}
               </div>
 
                 {/* <div className='w-full flex justify-center flex-wrap gap-10'>
@@ -132,6 +135,12 @@ const PickUP_LocationPage = () => {
                         </div>
                     ))}
                 </div> */}
+            {Premission?.includes('locations') && (
+              pickUp_Locations?.length === 0 ? (
+                <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>
+                        No PickUp location data available
+                </div>
+                ) : (
 
             <div className='w-full flex flex-wrap gap-10'>
                   {/* Location list */}
@@ -215,6 +224,7 @@ const PickUP_LocationPage = () => {
                     </div>
                   ))}
             </div>
+              ))}
 
             </div>
             </>

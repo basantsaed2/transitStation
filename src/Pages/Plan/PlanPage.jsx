@@ -11,6 +11,7 @@ import { MdCheck } from "react-icons/md";
 const PlanPage = () => {
 
     const auth = useAuth();
+    const [Premission] = useState(auth.user.permissions.role);
     const [isLoading, setIsLoading] = useState(false);
     const [plans, setPlans] = useState('');
     const [planChanged, setPlanChanged] = useState(false);
@@ -103,10 +104,19 @@ const PlanPage = () => {
               <>
               <div className='w-full flex flex-col gap-10'>
                      <div className='w-2/6 lg:w-1/6'>
+                     {Premission.includes('add plan') && (
                      <Link to={'add'}>
                             <ButtonAdd isWidth="true" BgColor ="mainColor" Color="white" iconColor="white"/>
                      </Link>
+                     )}
                      </div>
+              
+              {Premission?.includes('plans') && (
+                 plans.length === 0 ? (
+                <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>
+                        No  positions role data available
+                </div>
+                ) : (
                 <div className="w-full flex flex-wrap items-center justify-start gap-10">
                 {plans.map((plan, index) => (
                     <>
@@ -124,14 +134,19 @@ const PlanPage = () => {
                                     <h1><span className='font-semibold line-through text-2xl'>{plan.price}$ </span>/ {plan.duration} Days</h1>
                                 </div>
                             </div>
+                            {(Premission.includes("edit plan") ||Premission.includes("delete plan"))  && ( 
                             <div className='p-4'>
                                 <div className='flex gap-x-3 border-t-2 border-mainColor p-4 pb-0'>
+                                                 {Premission?.includes('edit plan') && (
                                                         <Link to={`edit/${plan.id}`} state={plan.id} type="button">
                                                                 <EditIcon />
                                                         </Link>
+                                                 )}
+                                                 {Premission?.includes('delete plan') && (
                                                         <button type="button" onClick={() => handleOpenDialog(plan.id)}>
                                                                 <DeleteIcon />
                                                         </button>
+                                                 )}
                                                         {openDialog === plan.id && (
                                                                 <Dialog open={true} onClose={handleCloseDialog} className="relative z-10">
                                                                         <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
@@ -173,10 +188,12 @@ const PlanPage = () => {
                                                         )}
                                 </div>
                             </div>
+                            )}
                         </div>       
                     </>
                  ))}
                 </div>
+                ))}
               </div>
               </>
        )

@@ -24,7 +24,15 @@ export default {
         sm: "250px",
         md: "640px",
         lg: "740px",
-        xl: "1280px",
+        xl: "1080px",
+
+        // sm: "300px",
+        // md: "600px",
+        // lg: "800px",
+        // xl: "1000px",
+
+        // lg: "900px",
+        // xl: "1280px",
         // "2xl": "1536px",
       },
     },

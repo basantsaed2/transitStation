@@ -17,6 +17,7 @@ export { default as PermissionIcon } from "./PermissionIcon";
 export { default as ProfileIcon } from "./ProfileIcon";
 export { default as CustomerIcon } from "./CustomerIcon";
 export { default as SupervisorIcon } from "./SupervisorIcon";
+export { default as PromoCodeIcon } from "./PromoCodeIcon";
 
 export { default as EditIcon } from "./EditIcon";
 export { default as DeleteIcon } from "./DeleteIcon";

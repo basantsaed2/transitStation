@@ -10,6 +10,7 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 const PromoCodePage = () => {
 
     const auth = useAuth();
+    const [Premission] = useState(auth.user.permissions.role);
     const [isLoading, setIsLoading] = useState(false);
     const [codes, setCodes] = useState('');
     const [codeChanged, setCodeChanged] = useState(false);
@@ -103,12 +104,20 @@ const PromoCodePage = () => {
         <div className="w-full">
             <div className="w-full flex flex-wrap items-center justify-start gap-10">
              <div className='lg:w-1/6'>
+             {Premission.includes('add promocode') && (
              <Link to={'add'}>
                     <ButtonAdd isWidth="true" BgColor ="mainColor" Color="white" iconColor="white"/>
              </Link>
+             )}
              </div>
             </div>
 
+            {Premission?.includes('promocodes') && (
+                 codes.length === 0 ? (
+                <div className='text-mainColor text-2xl font-bold w-full h-full flex items-center justify-center'>
+                        No  promocodes data available
+                </div>
+                ) : (
             <div className="w-full flex items-center justify-between mt-4 overflow-x-auto">
                 <table className="w-full sm:min-w-0">
                     <thead className="w-full">
@@ -120,7 +129,9 @@ const PromoCodePage = () => {
                             <th className="min-w-[150px] sm:w-2/12 lg:w-2/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Vaild From</th>
                             <th className="min-w-[150px] sm:w-2/12 lg:w-2/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Vaild To</th>
                             <th className="min-w-[150px] sm:w-2/12 lg:w-2/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Usage Limit</th>
+                            {(Premission.includes("edit promocode") ||Premission.includes("delete promocode"))  && ( 
                             <th className="min-w-[100px] sm:w-1/12 lg:w-1/12 text-mainColor text-center font-medium text-sm sm:text-base lg:text-lg xl:text-xl pb-3">Action</th>
+                            )}
                         </tr>
                     </thead>
                     <tbody className="w-full">
@@ -163,16 +174,21 @@ const PromoCodePage = () => {
                                                  {code?.usage_limit || '_'}
                                         
                                           </td>
+                                          {(Premission.includes("edit promocode") ||Premission.includes("delete promocode"))  && ( 
                                          <td
                                                 className="min-w-[100px] sm:min-w-[80px] sm:w-1/12 lg:w-1/12 py-2 text-center text-thirdColor text-sm sm:text-base lg:text-lg xl:text-xl overflow-hidden"
                                         >
                                                 <div className="flex items-center justify-center gap-x-3">
+                                                {Premission?.includes('edit promocode') && (
                                                 <Link to={`edit/${code.id}`} state={code.id} type="button">
                                                         <EditIcon />
                                                 </Link>
+                                                )}
+                                                {Premission?.includes('delete promocode') && (
                                                 <button type="button" onClick={() => handleOpenDialog(code.id)}>
                                                         <DeleteIcon />
                                                 </button>
+                                                )}
                                                 {openDialog === code.id && (
                                                         <Dialog open={true} onClose={handleCloseDialog} className="relative z-10">
                                                                 <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
@@ -214,13 +230,13 @@ const PromoCodePage = () => {
                                                 )}
                                                 </div>
                                         </td>
+                                          )}
                                 </tr>
                             ))}
                     </tbody>
                 </table>
             </div>
-
-
+             ))}
         </div>  
         </>
        )
