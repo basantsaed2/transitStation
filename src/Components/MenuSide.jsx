@@ -786,6 +786,12 @@ const MenuSide = () => {
                                           {/* )} */}
                                           <div className={`${openListSettings ? "h-13" : "h-0 overflow-hidden"} w-full transition-all duration-500`}>
                                                  <ul className={`${openListSettings ? "h-full overflow-hidden" : "h-0 overflow-hidden"} listUser ml-10 bg-blacks transition-all duration-700 flex flex-col gap-y-2`} >
+                                                 {(Premission.includes("promocodes")||Premission.includes("add promocode"))&&( 
+                                                        <Link to="promo_code" onClick={handleClickPromoCode} className={`${isActivePromoCode ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                                               <PromoCodeIcon isActive={isActivePromoCode} />
+                                                               <span className={`${isActivePromoCode ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Promo Code</span>
+                                                        </Link>
+                                                 )}
                                                  {(Premission.includes("plans")||Premission.includes("add plan"))&&(       
                                                         <Link to="plan" onClick={handleClickPlans} className={`${isActivePlan ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <PlanIcon isActive={isActivePlan} />
@@ -802,12 +808,6 @@ const MenuSide = () => {
                                                         <Link to="car_color" onClick={handleClickColor} className={`${isActiveCarColor ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
                                                                <ColorIcon isActive={isActiveCarColor} />
                                                                <span className={`${isActiveCarColor ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Car Colors</span>
-                                                        </Link>
-                                                 )}
-                                                  {(Premission.includes("promocodes")||Premission.includes("add promocode"))&&( 
-                                                        <Link to="promo_code" onClick={handleClickPromoCode} className={`${isActivePromoCode ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
-                                                               <PromoCodeIcon isActive={isActivePromoCode} />
-                                                               <span className={`${isActivePromoCode ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Promo Code</span>
                                                         </Link>
                                                  )}
                                                  </ul>

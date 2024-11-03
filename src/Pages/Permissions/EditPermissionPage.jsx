@@ -451,12 +451,12 @@ const EditPermissionPage = () => {
     const [permissionsData, setPermissionsData] = useState({});
     const [selectedPermissions, setSelectedPermissions] = useState({});
 
-       useEffect(() => {
-              if (premissionContent) {
-                     setRoleName(premissionContent?.name || '-')
-                     setSelectedPermissions(premissionContent?.role.map((role) => (role.role_name)) || '-')
-                    }
-       }, [premissionContent]);
+    //    useEffect(() => {
+    //           if (premissionContent) {
+    //                  setRoleName(premissionContent?.name || '-')
+    //                  setSelectedPermissions(premissionContent?.role.map((role) => (role.role_name)) || '-')
+    //                 }
+    //    }, [premissionContent]);
 
 
     // Fetch Permissions (roles)
@@ -472,12 +472,12 @@ const EditPermissionPage = () => {
                 const permissions = response.data.roles;
                 setPermissionsData(permissions);
 
-                // // Initialize selected permissions state
-                // const initialSelected = {};
-                // Object.keys(permissions).forEach((category) => {
-                //     initialSelected[category] = [];
-                // });
-                // setSelectedPermissions(initialSelected);
+                // Initialize selected permissions state
+                const initialSelected = {};
+                Object.keys(permissions).forEach((category) => {
+                    initialSelected[category] = [];
+                });
+                setSelectedPermissions(initialSelected);
             }
         } catch (error) {
             console.error('Error fetching data:', error);
