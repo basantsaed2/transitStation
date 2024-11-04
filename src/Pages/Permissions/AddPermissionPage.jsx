@@ -200,8 +200,8 @@ const AddPermissionPage = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [roleName, setRoleName] = useState('');
-    const [permissionsData, setPermissionsData] = useState({});
-    const [selectedPermissions, setSelectedPermissions] = useState({});
+    const [permissionsData, setPermissionsData] = useState([]);
+    const [selectedPermissions, setSelectedPermissions] = useState([]);
 
     // Fetch Permissions (roles)
     const fetchData = async () => {
@@ -325,6 +325,10 @@ const AddPermissionPage = () => {
             const formData = new FormData();
             formData.append('name', roleName);
             selectedRoles.forEach((role) => formData.append('role_name[]', role));
+
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ', ' + pair[1]);
+            }        
 
             const response = await axios.post('https://transitstation.online/api/admin/addadminposition', formData, {
                 headers: {

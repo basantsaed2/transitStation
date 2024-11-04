@@ -814,7 +814,7 @@ const MenuSide = () => {
                                           </div>
                                           </>
                                    )}
-                                   <Link to="profile" onClick={handleClickProfile} className={`${isActiveProfile ? 'active' : ''} w-full flex items-center justify-start px-0 py-2 gap-x-5`}>
+                                   <Link to="profile" onClick={handleClickProfile} className={`${isActiveProfile ? 'active' : ''} w-full flex lg:hidden items-center justify-start px-0 py-2 gap-x-5`}>
                                           <ProfileIcon isActive={isActiveProfile} />
                                           <span className={`${isActiveProfile ? "text-mainColor" : "text-secoundColor"} text-xl font-medium`}>Profile</span>
                                    </Link>             
