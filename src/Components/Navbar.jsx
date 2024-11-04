@@ -76,7 +76,7 @@ const Navbar = () => {
                 break;
             // Add more cases as needed
             default:
-                alert('Page not found');
+                auth.toastError('Page not found');
         }
     };
 
